@@ -12,7 +12,7 @@
       from users where user_num=#{userNum}
    </select>
    
-   <insert id="addUser" parameterType='string'>
+   <insert id="addUser" parameterType='user'>
       insert into users(user_num, user_id, user_pw, email, user_name, birthday, user_tel, pw_answer, gender)
       values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum}, #{answer}, #{gender})
    </insert>

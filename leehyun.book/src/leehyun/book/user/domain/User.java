@@ -1,7 +1,5 @@
 package leehyun.book.user.domain;
 
-import java.sql.Date;
-
 public class User {
 	private String userName;
 	private String userId;
