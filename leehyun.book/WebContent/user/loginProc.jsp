@@ -31,4 +31,4 @@
       }
    }
 %>
-   <c:redirect url="login.html"/>
+   <c:redirect url="loginIn.html"/>

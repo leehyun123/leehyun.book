@@ -134,8 +134,8 @@ hr {
 <%
          if(session.getAttribute("sessionID") == null){
 %>
-         <a href="user/login.html">로그인</a> / 
-         <a href="user/addUser.html">회원가입</a> /
+         <a href="user/loginIn.html">로그인</a> / 
+         <a href="user/addUserIn.html">회원가입</a> /
 <%
          }else{
 %>
@@ -145,7 +145,7 @@ hr {
          }
 %>      
          <a href="../user/07.html">마이페이지</a>
-         / <a href="../order/addUser.html">장바구니</a>
+         / <a href="../order/addUserIn.html">장바구니</a>
       </div>
    </div>
    <div class="div_logo">
@@ -183,100 +183,100 @@ hr {
       </div>
    </div>
    <div class="item_cb">
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>2020 정보처리기사 실기</h4>
-         <h6>길벗알앤디</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>The Child in Time</h4>
-         <h6>Anchor Books/Doubleday</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>야생의 위로</h4>
-         <h6>심심</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>지금 시작하는 생각 인문학</h4>
-         <h6>비즈니스북스</h6>
-      </div>
-   </div>
-   <div class="item_cb">
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>2020 정보처리기사 실기</h4>
-         <h6>길벗알앤디</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>세상에서 가장 아름다운 책</h4>
-         <h6>21세기 북스</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>에크리</h4>
-         <h6>새물결</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>교양인의 논어</h4>
-         <h6>미다스북스</h6>
-      </div>
-   </div>
-   <div class="item_cb">
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>욕망과 탐욕의 인문학</h4>
-         <h6>아이템하우스</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>누구나 철학자가 되는 밤</h4>
-         <h6>추수밭</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>우리는 비 온 뒤를 걷는다</h4>
-         <h6>알에이치코리아</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>힐링 스페이스</h4>
-         <h6>더퀘스트</h6>
-      </div>
-   </div>
-   <div class="item_cb">
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>사랑받을 권리</h4>
-         <h6>웅진지식하우스</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>내 아이는 생각이 너무 많아</h4>
-         <h6>부키</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>명리심리학</h4>
-         <h6>다산북스</h6>
-      </div>
-      <div class="book_item">
-         <div class="book_img"></div>
-         <h4>신화 콘서트</h4>
-         <h6>행복한작업실</h6>
-      </div>
-   </div>
-   <div class=footer>
-      <hr>
-      <p class='footertext'>
-         대표이사 이 현 | 대표 전화 02 – 0000 – 0000<br> 본사 서울시 마포구 서교동 | 주소 서울시
-         마포구 서교동<br> 고객센터 02 – 1234 - 1234
-      </p>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>2020 정보처리기사 실기</h4>
+			<h6>길벗알앤디</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>The Child in Time</h4>
+			<h6>Anchor Books/Doubleday</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>야생의 위로</h4>
+			<h6>심심</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>지금 시작하는 생각 인문학</h4>
+			<h6>비즈니스북스</h6>
+		</div>
+	</div>
+	<div class="item_cb">
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>2020 정보처리기사 실기</h4>
+			<h6>길벗알앤디</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>세상에서 가장 아름다운 책</h4>
+			<h6>21세기 북스</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>에크리</h4>
+			<h6>새물결</h6>
+		</div>
+		<div class="book_item" onclick="location.href = 'book/02.html'">
+			<div class="book_img">도서이미지</div>
+			<h4>교양인의 논어</h4>
+			<h6>미다스북스</h6>
+		</div>
+	</div>
+	<div class="item_cb">
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>욕망과 탐욕의 인문학</h4>
+			<h6>아이템하우스</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>누구나 철학자가 되는 밤</h4>
+			<h6>추수밭</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>우리는 비 온 뒤를 걷는다</h4>
+			<h6>알에이치코리아</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>힐링 스페이스</h4>
+			<h6>더퀘스트</h6>
+		</div>
+	</div>
+	<div class="item_cb">
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>사랑받을 권리</h4>
+			<h6>웅진지식하우스</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>내 아이는 생각이 너무 많아</h4>
+			<h6>부키</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>명리심리학</h4>
+			<h6>다산북스</h6>
+		</div>
+		<div class="book_item">
+			<div class="book_img">도서이미지</div>
+			<h4>신화 콘서트</h4>
+			<h6>행복한작업실</h6>
+		</div>
+	</div>
+	<div class=footer>
+		<hr>
+		<p class='footertext'>
+			대표이사 이 현 | 대표 전화 02 – 0000 – 0000<br> 본사 서울시 마포구 서교동 | 주소 서울시
+			마포구 서교동<br> 고객센터 02 – 1234 - 1234
+		</p>
 
-   </div>
+	</div>
 </body>
 </html>

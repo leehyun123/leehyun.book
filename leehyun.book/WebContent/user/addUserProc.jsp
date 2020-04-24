@@ -39,7 +39,7 @@
          userService.join(user);
          System.out.println("성공");
 %>
-   <c:redirect url="login.html"/>
+   <c:redirect url="loginIn.html"/>
 <%
       }else {
          System.out.println("비밀번호가 일치하지 않습니다.");
@@ -50,4 +50,4 @@
    } System.out.println("실패, 모든 항목을 입력해주세요.");
 %>   
    
-   <c:redirect url="addUser.html"/>
+   <c:redirect url="addUserIn.html"/>
