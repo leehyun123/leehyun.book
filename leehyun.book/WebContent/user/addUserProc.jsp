@@ -5,7 +5,6 @@
 <%@ page import = "leehyun.book.user.service.UserServiceImpl" %>
 <%@ page import = "leehyun.book.user.domain.User" %>
 <%@ page import="java.util.List, java.util.ArrayList"%>
-
 <%
    UserService userService = new UserServiceImpl();
    List<User> users = userService.listUsers();
