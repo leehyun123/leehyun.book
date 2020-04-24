@@ -12,7 +12,6 @@ public class User {
 	private String answer;
 	private String gender;
 	private int userNum;
-	private int userNum111;
 	
 	public User() {}
 	
