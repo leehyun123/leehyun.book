@@ -6,6 +6,12 @@
      
 	<typeAliases>
 		<typeAlias alias="user" type="leehyun.book.user.domain.User" />
+		<typeAlias alias="book" type="leehyun.book.user.domain.Book" />
+		<typeAlias alias="img" type="leehyun.book.user.domain.Img" />
+		<typeAlias alias="order" type="leehyun.book.user.domain.Order" />
+		<typeAlias alias="orderBooks" type="leehyun.book.user.domain.OrderBooks" />
+		<typeAlias alias="refund" type="leehyun.book.user.domain.Refund" />
+		<typeAlias alias="refundBooks" type="leehyun.book.user.domain.RefundBooks" />
 	</typeAliases>
 	
 	<environments default = "development">
@@ -24,5 +30,6 @@
 
 	<mappers>
 		<mapper resource="leehyun/book/user/dao/map/userMap.xml" />
+		<mapper resource="leehyun/book/book/dao/map/bookMap.xml" />
 	</mappers>
 </configuration>

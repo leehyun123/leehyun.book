@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leehyun.book.book.dao.map.BookMap">
+	<!-- 장바구니 G박 
+	<select id="selectList" parameterType="java.util.ArrayList" resultType="test.vo">
+    SELECT * FROM TEST
+    WHERE ID_SEQ IN (
+        <foreach collection="array" item="item" index="index" separator=",">
+            ${item}
+        </foreach>
+    )
+	</select>
+	 -->
+	<select id="getBooks" resultMap="bookMap">
+		select user_num, user_id, user_pw, email, user_name, birthday, user_tel,
+		pw_answer, gender
+		from users order by user_num
+	</select>
+
+	<select id="getBook" parameterType="int" resultMap="bookMap">
+		select user_num, user_name
+		from users where user_num=#{isbn}
+	</select>
+
+	<insert id="addBook" parameterType='string'>
+		insert into users(user_num, user_id, user_pw, email, user_name, birthday,
+		user_tel, pw_answer, gender)
+		values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum},
+		#{answer}, #{gender})
+	</insert>
+
+	<update id="updateBook" parameterType='book'>
+		update users set user_id=#{userId}, user_pw =#{password}, email=#{email},
+		user_name=#{userName},
+		birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
+		where user_num=#{userNum}
+	</update>
+
+	<delete id="delBook" parameterType="int">
+		delete users where user_num=#{user_num}
+	</delete>
+
+	<resultMap id="bookMap" type="book">
+		<id property="isbn" column="isbn" />
+		<result property="bookTitle" column="book_title" />
+		<result property="author"	column="author"/>
+		<result property="publisher" column="publisher" />
+		<result property="publishDate" column="publish_date" />
+		<result property="bookPrice" column="book_price" />
+		<result property="bookImg" column="book_img" />
+		<result property="bookOutline" column="book_outline" />
+	</resultMap>
+</mapper>
