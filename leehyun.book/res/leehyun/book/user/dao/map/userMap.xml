@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leehyun.book.user.dao.map.UserMap">
+   <select id="getUsers" resultMap="userMap">
+      select user_num, user_id, user_pw, email, user_name, birthday, user_tel, pw_answer, gender
+      from users order by user_num
+   </select>
+   
+   <select id="getUser" parameterType="int" resultMap="userMap">
+      select user_num, user_name
+      from users where user_num=#{idNum}
+   </select>
+   
+   <insert id="addUser" parameterType='string'>
+      insert into users(user_num, user_id, user_pw, email, user_name, birthday, user_tel, pw_answer, gender)
+      values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum}, #{answer}, #{gender})
+   </insert>
+   
+   <update id="updateUser" parameterType='user'>
+      update users set user_id=#{userId}, user_pw =#{password}, email=#{email}, user_name=#{userName},
+      birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
+      where user_num=#{idNum}
+   </update>
+
+   <delete id="delUser" parameterType="int">
+      delete users where user_num=#{id_num}
+   </delete>
+   
+   <resultMap id ="userMap" type="user">
+      <id      property="idNum"   column="user_num"/>
+      <result property="userId"    column="user_id"/>
+      <result property="password"   column="user_pw"/>
+      <result property="email"   column="email"/>
+      <result property="userName" column="user_name"/>
+      <result property="birthday" column="birthday"/>
+      <result property="phoneNum" column="user_tel"/>
+      <result property="answer"   column="pw_answer"/>
+      <result property="gender"   column="gender"/>
+   </resultMap>
+</mapper>
