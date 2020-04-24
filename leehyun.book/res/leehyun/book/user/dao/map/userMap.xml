@@ -9,7 +9,7 @@
    
    <select id="getUser" parameterType="int" resultMap="userMap">
       select user_num, user_name
-      from users where user_num=#{idNum}
+      from users where user_num=#{userNum}
    </select>
    
    <insert id="addUser" parameterType='string'>
@@ -20,7 +20,7 @@
    <update id="updateUser" parameterType='user'>
       update users set user_id=#{userId}, user_pw =#{password}, email=#{email}, user_name=#{userName},
       birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
-      where user_num=#{idNum}
+      where user_num=#{userNum}
    </update>
 
    <delete id="delUser" parameterType="int">
@@ -28,7 +28,7 @@
    </delete>
    
    <resultMap id ="userMap" type="user">
-      <id      property="idNum"   column="user_num"/>
+      <id      property="userNum"   column="user_num"/>
       <result property="userId"    column="user_id"/>
       <result property="password"   column="user_pw"/>
       <result property="email"   column="email"/>

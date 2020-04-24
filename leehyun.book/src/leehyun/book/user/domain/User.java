@@ -1,20 +1,22 @@
 package leehyun.book.user.domain;
 
+import java.sql.Date;
+
 public class User {
 	private String userName;
 	private String userId;
 	private String password;
-	private String birthday;
+	private Date birthday;
 	private String email;
 	private String phoneNum;
 	private String answer;
 	private String gender;
-	private String idNum;
+	private int userNum;
 	
 	public User() {}
 	
-	public User(String idNum, String userName, String userId, String password, String birthday, String email, String phoneNum, String answer, String gender) {
-		this.idNum = idNum;
+	public User(int userNum, String userName, String userId, String password, Date birthday, String email, String phoneNum, String answer, String gender) {
+		this.userNum = userNum;
 		this.userName = userName;
 		this.userId = userId;
 		this.password = password;
@@ -49,11 +51,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -89,15 +91,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getIdNum() {
-		return idNum;
+	public int getuserNum() {
+		return userNum;
 	}
 
-	public void setIdNum(String idNum) {
-		this.idNum = idNum;
-	}
-	
-	public String toString() {
-		return String.format("[%s, %s]", userId, password);
+	public void setuserNum(int userNum) {
+		this.userNum = userNum;
 	}
 }

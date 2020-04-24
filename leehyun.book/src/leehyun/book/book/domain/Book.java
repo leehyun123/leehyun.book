@@ -1,9 +1,9 @@
-package leehyun.book.user.domain;
+package leehyun.book.book.domain;
 
 import java.sql.Date;
 
 public class Book {
-   private String bookIsbn;
+   private int isbn;
    private String bookTitle;
    private String author;
    private String publisher;
@@ -15,9 +15,9 @@ public class Book {
    public Book() {
    }
 
-   public Book(String bookIsbn, String bookTitle, String author, String publisher, Date publishDate, int bookPrice,
+   public Book(int isbn, String bookTitle, String author, String publisher, Date publishDate, int bookPrice,
          String bookImg, String bookOutline) {
-      this.bookIsbn = bookIsbn;
+      this.isbn = isbn;
       this.bookTitle = bookTitle;
       this.author = author;
       this.publisher = publisher;
@@ -27,8 +27,8 @@ public class Book {
       this.bookOutline = bookOutline;
    }
 
-   public String getbookIsbn() {
-      return bookIsbn;
+   public int getisbn() {
+      return isbn;
    }
 
    public String getbookTitle() {
@@ -59,8 +59,8 @@ public class Book {
       return bookOutline;
    }
 
-   public void setbookIsbn(String bookIsbn) {
-      this.bookIsbn = bookIsbn;
+   public void setisbn(int isbn) {
+      this.isbn = isbn;
    }
 
    public void setbookTitle(String bookTitle) {
