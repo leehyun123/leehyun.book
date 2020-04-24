@@ -98,4 +98,8 @@ public class User {
 	public void setuserNum(int userNum) {
 		this.userNum = userNum;
 	}
+	
+	public String toString() {
+		return String.format("[%s, %s]", userName, password);
+	}
 }
