@@ -24,7 +24,7 @@
    </update>
 
    <delete id="delUser" parameterType="int">
-      delete users where user_num=#{id_num}
+      delete users where user_num=#{user_num}
    </delete>
    
    <resultMap id ="userMap" type="user">
