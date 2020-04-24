@@ -4,7 +4,6 @@ public class OrderBooks {
 	private int orderCnt;
 
 	public OrderBooks(int orderCnt) {
-		super();
 		this.orderCnt = orderCnt;
 	}
 
