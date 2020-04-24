@@ -20,22 +20,9 @@
 	String answer = request.getParameter("userA");
 	String birthday = request.getParameter("userDate");
 	User user = new User();
-	request.setAttribute("msgOk", "사용가능한 아이디입니다.");
-	System.out.println(users);
+
 %>
-<%
-	if (userId != null) {
-		for (User user1 : users) {
-			if (user1.getUserId().equals(userId)) {
-				request.setAttribute("msgFail", "존재하는 아이디입니다.");
-				System.out.println("같음"); 
-%>
-<jsp:forward page="addUserIn.jsp"/>
-<%
-			}
-		}
-	}
-%>
+
 <%
 	if (userId != null && password != null && password2 != null && userName != null && birthday != null
 			&& gender != null && email != null && phoneNum != null && answer != null) {

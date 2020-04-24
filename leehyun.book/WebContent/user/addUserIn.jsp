@@ -158,7 +158,7 @@ header {
 				<label class="col-sm-5 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userId' type='text'
-						placeholder='아이디' maxlength='12'>
+						placeholder='아이디' maxlength='12' minlength="6" required>
 				</div>
 				<div class="form-group">
 					<input type="submit" value="아이디 확인" formaction="addUserProc.jsp">
@@ -182,7 +182,7 @@ header {
 				<label class="col-sm-5 control-label">비밀번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd' type='password'
-						placeholder='비밀번호' maxlength='16'>
+						placeholder='비밀번호' maxlength='16' minlength="8">
 				</div>
 			</div>
 
@@ -190,7 +190,7 @@ header {
 				<label class="col-sm-5 control-label">비밀번호 확인: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd2' type='password'
-						placeholder='비밀번호 확인' maxlength='16'>
+						placeholder='비밀번호 확인' maxlength='16' minlength="8">
 				</div>
 			</div>
 
@@ -198,7 +198,7 @@ header {
 				<label class="col-sm-5 control-label">성명: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userName' type='text'
-						placeholder='성명' maxlength='8'>
+						placeholder='성명' maxlength='8' minlength="2">
 				</div>
 			</div>
 
@@ -230,7 +230,7 @@ header {
 				<label class="col-sm-5 control-label">전화번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userTel' type='tel'
-						placeholder="특수문자를 제외한 숫자만 입력해주세요.">
+						placeholder="특수문자를 제외한 숫자만 입력해주세요." minlength="9">
 				</div>
 			</div>
 
