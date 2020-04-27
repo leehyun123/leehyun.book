@@ -305,6 +305,7 @@ th, td{
          </thead>
          <tbody>
             <%
+               int sum = 0;
                for(String str: cartArr){
                   String[] cartItem = request.getParameterValues(str);
                   if(cartItem.length == 5){
@@ -317,7 +318,7 @@ th, td{
                <td class="cen"><%=sumPrice%></td>
             </tr>
             <%
-            
+            		sum += sumPrice;
                   }
                }   
             %>
@@ -327,56 +328,56 @@ th, td{
       <br>
       <!-- 배송정보 -->
       <h3>배송 정보</h3>
-      <div class="div_float">
-         <form action="orderProc.jsp" class="delivery">
+      <form action="orderProc.jsp" class="delivery">
+     	 <div class="div_float">
             <div class="div_half">
                <label class="d_op">수령인 : </label>
-               <input class="d_op_in" type="text" name="reciever" placeholder="수령인"><br> 
+               <input class="d_op_in" type="text" name="receiver" placeholder="수령인"><br> 
                <label class="d_op">배송지 : </label>
-               <input class="d_op_in" type="text" name="address_main" placeholder="기본 주소"><br> 
+               <input class="d_op_in" type="text" name="baseAddr" placeholder="기본 주소"><br> 
                <label class="d_op">&nbsp;</label>
-               <input class="d_op_in" type="text" name="address_sub" placeholder="상세 주소"><br> 
+               <input class="d_op_in" type="text" name="detailAddr" placeholder="상세 주소"><br> 
                <label class="d_op">핸드폰번호 : </label>
-               <input class="d_op_in" type="tel" name="phone_number" placeholder="특수문자를 제외한 숫자만 입력해주세요">
+               <input class="d_op_in" type="tel" name="receiverTel" placeholder="특수문자를 제외한 숫자만 입력해주세요">
             </div>
             <div class="div_half">
                <label class="d_op">배송요청사항</label>
-               <textarea class="ta" name="delivery_request"></textarea>
+               <textarea class="ta" name="deliveryReq"></textarea>
             </div>
-         </form>
-      </div>
-
-      <!-- 구매&삭제 버튼 -->
-      <br>
-      <hr>
-      <div class="buy_div">
-         <div class="buy_half pad_top">
-            <label class="l_m1">금액(￦):</label> <label class="l_m2">배송비(￦):</label>
-            <label class="fs24 l_m3">총 금액(￦):</label>
-         </div>
-         <div class="buy_half">
-            <div class="div_mt">
-               <label for="way">결제 방식&nbsp;&nbsp;</label> <select id="way">
-                  <option>신용카드</option>
-                  <option>무통장 입금</option>
-               </select>
-               <button class="btn btn-success bt_fr" type="button"
-                  onclick="alert_buy()" style="font-size: 15px;">
-                  <span class="glyphicon glyphicon-ok"></span> 결제
-               </button>
-               <button class="btn btn-danger bt_fr" type="button"
-                  onclick="location.href='01.html'" style="font-size: 15px;">
-                  <span class="glyphicon glyphicon-remove"></span> 취소
-               </button>
-            </div>
-         </div>
-         <div class="buy_half pad_bottom">
-            <label>97,000</label><label class="l_m">+</label> <label>2,500</label><label
-               class="l_m">=</label> <label class="fs24">99,500</label>
-         </div>
-         <div class="buy_half"></div>
-      </div>
-   </div>
+      	 </div>
+      	
+	      <!-- 구매&삭제 버튼 -->
+	      <br>
+	      <hr>
+	      <div class="buy_div">
+	         <div class="buy_half pad_top">
+	            <label class="l_m1">금액(￦):</label><label class="l_m2">배송비(￦):</label>
+	            <label class="fs24 l_m3">총 금액(￦):</label>
+	         </div>
+	         <div class="buy_half">
+	            <div class="div_mt">
+	               <label for="way">결제 방식&nbsp;&nbsp;</label> <select name="paymentType" id="way">
+	                  <option value="card">신용카드</option>
+	                  <option value="deposit">무통장 입금</option>
+	               </select>
+	               <button class="btn btn-success bt_fr" type="submit"
+	                  onclick="alert_buy()" style="font-size: 15px;">
+	                  <span class="glyphicon glyphicon-ok"></span> 결제
+	               </button>
+	               <button class="btn btn-danger bt_fr" type="button"
+	                  onclick="location.href='01.html'" style="font-size: 15px;">
+	                  <span class="glyphicon glyphicon-remove"></span> 취소
+	               </button>
+	            </div>
+	         </div>
+	         <div class="buy_half pad_bottom">
+	            <label><%= sum %></label><label class="l_m">+</label> <label>2,500</label><label
+	               class="l_m">=</label> <label class="fs24"><%= sum + 2500 %></label>
+	         </div>
+	         <div class="buy_half"></div>
+	      </div>
+	     </form> 
+	   </div> 
 
 
    <div class=footer>

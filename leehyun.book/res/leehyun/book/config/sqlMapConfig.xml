@@ -31,5 +31,6 @@
 	<mappers>
 		<mapper resource="leehyun/book/user/dao/map/userMap.xml" />
 		<mapper resource="leehyun/book/book/dao/map/bookMap.xml" />
+		<mapper resource="leehyun/book/order/dao/map/orderMap.xml" />
 	</mappers>
 </configuration>

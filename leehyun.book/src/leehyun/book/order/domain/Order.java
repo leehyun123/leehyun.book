@@ -5,10 +5,10 @@ import java.sql.Date;
 public class Order {
 	private int orderNum;
 	private int userNum;
-	private String reciever;
+	private String receiver;
 	private String baseAddr;
 	private String detailAddr;
-	private String recieverTel;
+	private String receiverTel;
 	private String request;
 	private String paymentType;
 	private Date orderDate;
@@ -18,14 +18,14 @@ public class Order {
 	public Order() {
 	}
 
-	public Order(int orderNum, int userNum, String reciever, String baseAddr, String detailAddr, String recieverTel,
+	public Order(int orderNum, int userNum, String receiver, String baseAddr, String detailAddr, String receiverTel,
 			String request, String paymentType, Date orderDate, int deliveryNum, String deliveryStatus) {
 		this.orderNum = orderNum;
 		this.userNum = userNum;
-		this.reciever = reciever;
+		this.receiver = receiver;
 		this.baseAddr = baseAddr;
 		this.detailAddr = detailAddr;
-		this.recieverTel = recieverTel;
+		this.receiverTel = receiverTel;
 		this.request = request;
 		this.paymentType = paymentType;
 		this.orderDate = orderDate;
@@ -41,8 +41,8 @@ public class Order {
 		return userNum;
 	}
 
-	public String getReciever() {
-		return reciever;
+	public String getReceiver() {
+		return receiver;
 	}
 
 	public String getBaseAddr() {
@@ -53,8 +53,8 @@ public class Order {
 		return detailAddr;
 	}
 
-	public String getRecieverTel() {
-		return recieverTel;
+	public String getReceiverTel() {
+		return receiverTel;
 	}
 
 	public String getRequest() {
@@ -85,8 +85,8 @@ public class Order {
 		this.userNum = userNum;
 	}
 
-	public void setReciever(String reciever) {
-		this.reciever = reciever;
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 
 	public void setBaseAddr(String baseAddr) {
@@ -97,8 +97,8 @@ public class Order {
 		this.detailAddr = detailAddr;
 	}
 
-	public void setRecieverTel(String recieverTel) {
-		this.recieverTel = recieverTel;
+	public void setReceiverTel(String receiverTel) {
+		this.receiverTel = receiverTel;
 	}
 
 	public void setRequest(String request) {
