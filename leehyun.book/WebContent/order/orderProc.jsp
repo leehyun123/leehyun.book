@@ -36,5 +36,4 @@
 	System.out.println(receiverTel);
 	System.out.println(deliveryReq);
 	System.out.println(paymentType);
-	
 %>
