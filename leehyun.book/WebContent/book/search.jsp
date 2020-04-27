@@ -192,10 +192,17 @@
 		if (books != null && books.size() > 0) {
 			pageContext.setAttribute("books", books);
 	%>
+	<br>
+	<p class="result container">
+		<span class="glyphicon glyphicon-search"> </span> 
+		"<%=words%>"에 대한 검색 결과입니다.
+	</p>
+	
+	<!-- 도서 검색 목록 -->
 	<div class="item_cb">
 		<c:forEach var="book" items="${books}">
 			<div class="book_item"
-				onClick="location.href='book/book.jsp?isbn=${book.isbn}'">
+				onClick="location.href='book.jsp?isbn=${book.isbn}'">
 				<div class="book_img">도서 이미지</div>
 				<h4>
 					<c:choose>
