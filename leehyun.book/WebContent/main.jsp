@@ -182,6 +182,8 @@ hr {
 			</div>
 		</div>
 	</div>
+	
+	<!-- 메인 도서 목록들 -->
 	<div class="item_cb">
 		<div>
 			<jsp:include page='book/list.jsp' />
