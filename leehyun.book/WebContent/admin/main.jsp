@@ -1,6 +1,10 @@
-
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderService"%>
+<%@page import="leehyun.book.order.domain.Order"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <title>북적북적</title>
 <meta charset="utf-8">
@@ -89,10 +93,31 @@ hr {
 }
 </style>
 </head>
+<%
+	OrderService orderService = new OrderServiceImpl();
+	int bf = 0;
+	int ing = 0;
+	int com = 0;
+	List<Order> orders = null;
+	
+	orders = orderService.listAdminOrders("배송전");
+	if(orders != null)
+		bf = orders.size();
+	orders = orderService.listAdminOrders("배송중");
+	if(orders != null)
+		ing = orders.size();
+	orders = orderService.listAdminOrders("배송완료");
+	if(orders != null)
+		com = orders.size();
+	
+	System.out.println(bf);
+	System.out.println(ing);
+	System.out.println(com);
+%>
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="../main.html">로그아웃</a>
+			<a href="../main.jsp">로그아웃</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -106,14 +131,14 @@ hr {
 	<div class="container">
 		<br> <br> <label class="menu_label"> - 주문 관리</label><br>
 		<div class="order_bar">
-			<div class="order_mng alert-warning" onclick="location.href='order/01.html'">
-				상품 준비 중<br>6
+			<div class="order_mng alert-warning" onclick="location.href='order/bfDeli.jsp'">
+				배송전<br><%=bf %>
 			</div>
 			<div class="order_mng alert-info" onclick="location.href='order/02.html'">
-				배송 중<br>24
+				배송중<br><%=ing %>
 			</div>
 			<div class="order_mng alert-success" onclick="location.href='order/03.html'">
-				배송 완료<br>30
+				배송완료<br><%=com %>
 			</div>
 			<div class="order_mng alert-danger" onclick="location.href='refund/01.html'">
 				환불 접수<br>3

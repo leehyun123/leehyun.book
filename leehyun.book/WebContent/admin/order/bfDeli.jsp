@@ -1,6 +1,13 @@
-
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="leehyun.book.user.domain.User"%>
+<%@page import="leehyun.book.user.service.UserServiceImpl"%>
+<%@page import="leehyun.book.user.service.UserService"%>
+<%@page import="leehyun.book.order.domain.Order"%>
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <title>북적북적</title>
 <meta charset="utf-8">
@@ -134,6 +141,13 @@ td{
 }
 </style>
 </head>
+<%
+	OrderService orderService = new OrderServiceImpl();
+	UserService userService = new UserServiceImpl();
+	List<Order> orders = orderService.listAdminOrders("배송전");
+	
+	User user = null;	
+%>
 <body>
 	<div class="container">
 		<div class="div_top">
@@ -146,7 +160,7 @@ td{
 		</div>
 	</div>
 	<div class="search_bar">
-		<label class="search_label">주문관리 - 배송 전</label>
+		<label class="search_label">주문관리 - 배송전</label>
 	</div>
 	<div class="container">
 		<div class="search_bar" style="background-color: white;">
@@ -173,28 +187,21 @@ td{
 					</tr>
 				</thead>
 				<tbody>
-					<tr onclick="location.href='04.html'">
-						<td><input type="checkbox" name="cb" value="" /></td>
-						<td>20-04-04</td>
-						<td>alsdud116</td>
-						<td>20-031223</td>
-						<td><input type="text" /></td>
-						<td>호밀 밭의 파수꾼 외 1건</td>
-					</tr>
-					<tr onclick="location.href='04.html'">
-						<td><input type="checkbox" name="cb" value="" /></td>
-						<td>20-04-03</td>
-						<td>tnqls123</td>
-						<td>20-031224</td>
-						<td>개미 외 3건</td>
-					</tr>
-					<tr onclick="location.href='04.html'">
-						<td><input type="checkbox" name="cb" value="" /></td>
-						<td>20-04-02</td>
-						<td>alswn34</td>
-						<td>20-031225</td>
-						<td>나미야 잡화점의 기적 외 2건</td>
-					</tr>
+<%
+					for(Order order : orders){
+						user = userService.findUser(order.getUserNum());
+%>		
+						<tr>
+							<td><input type="checkbox" name="cb" value="" /></td>
+							<td onclick="location.href='04.html'"><%=order.getOrderDate() %></td>
+							<td onclick="location.href='04.html'"><%=user.getUserId() %></td>
+							<td onclick="location.href='04.html'"><%=order.getOrderNum() %></td>
+							<td><input type="text" name="deliNum"/></td>
+							<td onclick="location.href='04.html'">호밀 밭의 파수꾼 외 1건</td>
+						</tr>
+<%
+					}
+%>
 				</tbody>
 			</table>
 		</form>
