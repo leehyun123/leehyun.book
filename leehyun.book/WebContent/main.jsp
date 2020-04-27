@@ -40,7 +40,6 @@ label, p {
 	float: right;
 }
 
-
 .div_logo {
 	height: 180px;
 	text-align: center;
@@ -140,7 +139,7 @@ hr {
 			<%
 				} else {
 			%>
-			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID}님,환영합니다!&nbsp;&nbsp;/</h5>
 			<a href="user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
@@ -183,7 +182,7 @@ hr {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 메인 도서 목록들 -->
 	<div class="item_cb">
 		<div>
@@ -196,7 +195,6 @@ hr {
 			대표이사 이 현 | 대표 전화 02 – 0000 – 0000<br> 본사 서울시 마포구 서교동 | 주소 서울시
 			마포구 서교동<br> 고객센터 02 – 1234 - 1234
 		</p>
-
 	</div>
 </body>
 </html>
