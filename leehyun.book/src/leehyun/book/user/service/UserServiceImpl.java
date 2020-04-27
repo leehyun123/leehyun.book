@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
 	public User findUser(int userNo) {
 		return userDao.getUser(userNo);
 	}
+	
+	@Override
+	public User findPw(String userId) {
+		return userDao.pwUser(userId);
+	}
 
 	@Override
 	public boolean join(User user) {

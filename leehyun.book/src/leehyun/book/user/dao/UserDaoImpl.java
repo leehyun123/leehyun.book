@@ -28,6 +28,12 @@ public class UserDaoImpl implements UserDao {
 		User user = mapper.getUser(userNo);
 		return user;
 	}
+	
+	@Override
+	public User pwUser(String userId) {
+		User user = mapper.pwUser(userId);
+		return user;
+	}
 
 	@Override
 	public boolean addUser(User user) {
