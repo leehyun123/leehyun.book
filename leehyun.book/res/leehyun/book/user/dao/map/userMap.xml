@@ -8,7 +8,7 @@
    </select>
    
    <select id="getUser" parameterType="int" resultMap="userMap">
-      select user_num, user_name
+      select user_num, user_id, user_pw, email, user_name, birthday, user_tel, pw_answer, gender
       from users where user_num=#{userNum}
    </select>
    

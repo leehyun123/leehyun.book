@@ -1,3 +1,10 @@
+<%@page import="leehyun.book.user.domain.User"%>
+<%@page import="leehyun.book.user.service.UserServiceImpl"%>
+<%@page import="leehyun.book.user.service.UserService"%>
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+	pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ page import='java.util.*'%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -153,9 +160,20 @@ hr {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../main.jsp">로그아웃</a> / <a href="../mypage/01.html">마이페이지</a>
-			/ <a href="../order/01.html">장바구니</a>
+			<%
+				if (session.getAttribute("sessionID") == null) {
+			%>
+			<a href="user/loginIn.html">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
+			/
+			<%
+				} else {
+			%>
+			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<a href="user/logoutProc.jsp">로그아웃</a> /
+			<%
+				}
+			%>
+			<a href="../mypage/01.html">마이페이지</a> / <a href="../order/01.html">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -189,19 +207,22 @@ hr {
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 	</div>
-
+	<%
+		UserService userService = new UserServiceImpl();
+		User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
+		String bday = user.getBirthday().substring(0, 11);
+	%>
 	<!-- 회원 정보 수정 폼 -->
 	<br>
 	<div class="sign_form container">
 		<h1 class="name">회원정보</h1>
-		<br>
-		<br>
+		<br> <br>
 		<form class="form-horizontal" action="#" method="post">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">성명: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name="userName" type="text"
-						placeholder="이름" maxlength="8">
+						value="<%=user.getUserName()%>" maxlength="8">
 				</div>
 			</div>
 
@@ -209,7 +230,7 @@ hr {
 				<label class="col-sm-4 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name="userId" type="text"
-						placeholder="user" maxlength="16" disabled>
+						value="<%=user.getUserId()%>" maxlength="16" disabled>
 				</div>
 			</div>
 
@@ -217,7 +238,7 @@ hr {
 				<label class="col-sm-4 control-label">성별 : </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='gender' type='text'
-						placeholder='남' maxlength='16' disabled>
+						value="<%=user.getGender()%>" maxlength='16' disabled>
 				</div>
 			</div>
 
@@ -225,7 +246,7 @@ hr {
 				<label class="col-sm-4 control-label">전화번호 : </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userTel' type='tel'
-						placeholder='특수문자를 제외한 숫자만 입력해주세요.'>
+						value="<%=user.getPhoneNum()%>">
 				</div>
 			</div>
 
@@ -233,7 +254,7 @@ hr {
 				<label class="col-sm-4 control-label">이메일: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userEmail' type='email'
-						placeholder='이메일'>
+						value="<%=user.getEmail()%>">
 				</div>
 			</div>
 
@@ -253,8 +274,8 @@ hr {
 			<div class="form-group">
 				<label class="col-sm-4 control-label">생년월일: </label>
 				<div class="col-sm-4">
-					<input class="form-control" name='userDate' type='date'
-						value='1995-08-17' disabled>
+					<input class="form-control" name='userDate' type='text'
+						value="<%=bday%>" disabled>
 				</div>
 			</div>
 		</form>
@@ -270,7 +291,6 @@ hr {
 				onclick="alert_secede()">탈퇴하기</button>
 		</div>
 	</div>
-
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
