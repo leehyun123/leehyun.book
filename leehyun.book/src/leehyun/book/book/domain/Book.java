@@ -3,7 +3,7 @@ package leehyun.book.book.domain;
 import java.sql.Date;
 
 public class Book {
-   private int isbn;
+   private long isbn;
    private String bookTitle;
    private String author;
    private String publisher;
@@ -15,7 +15,7 @@ public class Book {
    public Book() {
    }
 
-   public Book(int isbn, String bookTitle, String author, String publisher, Date publishDate, int bookPrice,
+   public Book(long isbn, String bookTitle, String author, String publisher, Date publishDate, int bookPrice,
          String bookImg, String bookOutline) {
       this.isbn = isbn;
       this.bookTitle = bookTitle;
@@ -27,7 +27,7 @@ public class Book {
       this.bookOutline = bookOutline;
    }
 
-   public int getisbn() {
+   public long getisbn() {
       return isbn;
    }
 
@@ -59,7 +59,7 @@ public class Book {
       return bookOutline;
    }
 
-   public void setisbn(int isbn) {
+   public void setisbn(long isbn) {
       this.isbn = isbn;
    }
 

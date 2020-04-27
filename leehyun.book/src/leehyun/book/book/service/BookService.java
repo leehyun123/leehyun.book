@@ -6,8 +6,10 @@ import leehyun.book.book.domain.Book;
 
 public interface BookService {
 	List<Book> listBooks();
+	
+	List<Book> getCart(List<String> str);
 
-	Book findBook(int isbn);
+	Book findBook(long isbn);
 
 	boolean joinBook(Book book);
 

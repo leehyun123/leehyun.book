@@ -6,8 +6,10 @@ import leehyun.book.book.domain.Book;
 
 public interface BookDao {
 	List<Book> getBooks();
+	
+	List<Book> getCart(List<String> str);
 
-	Book getBook(int isbn);
+	Book getBook(long isbn);
 
 	boolean addBook(Book book);
 

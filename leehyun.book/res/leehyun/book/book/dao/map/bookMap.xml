@@ -2,25 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leehyun.book.book.dao.map.BookMap">
-	<!-- 장바구니 G박 
-	<select id="selectList" parameterType="java.util.ArrayList" resultType="test.vo">
-    SELECT * FROM TEST
-    WHERE ID_SEQ IN (
-        <foreach collection="array" item="item" index="index" separator=",">
+	<select id="getCart" parameterType="java.util.List" resultMap="bookMap">
+    SELECT isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline 
+    FROM books
+    WHERE isbn IN 
+        <foreach collection="list" item="item" index="index" open="("  close=")" separator=",">
             ${item}
         </foreach>
-    )
-	</select>
-	 -->
-	<select id="getBooks" resultMap="bookMap">
-		select user_num, user_id, user_pw, email, user_name, birthday, user_tel,
-		pw_answer, gender
-		from users order by user_num
 	</select>
 
-	<select id="getBook" parameterType="int" resultMap="bookMap">
-		select user_num, user_name
-		from users where user_num=#{isbn}
+	<select id="getBooks" resultMap="bookMap">
+		select isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline
+		from books order by isbn
+	</select>
+
+	<select id="getBook" parameterType="long" resultMap="bookMap">
+		select isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline
+		from books where isbn=#{isbn}
 	</select>
 
 	<insert id="addBook" parameterType='string'>

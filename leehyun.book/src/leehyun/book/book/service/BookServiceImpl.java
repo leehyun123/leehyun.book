@@ -19,10 +19,16 @@ public class BookServiceImpl implements BookService {
 	public List<Book> listBooks() {
 		return bookDao.getBooks();
 	}
+	
+	/* 장바구니 */
+	@Override
+	public List<Book> getCart(List<String> str){
+		return bookDao.getCart(str);
+	}
 
 	/* 도서 확인 */
 	@Override
-	public Book findBook(int isbn) {
+	public Book findBook(long isbn) {
 		return bookDao.getBook(isbn);
 	}
 

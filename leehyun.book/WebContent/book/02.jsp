@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,20 +14,36 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-	function cart() {
-		swal({
-			title : "장바구니 담기 성공!",
-			text : "장바구니로 이동하시겠습니까?",
-			type : "success",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function() {
-			location.href = '../order/01.html';
-		});
-	}
+	function cart(cartcnt) {
+		console.log(cartcnt);
+		if(cartcnt < 10 ) {
+			swal({
+				title : "장바구니 담기 성공!",
+				text : "장바구니로 이동하시겠습니까?",
+				type : "success",
+				showCancelButton : true,
+				cancelButtonText : "아니오",
+				confirmButtonText : "예",
+				closeOnConfirm : false
+				}, function() {
+					location.href = '../order/cartProc.jsp';
+			});
+		}else{
+			swal({
+				title : "장바구니 담기 실패!",
+				text : "장바구니는 10개까지만 저장됩니다.\n장바구니로 이동하시겠습니까?",
+				type : "warning",
+				showCancelButton : true,
+				cancelButtonText : "아니오",
+				confirmButtonText : "예",
+				closeOnConfirm : false
+				}, function() {
+					location.href = '../order/cartOut.jsp';
+			});
+		}
+	};
 </script>
 <style>
 label, p {
@@ -158,6 +174,16 @@ hr {
 }
 </style>
 </head>
+<%
+	Cookie[] cookies = request.getCookies();
+
+	int cartCnt = 0;
+
+	for(Cookie cookie : cookies){
+		if(cookie.getName().substring(0, 4).equals("ISBN"))
+			cartCnt++;
+	}
+%>
 <body>
 	<div class="container">
 		<div class="div_top">
@@ -198,7 +224,7 @@ hr {
 			<div class="blk20"></div>
 			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <label
 				class="book_price">28,000</label> <label class="book_info">원</label>
-			<button class="cart_btn btn btn-info" type="submit" onClick='cart()'>
+			<button class="cart_btn btn btn-info" type="submit" onClick="cart(<%=cartCnt%>)">
 				<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
 				담기
 			</button>
