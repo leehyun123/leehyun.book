@@ -1,5 +1,5 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
-    pageEncoding='UTF-8'%>
+	pageEncoding='UTF-8'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="leehyun.book.user.service.UserService"%>
 <%@ page import="leehyun.book.user.service.UserServiceImpl"%>
@@ -10,28 +10,28 @@
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
 	List<User> users = userService.listUsers();
-   
-   String userId = request.getParameter("userId");
-   String userAnswer = request.getParameter("userA");
 
-   if(userId != null && userAnswer != null){
-	   for(User user: users){
-		   if(userId.equals(user.getUserId())&& userAnswer.equals(user.getAnswer())){
-			  
-			  %>
-			   <jsp:forward page="06.html"/>
-			  <%
-			  break;
-		   }else {
-			   request.setAttribute("pwFindMsg", "-1");
-			  %>
-			  	<jsp:forward page="pwFindIn.jsp"/>
-			  <%
-		   }
-	   }
-   }else{ request.setAttribute("pwFindMsg", "-2");
-   %>
-	  <jsp:forward page="pwFindIn.jsp"/>
-   <%
-   }
+	String userId = request.getParameter("userId");
+	String userAnswer = request.getParameter("userA");
+
+	if (userId != null && userAnswer != null) {
+		if (userService.findPw(userId) != null) {
+			User user = userService.findPw(userId);
+			if (userAnswer.equals(user.getAnswer())) {
+				System.out.println(user.getAnswer());
+				session.setAttribute("sessionUserNum", user.getUserNum());
+%>
+	<jsp:forward page="pwChange.jsp" />
+<%
+	} else {
+%>
+	<c:redirect url='pwFindIn.jsp?msgId=10' />
+<%
+	}
+		} else {
+%>
+	<c:redirect url='pwFindIn.jsp?msgId=10' />
+<%
+	}
+	}
 %>

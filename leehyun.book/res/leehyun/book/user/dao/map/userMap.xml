@@ -12,6 +12,12 @@
       from users where user_num=#{userNum}
    </select>
    
+   <select id="pwUser" parameterType="string" resultMap="userMap">
+	select user_num, user_id, user_pw, email, user_name, birthday,
+	user_tel, pw_answer, gender
+	from users where user_id=#{userId}
+   </select>
+   
    <insert id="addUser" parameterType='user'>
       insert into users(user_num, user_id, user_pw, email, user_name, birthday, user_tel, pw_answer, gender)
       values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum}, #{answer}, #{gender})
@@ -24,7 +30,7 @@
    </update>
 
    <delete id="delUser" parameterType="int">
-      delete users where user_num=#{user_num}
+      delete users where user_num=#{userNum}
    </delete>
    
    <resultMap id ="userMap" type="user">

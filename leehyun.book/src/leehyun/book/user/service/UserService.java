@@ -14,4 +14,6 @@ public interface UserService {
 	boolean correctUser(User user);
 
 	boolean secede(int userNo);
+	
+	User findPw(String userId);
 }

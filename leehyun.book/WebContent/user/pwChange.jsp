@@ -1,3 +1,6 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,23 +17,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	function alert_success() {
-		swal({
-			title : "비밀번호 변경 성공",
-			text: "로그인페이지로 이동합니다.",
-			type : "success",
-			showCancelButton : false,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : true
-		}, function(isConfirm) {
-			if (isConfirm) {
-				location.href = '02.html';
-			}
-		});
-	}
-</script>
+
 <style>
 label, p {
 	font-size: large;
@@ -124,10 +111,17 @@ hr {
 		<h2>비밀번호 변경</h2>
 		<hr>
 		<div class="blk30"></div>
+		<div class='container'>
+			<c:choose>
+				<c:when test='${!empty param.msgId}'>
+					<jsp:include page='msg.jsp'/>
+				</c:when>
+			</c:choose>
+		</div>
 		<p class="result">변경할 비밀번호를 입력하세요.</p>
 		<div class="blk30"></div>
 		<div class="sign_form">
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="pwChangeProc.jsp">
 				<div class="form-group">
 					<label class="col-lg-4 control-label">변경할 비밀번호: </label>
 					<div class="col-lg-2">
@@ -144,8 +138,7 @@ hr {
 					</div>
 				</div>
 				<div>
-					<button class="find_btn btn btn-info" type="button"
-						onClick="alert_success()">비밀번호 변경</button>
+					<button class="find_btn btn btn-info" type="submit">비밀번호 변경</button>
 				</div>
 			</form>
 		</div>

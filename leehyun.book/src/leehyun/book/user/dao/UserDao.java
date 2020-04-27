@@ -14,4 +14,6 @@ public interface UserDao {
 	boolean updateUser(User user);
 
 	boolean delUser(int userNo);
+	
+	User pwUser(String userId);
 }

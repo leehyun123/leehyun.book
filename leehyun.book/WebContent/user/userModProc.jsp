@@ -15,11 +15,6 @@
 	String userEmail = request.getParameter("userEmail");
 	String pwA = request.getParameter("pwA");
 	
-	System.out.println(userName);
-	System.out.println(userTel);
-	System.out.println(userEmail);
-	System.out.println(pwA);
-	
 	user.setUserName(userName);
 	user.setPhoneNum(userTel);
 	user.setEmail(userEmail);

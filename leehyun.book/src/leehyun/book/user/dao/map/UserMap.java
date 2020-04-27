@@ -14,4 +14,6 @@ public interface UserMap {
 	int updateUser(User user);
 	
 	int delUser(int userNo);
+	
+	User pwUser(String userId);
 }

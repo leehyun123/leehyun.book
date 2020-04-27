@@ -6,16 +6,16 @@
 <%@ page import="leehyun.book.user.domain.User"%>
 <%@ page import="java.util.List, java.util.ArrayList"%>
 
+
 <%
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
 	List<User> users = userService.listUsers();
 %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>비밀번호 찾기</title>
+<title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -28,14 +28,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	jQuery(document).ready(function() {
-		$("#modal").show();
-	});
-	function closeModal() {
-		$('.Modal').hide();
-	};
-</script>
 <style>
 label, p {
 	font-size: large;
@@ -105,38 +97,13 @@ hr {
 	margin: 0 auto;
 	display: block;
 }
-
-.Modal {
-	display: none;
-	position: fixed;
-	z-index: 10;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 70%;
-}
-
-.exitButton {
-	margin-left: 90%;
-}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.html">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a
-				href="#">마이페이지</a> / <a href="#">장바구니</a>
+			<a href="loginIn.html">로그인</a> / <a href="addUserIn.html">회원가입</a> / <a href="#">마이페이지</a>
+			/ <a href="#">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -150,6 +117,13 @@ hr {
 		<hr>
 		<div class="blk40"></div>
 		<br>
+		<div class='container'>
+			<c:choose>
+				<c:when test='${!empty param.msgId}'>
+					<jsp:include page='msg.jsp'/>
+				</c:when>
+			</c:choose>
+		</div>
 		<div class="sign_form">
 			<form class="form-horizontal" action="pwFindProc.jsp">
 				<div class="form-group">
@@ -175,36 +149,6 @@ hr {
 							required>
 					</div>
 				</div>
-				<%
-					String pwFindMsg = (String) request.getAttribute("pwFindMsg");
-					if (pwFindMsg != null) {
-						if (pwFindMsg.equals("-1")) {
-				%>
-				<div id="modal" class="Modal">
-					<div class="modal-content">
-						<div class="page-header">
-							<h2>정보 오류</h2>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="row">
-									<div class="col-sm-12">
-										<h2>정보가 일치하지 않습니다.</h2>
-									</div>
-								</div>
-							</div>
-						</div>
-						<hr>
-						<div class="page-footer">
-							<button class="exitButton" onClick="closeModal();">닫기</button>
-						</div>
-					</div>
-				</div>
-				<%
-					} else System.out.println("db오류");
-					}
-				%>
-				<div></div>
 				<div>
 					<button class="find_btn btn btn-info" type="submit">비밀번호
 						찾기</button>
@@ -212,6 +156,7 @@ hr {
 			</form>
 		</div>
 	</div>
+
 	<div class=footer>
 		<hr class='footerHr'>
 		<p class='footertext'>

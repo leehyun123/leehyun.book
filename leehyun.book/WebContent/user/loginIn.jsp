@@ -1,3 +1,6 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,6 +67,13 @@ hr {
          </a>
       </div>
       <div class="blk30"></div>
+      <div class='container'>
+			<c:choose>
+				<c:when test='${!empty param.msgId}'>
+					<jsp:include page='msg.jsp'/>
+				</c:when>
+			</c:choose>
+		</div>
       <form action="loginProc.jsp" method="post">
          <input class="login_input" type="text" placeholder="아이디" maxlength='12' name="userId">
          <div class="blk30"></div>
