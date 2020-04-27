@@ -91,6 +91,11 @@
 	background-color: gray;
 }
 
+.result {
+	color: gray;
+	font-size: 20px;
+}
+
 .item_cb {
 	text-align: center;
 	width: 1300px;
@@ -188,16 +193,17 @@
 
 		BookService bookService = new BookServiceImpl();
 		List<Book> books = bookService.searchBook(words);
-
-		if (books != null && books.size() > 0) {
-			pageContext.setAttribute("books", books);
 	%>
 	<br>
 	<p class="result container">
-		<span class="glyphicon glyphicon-search"> </span> 
-		"<%=words%>"에 대한 검색 결과입니다.
+		<span class="glyphicon glyphicon-search"> </span> "<%=words%>"에 대한 검색
+		결과입니다.
 	</p>
-	
+	<%
+		if (books != null && books.size() > 0) {
+			pageContext.setAttribute("books", books);
+	%>
+
 	<!-- 도서 검색 목록 -->
 	<div class="item_cb">
 		<c:forEach var="book" items="${books}">
