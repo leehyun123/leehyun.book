@@ -37,3 +37,4 @@
 	System.out.println(deliveryReq);
 	System.out.println(paymentType);
 %>
+<c:redirect url="orderEnd.jsp"/>

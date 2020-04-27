@@ -6,6 +6,7 @@ import leehyun.book.order.domain.Order;
 
 public interface OrderService {
 	List<Order> listOrders();
+	List<Order> listUserOrders(int userNum);
 	Order findOrder(int orderNum);
 	boolean purchase(Order order);
 	boolean correctOrder(Order order);

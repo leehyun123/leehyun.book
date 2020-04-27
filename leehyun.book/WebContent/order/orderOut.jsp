@@ -1,7 +1,14 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
+<%@page import="leehyun.book.order.domain.Order"%>
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.order.service.OrderService"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>북적북적</title>
+<title>order.04 주문내역</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -109,6 +116,13 @@ hr {
 </style>
 </head>
 <body>
+<% 
+	request.setCharacterEncoding("utf-8");
+
+	int userNum = (int)session.getAttribute("sessionUserNum");
+	OrderService orderService = new OrderServiceImpl();
+	List<Order> listUserOrders = orderService.listUserOrders(userNum); 
+%>
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
@@ -189,42 +203,21 @@ hr {
 				</tr>
 			</thead>
 			<tbody>
+				<%
+					for(Order order: listUserOrders){
+				%>
 				<tr>
-					<td>20-031509</td>
-					<td>2019-01-16</td>
-					<td>정보처리기사필기 외</td>
-					<td>3</td>
-					<td>111111111111111</td>
-					<td>배송완료</td>
-					<td>권민영</td>
+					<td><%= order.getOrderNum() %></td>
+					<td><%= order.getOrderDate() %></td>
+					<td>주문내역</td>
+					<td>수량</td>
+					<td><%= order.getDeliveryNum() %></td>
+					<td><%= order.getDeliveryStatus() %></td>
+					<td><%= order.getReceiver() %></td>
 				</tr>
-				<tr>
-					<td>20-031510</td>
-					<td>2019-03-04</td>
-					<td>수학의정석 수2</td>
-					<td>1</td>
-					<td>111111111111112</td>
-					<td>배송중</td>
-					<td>안수빈</td>
-				</tr>
-				<tr>
-					<td>20-031511</td>
-					<td>2020-05-22</td>
-					<td>내짝꿍 최영대</td>
-					<td>12</td>
-					<td>111111111111113</td>
-					<td>배송중</td>
-					<td>박민주</td>
-				</tr>
-				<tr>
-					<td>20-031512</td>
-					<td>2020-08-17</td>
-					<td>나쁜 어린이 표</td>
-					<td>1</td>
-					<td>111111111111114</td>
-					<td>배송중</td>
-					<td>이현</td>
-				</tr>
+				<%
+					}
+				%>
 			</tbody>
 		</table>
 	</div>

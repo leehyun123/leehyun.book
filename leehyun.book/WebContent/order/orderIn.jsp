@@ -357,8 +357,8 @@ th, td{
 	         <div class="buy_half">
 	            <div class="div_mt">
 	               <label for="way">결제 방식&nbsp;&nbsp;</label> <select name="paymentType" id="way">
-	                  <option value="card">신용카드</option>
-	                  <option value="deposit">무통장 입금</option>
+	                  <option value="신용카드">신용카드</option>
+	                  <option value="무통장 입금">무통장 입금</option>
 	               </select>
 	               <button class="btn btn-success bt_fr" type="submit"
 	                  onclick="alert_buy()" style="font-size: 15px;">

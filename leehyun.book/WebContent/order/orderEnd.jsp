@@ -1,3 +1,6 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -140,7 +143,7 @@ hr {
 	<div class="blk30"></div>
 	<div class="container">
 		<button class="order_btn container btn btn-info" type="submit"
-			onclick="location.href='../order/04.html'">
+			onclick="location.href='orderOut.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>주문내역으로 이동
 		</button>
 		<button class="order_btn container btn btn-info" type="submit"
