@@ -18,8 +18,8 @@
    </insert>
    
    <update id="updateUser" parameterType='user'>
-      update users set user_id=#{userId}, user_pw =#{password}, email=#{email}, user_name=#{userName},
-      birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
+      update users set user_pw =#{password}, email=#{email}, user_name=#{userName},
+      user_tel=#{phoneNum}, pw_answer=#{answer}
       where user_num=#{userNum}
    </update>
 

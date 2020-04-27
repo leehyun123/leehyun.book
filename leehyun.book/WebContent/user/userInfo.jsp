@@ -41,7 +41,7 @@
 				closeOnConfirm : true
 			}, function(isConfirm) {
 				if (isConfirm) {
-					location.href = "userModProc.jsp";
+					document.userInfo.submit();
 				}
 			});
 		});
@@ -207,7 +207,7 @@ hr {
 	<div class="sign_form container">
 		<h1 class="name">회원정보</h1>
 		<br> <br>
-		<form class="form-horizontal" action="#" method="post">
+		<form class="form-horizontal" action="userModProc.jsp" method="post" name="userInfo">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">성명: </label>
 				<div class="col-sm-4">
