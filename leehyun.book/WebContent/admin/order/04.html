@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>북적북적</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+label, p {
+	font-size: large;
+}
+
+th, td {
+	text-align: center;
+	font-size: 16px;
+}
+
+.logoimg {
+	color: #8FC9DB;
+	background-color: white;
+	font-size: 80px;
+	border: 1px solid black;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 50px;
+}
+
+.welcome {
+	display: inline;
+}
+
+.div_top {
+	margin-top: 10px;
+	height: 20px;
+	float: right;
+}
+
+.div_logo {
+	height: 180px;
+	text-align: center;
+}
+
+.search_bar {
+	height: 70px;
+	background-color: #8FC9DB;
+}
+
+.search_label {
+	color: white;
+	margin: 10px;
+	margin-top: 19px;
+	margin-left: 300px;
+	font-size: x-large;
+}
+
+.footer {
+	text-align: center;
+	height: 100px;
+	margin-top: 100px;
+	padding-top: 20px;
+}
+
+.footertext {
+	font-size: small;
+}
+
+hr {
+	border: solid 0.8px #8FC9DB;
+}
+
+.subTitle_form {
+	overflow: hidden;
+}
+
+.order_code {
+	font-weight: bold;
+	font-size: 28px;
+	float: left;
+}
+
+.sub_result {
+	overflow: hidden;
+}
+
+.sub_result .button-refund {
+	float: left;
+}
+
+.sub_result .sub_charge {
+	float: right;
+}
+
+.span_bold {
+	font-weight: bold;
+}
+
+.chart {
+	background-color: #8FC9DB;
+	color: white;
+}
+
+.div_float {
+	padding: 15px;
+	height: 210px;
+	border: 3px solid #8FC9DB;
+}
+
+.d_op {
+	width: 20%;
+	margin: 5px;
+}
+
+.div_half {
+	width: 50%;
+	display: inline;
+	float: left;
+}
+
+.div_half1 {
+	width: 50%;
+	display: inline;
+	float: left;
+	padding-top: 13%;
+}
+
+.d_op_in {
+	height: 35px;
+	margin: 5px;
+	width: 60%;
+	display: inline;
+}
+
+.back {
+   float: right;
+   margin-right: 15px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="div_top">
+			<a href="../../main.html">로그아웃</a>
+		</div>
+	</div>
+	<div class="div_logo">
+		<div class="logoimg">
+			<a href='../main.html' style="text-decoration: none;"> 로고이미지</a>
+		</div>
+	</div>
+	<div class="search_bar">
+		<label class="search_label">상세 주문 내역</label>
+	</div>
+	<div class="container">
+		<form class="subTitle_form" action="#" style="margin: 0 30px;">
+			<br> <span class="order_code">주문번호 : 02-031509</span>
+		</form>
+		<br>
+		<!-- 상세 주문내역 -->
+		<h3>주문 내역</h3>
+		<table class="table table-hover">
+			<thead>
+				<tr class="chart">
+					<th>도서명</th>
+					<th>수량</th>
+					<th>가격</th>
+					<th>총액</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>정보처리기사필기</td>
+					<td>1</td>
+					<td>28,000</td>
+					<td>28,000</td>
+				</tr>
+				<tr>
+					<td>정보처리기사실기</td>
+					<td>1</td>
+					<td>30,000</td>
+					<td>30,000</td>
+				</tr>
+				<tr>
+					<td>죽고싶지만 떡볶이는</td>
+					<td>1</td>
+					<td>10,000</td>
+					<td>10,000</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<h3>배송 정보</h3>
+		<div class="div_float">
+			<div class="div_half">
+				<label class="d_op">수령인 : </label>
+				<p class="d_op_in">이현</p>
+				<br> <label class="d_op">배송지 : </label>
+				<p class="d_op_in">서울특별시 마포구 서교동</p>
+				<br> <label class="d_op">&nbsp;</label>
+				<p class="d_op_in">쌍용강북교육센터</p>
+				<br> <label class="d_op">핸드폰번호 : </label>
+				<p class="d_op_in">010-0000-0000</p>
+				<br> <label class="d_op">요청사항 :</label>
+				<p class="d_op_in">부재 시 집앞에 놓아주세요.</p>
+			</div>
+
+
+			<div class="div_half1">
+				<p>
+					배송비(￦): 2,500 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					금액(￦): 68,000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+						class="span_bold">총 금액(￦): 70,500원</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="margin-top: 30px;">
+		<button type="submit" class="back btn btn-danger"
+			onclick="location.href='01.html'">
+			<span class="glyphicon glyphicon-repeat">&nbsp;</span>
+			뒤로 가기</button>
+	</div>
+	<div class=footer>
+		<hr>
+		<p class='footertext'>
+			대표이사 이 현 | 대표 전화 02 – 0000 – 0000<br> 본사 서울시 마포구 서교동 | 주소 서울시
+			마포구 서교동<br> 고객센터 02 – 1234 - 1234
+		</p>
+	</div>
+</body>
+</html>
