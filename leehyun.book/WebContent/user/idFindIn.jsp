@@ -36,6 +36,7 @@
 		$('.Modal').hide();
 	};
 </script>
+
 <style>
 label, p {
 	font-size: large;
@@ -67,7 +68,7 @@ label, p {
 .footer {
 	text-align: center;
 	height: 100px;
-	margin-top: 100px;;
+	margin-top: 100px;
 	padding-top: 20px;
 }
 
@@ -127,7 +128,7 @@ hr {
 	width: 70%;
 }
 .exitButton{
-	float: right;
+	margin-left : 90%;	
 }
 </style>
 </head>
@@ -195,17 +196,11 @@ hr {
 						</div>
 					</div>
 					<%
-						System.out.println("정보와 일치하는 아이디가 없습니다.");
 							} else if (idFindMsg.equals("1")) {
 					%>
-					<jsp:forward page="04.html" />
+					<jsp:forward page="idFindResultIn.jsp" />
 					<%
-						} else if (idFindMsg.equals("-3")) {
-					%>
-
-					<%
-						System.out.println("아이디와 비밀번호를 모두 입력하세요.");
-							} else
+						} else
 								System.out.println("db오류");
 						}
 					%>

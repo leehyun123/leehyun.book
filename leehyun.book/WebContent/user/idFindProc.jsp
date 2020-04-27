@@ -13,13 +13,14 @@
    
    String userName = request.getParameter("userName");
    String phoneNum = request.getParameter("userTel");
-   
+
    List<String> userNames = new ArrayList<String>();
 
    if(userName != null && phoneNum != null){
 	   for(User user: users){
 		   if(userName.equals(user.getUserName())&& phoneNum.equals(user.getPhoneNum())){
 			   request.setAttribute("idFindMsg", "1");
+			   request.setAttribute("userId", user.getUserId());
 			   break;
 		   }else {
 			   request.setAttribute("idFindMsg", "-1");
