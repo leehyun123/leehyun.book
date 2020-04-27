@@ -158,10 +158,10 @@ header {
 				<label class="col-sm-5 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userId' type='text'
-						placeholder='아이디' maxlength='12' minlength="6" required>
+						placeholder='아이디' maxlength='12' minlength="4" required>
 				</div>
 				<div class="form-group">
-					<input type="submit" value="아이디 확인" formaction="addUserProc.jsp">
+					<input type="submit" value="아이디 확인" formaction="idCheck.jsp">
 				</div>
 			</div>
 			<%

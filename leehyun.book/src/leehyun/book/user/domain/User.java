@@ -89,11 +89,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public int getuserNum() {
+	public int getUserNum() {
 		return userNum;
 	}
 
-	public void setuserNum(int userNum) {
+	public void setUserNum(int userNum) {
 		this.userNum = userNum;
 	}
 	

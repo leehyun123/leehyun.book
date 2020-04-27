@@ -26,3 +26,4 @@
 		}
 	}
 %>
+<jsp:forward page="addUserIn.jsp"/>
