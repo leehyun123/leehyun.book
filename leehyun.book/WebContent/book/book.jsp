@@ -1,3 +1,6 @@
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,7 +31,7 @@
 				confirmButtonText : "예",
 				closeOnConfirm : false
 				}, function() {
-					location.href = '../order/cartProc.jsp';
+					document.cartAdd.submit();
 			});
 		}else{
 			swal({
@@ -175,7 +178,11 @@ hr {
 </style>
 </head>
 <%
+	long isbn = Long.parseLong(request.getParameter("isbn"));
+
 	Cookie[] cookies = request.getCookies();
+	
+	BookService bookService = new BookServiceImpl();
 
 	int cartCnt = 0;
 
@@ -183,6 +190,8 @@ hr {
 		if(cookie.getName().substring(0, 4).equals("ISBN"))
 			cartCnt++;
 	}
+	
+	Book book = bookService.findBook(isbn);
 %>
 <body>
 	<div class="container">
@@ -212,22 +221,25 @@ hr {
 			<div class="book_img">
 				<br>도서 이미지
 			</div>
-			<label class="title">2020 정보처리기사 필기</label>
+			<label class="title"><%=book.getbookTitle() %></label>
 			<div class="blk30"></div>
 			<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;&nbsp;</label> <label
-				class="book_info">98765432121233</label><br>
+				class="book_info"><%=book.getisbn() %></label><br>
 			<br> <label class="book_info">저자명&nbsp;</label> <label
-				class="book_info">길벗알앤디</label><br> <br> <label
-				class="book_info">출판사&nbsp;</label> <label class="book_info">길벗</label><br>
+				class="book_info"><%=book.getauthor() %></label><br> <br> <label
+				class="book_info">출판사&nbsp;</label> <label class="book_info"><%=book.getpublisher() %></label><br>
 			<br> <label class="book_info">출판일&nbsp;</label> <label
-				class="book_info">2019년 11월</label><br> <br>
+				class="book_info"><%=book.getpublishDate() %></label><br> <br>
 			<div class="blk20"></div>
 			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <label
-				class="book_price">28,000</label> <label class="book_info">원</label>
+				class="book_price"><%=book.getbookPrice() %></label> <label class="book_info">원</label>
 			<button class="cart_btn btn btn-info" type="button" onClick="cart(<%=cartCnt%>)">
 				<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
 				담기
 			</button>
+			<form name="cartAdd" action="../order/cartProc.jsp">
+				<input name="isbn" value="<%=book.getisbn()%>" style="display: none;">
+			</form>
 			<br>
 		</div>
 	</div>
@@ -236,16 +248,7 @@ hr {
 		<hr>
 		<h3 style="margin-left: 40px;">소개</h3>
 		<br>
-		<pre class="content">
-2020년 정보처리기사 NCS기반 전면 개편! 
-
-정보처리기사 시험은 NCS 학습 모듈 중 정보통신 분야의 ‘정보기술’ 분류에 포함된 ‘정보기술개발’과 ‘정보기술운영’에 속한 125개의 학습 모듈을 기반으로 하고있습니다. 
-〈2020 시나공 정보처리기사 필기〉는 출제기준에 포함된 125개의 학습 모듈을 완전 분해하여 정보처리기사 수준에맞게 194개 섹션으로 엄선하여 정리하였습니다. 
-또 처음 출제되는 방대한 시험 범위, 모든 걸 다 암기할 수는 없습니다.
-시험에 나오는 것 중에서도 중요 난이도별 A, B, C, D 등급 섹션을 참고하여 주어진 시간동안 선별하여 학습할 수 있습니다. 
-
-* NCS(국가직무능력표준)란 산업현장에서 직무를 수행하기 위해 요구되는 지식·기술·소양 등의 내용을 국가가 산업부문별·수준별로 체계화한 것입니다.
-      </pre>
+		<pre class="content"><%=book.getbookOutline() %></pre>
 	</div>
 	<div class=footer>
 		<hr>

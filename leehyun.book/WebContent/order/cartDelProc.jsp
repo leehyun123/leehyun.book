@@ -14,7 +14,7 @@
 
 	for(String str : cartItem){
 		String[] out1 = request.getParameterValues(str);
-		if(out1.length == 2){
+		if(out1.length == 5){
 			cookie = new Cookie("ISBN" + out1[0], "1");
 			cookie.setMaxAge(0);
 			cookie.setPath("/");
