@@ -18,7 +18,7 @@
       for(User user : users){
          if(user.getUserId().equals(id) && user.getPassword().equals(pw)){
             session.setAttribute("sessionID", user.getUserName());
-            session.setAttribute("sessionID", user.getUserNum());
+            session.setAttribute("sessionUserNum", user.getUserNum());
             if(id.equals("admin")){
 %>
                <c:redirect url="../admin/main.html"/>
