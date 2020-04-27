@@ -116,7 +116,7 @@ hr {
 		<br>
 		<div class="blk70"></div>
 		<div class="div_bottom">
-			<a href="loginIn.html">로그인</a> | <a href="05.html">비밀번호 찾기</a>
+			<a href="loginIn.html">로그인</a> | <a href="pwFindIn.jsp">비밀번호 찾기</a>
 		</div>
 	</div>
 	<div class=footer>
