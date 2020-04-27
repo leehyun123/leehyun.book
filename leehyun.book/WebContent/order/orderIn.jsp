@@ -258,6 +258,7 @@ th, td{
          <a href="../main.jsp">로그아웃</a> / <a href="../mypage/01.html">마이페이지</a>
          / <a href="01.html">장바구니</a>
       </div>
+      
    </div>
    <div class="div_logo">
       <div class="logoimg">
