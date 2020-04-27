@@ -133,6 +133,7 @@ hr {
 
 .div_float {
    background-color: #8FC9DB;
+   padding-top: 10px;
    height: 210px;
 }
 
@@ -265,7 +266,7 @@ th, td{
    </div>
    <!-- 메인 검색창 -->
    <div class="search_bar">
-      <form class="search_form" action="../book/01.html">
+      <form action="../book/01.html">
          <label class="search_label">도서검색&nbsp;</label> <input
             class="search_input" type="text" required />
          <button class="search_btn btn btn-default" type="submit">
@@ -294,7 +295,7 @@ th, td{
       <h3>상품 확인</h3>
 
       <!-- 장바구니 내역 -->
-      <form action="orderProc.jsp" class="delivery">
+      <form action="orderProc.jsp">
       <table class="table fs24">
          <thead>
             <tr class="chart">

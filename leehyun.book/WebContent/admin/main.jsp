@@ -109,10 +109,6 @@ hr {
 	orders = orderService.listAdminOrders("배송완료");
 	if(orders != null)
 		com = orders.size();
-	
-	System.out.println(bf);
-	System.out.println(ing);
-	System.out.println(com);
 %>
 <body>
 	<div class="container">
