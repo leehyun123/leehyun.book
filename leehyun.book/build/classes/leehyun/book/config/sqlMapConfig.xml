@@ -12,7 +12,7 @@
 		<typeAlias alias="orderBooks" type="leehyun.oderBooks.user.domain.OrderBooks" />
 		<typeAlias alias="refund" type="leehyun.book.refund.domain.Refund" />
 		<typeAlias alias="refundBooks" type="leehyun.book.refundBooks.domain.RefundBooks" /> 
-		이현 멍청한 새낑-->
+		이현 멍청한 새낑2-->
 		
 	</typeAliases>
 	
