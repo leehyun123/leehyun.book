@@ -154,13 +154,13 @@ hr {
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<a href="user/loginIn.html">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
+			<a href="loginIn.html">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
 			/
 			<%
 				} else {
 			%>
 			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="user/logoutProc.jsp">로그아웃</a> /
+			<a href="logoutProc.jsp">로그아웃</a> /
 			<%
 				}
 			
@@ -168,7 +168,7 @@ hr {
 			User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
 			String bday = user.getBirthday().substring(0, 11);
 			%>
-			<a href="../mypage/01.html">마이페이지</a> / <a href="../order/01.html">장바구니</a>
+			<a href="../mypage/01.html">마이페이지</a> / <a href="cartOut.jspl">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -192,11 +192,11 @@ hr {
 	<div class='container'>
 		<ul class='tab nav nav-tabs nav-justified'>
 			<li class='active' style="font-weight: bold;"><a
-				href='../user/07.html'><span class="glyphicon glyphicon-user"></span>
+				href='userInfo.jsp'><span class="glyphicon glyphicon-user"></span>
 					회원정보</a></li>
-			<li><a href='../order/01.html'><span
+			<li><a href='cartOut.jsp'><span
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-			<li><a href='../order/04.html'><span
+			<li><a href='orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
 			<li><a href='../refund/01.html'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
