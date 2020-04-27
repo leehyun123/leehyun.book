@@ -224,7 +224,7 @@ hr {
 			<div class="blk20"></div>
 			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <label
 				class="book_price">28,000</label> <label class="book_info">원</label>
-			<button class="cart_btn btn btn-info" type="submit" onClick="cart(<%=cartCnt%>)">
+			<button class="cart_btn btn btn-info" type="button" onClick="cart(<%=cartCnt%>)">
 				<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
 				담기
 			</button>

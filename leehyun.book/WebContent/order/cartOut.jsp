@@ -479,7 +479,7 @@ th, td {
 		<h1 class="name">장바구니</h1>
 		<br> <br>
 		<!-- 장바구니 내역 -->
-		<form name="cart" action="02.html">
+		<form name="cart" action="orderIn.jsp">
 		<table class="table table-hover">
 			<thead>
 				<tr class="chart">
@@ -505,10 +505,12 @@ th, td {
 							<td align="center"><input type="checkbox" name="<%=name%>" class="cb_item"
 								value="<%=book.getisbn()%>" checked></td>
 							<td><div class="book_img">도서 이미지</div></td>
-							<td align="center"><%=book.getbookTitle()%></td>
+							<td align="center"><%=book.getbookTitle()%><input name="<%=name%>" value="<%=book.getbookImg()%>" style="display: none;">
+							<input name="<%=name%>" value="<%=book.getbookTitle()%>" style="display: none;"></td>
 							<td align="center"><input type="number" name="<%=name%>" value="1"
-								class="input_width <%=name%>" min="1" max="99" maxlength="2"></td>
-							<td align="center"><label><%=price%></label><p class="<%=name%>" style="display: none;"><%=book.getbookPrice()%></p></td>
+								class="input_width <%=name%>" min="1" max="99" maxlength="2"><input name="<%=name%>" value="<%=book.getbookPrice()%>" style="display: none;"></td>
+							<td align="center"><label><%=price%></label>
+							<p class="<%=name%>" style="display: none;"><%=book.getbookPrice()%></p></td>
 							<td align="center"><label class="<%=name%>"><%=price%></label></td>
 						</tr>
 <%
