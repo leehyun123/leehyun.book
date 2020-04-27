@@ -41,7 +41,7 @@
 				closeOnConfirm : true
 			}, function(isConfirm) {
 				if (isConfirm) {
-					location.href = '../main.html';
+					location.href = "userModProc.jsp";
 				}
 			});
 		});
@@ -56,20 +56,11 @@
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
-		}, function alert_secede() {
-			swal({
-				title : "탈퇴 성공",
-				type : "success",
-				showCancelButton : false,
-				cancelButtonText : "",
-				confirmButtonText : "확인",
-				closeOnConfirm : true
 			}, function(isConfirm) {
 				if (isConfirm) {
-					location.href = '../main.html';
+					location.href = "userDelProc.jsp";
 				}
 			});
-		});
 	}
 </script>
 <style>
@@ -172,6 +163,10 @@ hr {
 			<a href="user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
+			
+			UserService userService = new UserServiceImpl();
+			User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
+			String bday = user.getBirthday().substring(0, 11);
 			%>
 			<a href="../mypage/01.html">마이페이지</a> / <a href="../order/01.html">장바구니</a>
 		</div>
@@ -207,11 +202,6 @@ hr {
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 	</div>
-	<%
-		UserService userService = new UserServiceImpl();
-		User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
-		String bday = user.getBirthday().substring(0, 11);
-	%>
 	<!-- 회원 정보 수정 폼 -->
 	<br>
 	<div class="sign_form container">
@@ -243,6 +233,14 @@ hr {
 			</div>
 
 			<div class="form-group">
+				<label class="col-sm-4 control-label">생년월일: </label>
+				<div class="col-sm-4">
+					<input class="form-control" name='userDate' type='text'
+						value="<%=bday%>" disabled>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label class="col-sm-4 control-label">전화번호 : </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userTel' type='tel'
@@ -269,15 +267,23 @@ hr {
 						onclick="location.href='06.html'">비밀번호 변경</button>
 				</div>
 			</div>
-
-
+			
 			<div class="form-group">
-				<label class="col-sm-4 control-label">생년월일: </label>
+				<label class="col-sm-4 control-label">비밀번호 질문: </label>
 				<div class="col-sm-4">
-					<input class="form-control" name='userDate' type='text'
-						value="<%=bday%>" disabled>
+					<input class="form-control" name="pwQ" type='email'
+						value="당신의 보물 제 1호는?" disabled>
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-4 control-label">비밀번호 답: </label>
+				<div class="col-sm-4">
+					<input class="form-control" name='pwA' type='email'
+						value="<%=user.getAnswer()%>">
+				</div>
+			</div>
+			
 		</form>
 	</div>
 	<br>
