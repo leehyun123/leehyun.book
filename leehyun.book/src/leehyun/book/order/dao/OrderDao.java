@@ -12,3 +12,4 @@ public interface OrderDao {
 	int updateOrder(Order order);	//주문정보수정
 	int delOrder(int orderNum);		//주문정보삭제
 }
+

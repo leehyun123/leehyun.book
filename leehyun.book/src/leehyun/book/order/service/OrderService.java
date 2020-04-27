@@ -12,3 +12,4 @@ public interface OrderService {
 	boolean correctOrder(Order order);
 	boolean cancelOrder(int orderNum);
 }
+

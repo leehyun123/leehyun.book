@@ -120,5 +120,4 @@ public class Order {
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
-
 }

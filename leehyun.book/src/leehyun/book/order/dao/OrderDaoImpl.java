@@ -43,3 +43,5 @@ public class OrderDaoImpl implements OrderDao{
 		return orderMapper.delOrder(orderNum);
 	}
 }
+
+
