@@ -26,6 +26,12 @@ public class BookServiceImpl implements BookService {
 		return bookDao.getCart(str);
 	}
 
+	/* 도서 검색 */
+	@Override
+	public List<Book> searchBook(String words) {
+		return bookDao.pickBook(words);
+	}
+	
 	/* 도서 확인 */
 	@Override
 	public Book findBook(long isbn) {

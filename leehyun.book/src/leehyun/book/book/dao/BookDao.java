@@ -9,6 +9,8 @@ public interface BookDao {
 	
 	List<Book> getCart(List<String> str);
 
+	List<Book> pickBook(String words);
+	
 	Book getBook(long isbn);
 
 	boolean addBook(Book book);

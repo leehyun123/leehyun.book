@@ -30,6 +30,12 @@ public class BookDaoImpl implements BookDao {
 		return books = mapper.getCart(str);
 	}
 
+	/* 도서 검색*/
+	@Override
+	public List<Book> pickBook(String words) {
+		return books = mapper.pickBooks(words);
+	}
+	
 	/* 도서 확인 */
 	@Override
 	public Book getBook(long isbn) {

@@ -1,5 +1,14 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import='leehyun.book.book.service.BookService'%>
+<%@ page import='leehyun.book.book.service.BookServiceImpl'%>
+<%@ page import='leehyun.book.book.domain.Book'%>
+<%@ page import='java.util.List'%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 <title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +23,20 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-label, p {
-	font-size: large;
+.div_top {
+	margin-top: 10px;
+	color: black;
+	height: 20px;
+	float: right;
+}
+
+.welcome {
+	display: inline;
+}
+
+.div_logo {
+	height: 180px;
+	text-align: center;
 }
 
 .logoimg {
@@ -27,22 +48,6 @@ label, p {
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 50px;
-}
-
-.welcome {
-	display: inline;
-}
-
-.div_top {
-	margin-top: 10px;
-	color: black;
-	height: 20px;
-	float: right;
-}
-
-.div_logo {
-	height: 180px;
-	text-align: center;
 }
 
 .search_bar {
@@ -70,6 +75,20 @@ label, p {
 	margin-bottom: 4px;
 	width: 80px;
 	height: 40px;
+}
+
+.test_background {
+	width: 100%;
+	height: 200px;
+	padding: 15px 0;
+	background-color: #E0ECF8
+}
+
+.test_background>.test_area {
+	width: 1170px;
+	margin: 0 auto;
+	height: 170px;
+	background-color: gray;
 }
 
 .item_cb {
@@ -108,24 +127,6 @@ label, p {
 .footertext {
 	font-size: small;
 }
-
-hr {
-	border: solid 0.8px #8FC9DB;
-}
-
-.test_background {
-	width: 100%;
-	height: 200px;
-	padding: 15px 0;
-	background-color: #E0ECF8
-}
-
-.test_background>.test_area {
-	width: 1170px;
-	margin: 0 auto;
-	height: 170px;
-	background-color: gray;
-}
 </style>
 </head>
 <body>
@@ -139,7 +140,7 @@ hr {
 			<%
 				} else {
 			%>
-			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID}님,환영합니다!&nbsp;&nbsp;/</h5>
 			<a href="user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
@@ -154,7 +155,7 @@ hr {
 		</div>
 	</div>
 	<div class="search_bar">
-		<form class="search_form" action="book/search.jsp">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
 				class="search_input" type="text" name="search_words" required />
 			<button class="search_btn btn btn-default" type="submit">
@@ -182,20 +183,61 @@ hr {
 			</div>
 		</div>
 	</div>
-	
-	<!-- 메인 도서 목록들 -->
+	<%
+		String words = request.getParameter("search_words");
+
+		BookService bookService = new BookServiceImpl();
+		List<Book> books = bookService.searchBook(words);
+
+		if (books != null && books.size() > 0) {
+			pageContext.setAttribute("books", books);
+	%>
 	<div class="item_cb">
-		<div>
-			<jsp:include page='book/list.jsp' />
-		</div>
+		<c:forEach var="book" items="${books}">
+			<div class="book_item"
+				onClick="location.href='book/book.jsp?isbn=${book.isbn}'">
+				<div class="book_img">도서 이미지</div>
+				<h4>
+					<c:choose>
+						<c:when test="${fn:length(book.bookTitle) gt 12}">
+							<c:out value="${fn:substring(book.bookTitle, 0, 11)}" />...
+						</c:when>
+						<c:otherwise>
+							<c:out value="${book.bookTitle }"></c:out>
+						</c:otherwise>
+					</c:choose>
+				</h4>
+				<h6>
+					<c:choose>
+						<c:when test="${fn:length(book.publisher) gt 12}">
+							<c:out value="${fn:substring(book.publisher, 0, 11)}" />...
+						</c:when>
+						<c:otherwise>
+							<c:out value="${book.publisher }"></c:out>
+						</c:otherwise>
+					</c:choose>
+				</h6>
+			</div>
+		</c:forEach>
 	</div>
+	<%
+		} else {
+	%>
+	<div class='alert alert-info'>
+		<hr>
+		<h3 style="text-align: center;">등록된 도서가 없습니다.</h3>
+		<hr>
+	</div>
+	<%
+		}
+	%>
+
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
 			대표이사 이 현 | 대표 전화 02 – 0000 – 0000<br> 본사 서울시 마포구 서교동 | 주소 서울시
 			마포구 서교동<br> 고객센터 02 – 1234 - 1234
 		</p>
-
 	</div>
 </body>
 </html>

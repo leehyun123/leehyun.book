@@ -9,6 +9,8 @@ public interface BookMap {
 	
 	List<Book> getCart(List<String> str);
 
+	List<Book> pickBooks(String words);
+	
 	Book getBook(long isbn);
 
 	int addBook(Book book);
