@@ -414,6 +414,7 @@ th, td {
 	}
 	List<Book> books = null;
 	List<String> cartItem = new ArrayList<>();
+	System.out.println(ISBN.size());
 	
 	if( ISBN.size() != 0 ){
 

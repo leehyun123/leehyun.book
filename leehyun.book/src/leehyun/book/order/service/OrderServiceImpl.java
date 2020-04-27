@@ -24,6 +24,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
+	public List<Order> listAdminOrders(String deliveryStatus){
+		return orderDao.getAdminOrders(deliveryStatus);
+	}
+	
+	@Override
 	public Order findOrder(int orderNum) {
 		return orderDao.getOrder(orderNum);
 	}
