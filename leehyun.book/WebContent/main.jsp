@@ -144,7 +144,7 @@ hr {
 <%
          }
 %>      
-         <a href="../user/07.html">마이페이지</a>
+         <a href="../user/userInfo.jsp">마이페이지</a>
          / <a href="../order/addUserIn.jsp">장바구니</a>
       </div>
    </div>
