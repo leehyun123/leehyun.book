@@ -312,9 +312,9 @@ th, td{
                      int sumPrice = Integer.parseInt(cartItem[3]) * Integer.parseInt(cartItem[4]);
             %>
             <tr>
-               <td class="cen"><div class="book_img"><input name="" value="<%=cartItem[0]%>" style="display: none;"></div></td>
-               <td class="cen"><%=cartItem[2] %>></td>
-               <td class="cen"><%=cartItem[3]%></td>
+               <td class="cen"><div class="book_img"><input name="isbn" value="<%=cartItem[0]%>" style="display: none;"></div></td>
+               <td class="cen"><%=cartItem[2] %></td>
+               <td class="cen"><%=cartItem[3]%><input name="orderCnt" value="<%=cartItem[3]%>" style="display: none;"></td>
                <td class="cen"><%=sumPrice%></td>
             </tr>
             <%

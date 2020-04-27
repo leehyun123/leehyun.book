@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leehyun.book.orderBooks.dao.map.OrderBooksMap">
+   <select id="getOrderBooks" parameterType="int" resultMap="orderBooksMap">
+      select order_num, isbn, order_cnt
+      from order_books
+      where order_num=#{orderNum}
+   </select>
+   
+   <insert id="addOrderBooks" parameterType="orderBooks">
+      insert into orders
+      values(#{orderNum}, #{isbn}, #{orderCnt})
+   </insert>
+   
+   <delete id="delOrderBooks" parameterType="int">
+      delete order_books where order_num=#{orderNum}
+   </delete>
+   
+   <resultMap id ="orderBooksMap" 	type="orderBooks">
+      <result property="orderNum"   column="order_num"/>
+      <result property="isbn"       column="isbn"/>
+      <result property="orderCnt"   column="order_cnt"/>
+   </resultMap>
+</mapper>

@@ -203,9 +203,9 @@ hr {
 				</tr>
 			</thead>
 			<tbody>
-				<%
+<%
 					for(Order order: listUserOrders){
-				%>
+%>
 				<tr>
 					<td><%= order.getOrderNum() %></td>
 					<td><%= order.getOrderDate() %></td>

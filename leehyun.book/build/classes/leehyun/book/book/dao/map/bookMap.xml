@@ -2,74 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leehyun.book.book.dao.map.BookMap">
-	<select id="getCart" parameterType="java.util.List"
-		resultMap="bookMap">
-		SELECT isbn, book_title, author, publisher, publish_date, book_price,
-		book_img, book_outline
-		FROM books
-		WHERE isbn IN
-		<foreach collection="list" item="item" index="index" open="("
-			close=")" separator=",">
-			${item}
-		</foreach>
-	</select>
+    <select id="getCart" parameterType="java.util.List" resultMap="bookMap">
+    SELECT isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline 
+    FROM books
+    WHERE isbn IN 
+        <foreach collection="list" item="item" index="index" open="("  close=")" separator=",">
+            ${item}
+        </foreach>
+   </select>
 
-	<select id="pickBooks" parameterType="String"
-		resultMap="bookMap">
-		select *
-		from books
-		where
-		(isbn||book_title||author||publisher||publish_date||book_outline)
-		like
-		'%'||#{words}||'%'
-	</select>
+   <select id="getBooks" resultMap="bookMap">
+      select isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline
+      from books order by isbn
+   </select>
 
-	<select id="getBooks" resultMap="bookMap">
-		select isbn, book_title, author,
-		publisher, publish_date, book_price, book_img, book_outline
-		from books
-		order by isbn
-	</select>
+   <select id="getBook" parameterType="long" resultMap="bookMap">
+      select isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline
+      from books where isbn=#{isbn}
+   </select>
 
-	<select id="getBook" parameterType="long" resultMap="bookMap">
-		select isbn,
-		book_title, author, publisher, publish_date, book_price, book_img,
-		book_outline
-		from books where isbn=#{isbn}
-	</select>
+   <insert id="addBook" parameterType='string'>
+      insert into users(user_num, user_id, user_pw, email, user_name, birthday,
+      user_tel, pw_answer, gender)
+      values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum},
+      #{answer}, #{gender})
+   </insert>
 
-	<insert id="addBook" parameterType='string'>
-		insert into users(user_num,
-		user_id, user_pw, email, user_name, birthday,
-		user_tel, pw_answer,
-		gender)
-		values(userno_seq.nextval,#{userId}, #{password}, #{email},
-		#{userName}, #{birthday}, #{phoneNum},
-		#{answer}, #{gender})
-	</insert>
+   <update id="updateBook" parameterType='book'>
+      update users set user_id=#{userId}, user_pw =#{password}, email=#{email},
+      user_name=#{userName},
+      birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
+      where user_num=#{userNum}
+   </update>
 
-	<update id="updateBook" parameterType='book'>
-		update users set
-		user_id=#{userId}, user_pw =#{password}, email=#{email},
-		user_name=#{userName},
-		birthday=#{birthday}, user_tel=#{phoneNum},
-		pw_answer=#{answer}, gender=#{gender}
-		where user_num=#{userNum}
-	</update>
+   <delete id="delBook" parameterType="int">
+      delete users where user_num=#{user_num}
+   </delete>
 
-	<delete id="delBook" parameterType="int">
-		delete users where
-		user_num=#{user_num}
-	</delete>
-
-	<resultMap id="bookMap" type="book">
-		<id property="isbn" column="isbn" />
-		<result property="bookTitle" column="book_title" />
-		<result property="author" column="author" />
-		<result property="publisher" column="publisher" />
-		<result property="publishDate" column="publish_date" />
-		<result property="bookPrice" column="book_price" />
-		<result property="bookImg" column="book_img" />
-		<result property="bookOutline" column="book_outline" />
-	</resultMap>
+   <resultMap id="bookMap" type="book">
+      <id property="isbn" column="isbn" />
+      <result property="bookTitle" column="book_title" />
+      <result property="author"   column="author"/>
+      <result property="publisher" column="publisher" />
+      <result property="publishDate" column="publish_date" />
+      <result property="bookPrice" column="book_price" />
+      <result property="bookImg" column="book_img" />
+      <result property="bookOutline" column="book_outline" />
+   </resultMap>
 </mapper>

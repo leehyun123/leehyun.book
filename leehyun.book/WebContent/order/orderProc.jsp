@@ -1,5 +1,8 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
+<%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
 <%@ page import="leehyun.book.order.service.OrderService" %>
 <%@ page import="leehyun.book.order.service.OrderServiceImpl" %> 
 <%@ page import="leehyun.book.order.domain.Order" %>   
@@ -8,6 +11,7 @@
 	request.setCharacterEncoding("utf-8");
 
 	OrderService orderService = new OrderServiceImpl();
+	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	
 	String receiver = request.getParameter("receiver");
 	String baseAddr = request.getParameter("baseAddr");
@@ -26,9 +30,12 @@
 	order.setRequest(deliveryReq);
 	order.setPaymentType(paymentType);
 	order.setDeliveryStatus("배송전");
-	
+		
 	orderService.purchase(order);
 	
+	String[] isbns = request.getParameterValues("isbn");
+	String[] orderCnts = request.getParameterValues("orderCnt");
+		
 	System.out.println(userNum);
 	System.out.println(receiver);
 	System.out.println(baseAddr);
