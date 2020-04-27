@@ -18,31 +18,37 @@
 
 	<select id="getBook" parameterType="long" resultMap="bookMap">
 		select isbn, book_title, author, publisher, publish_date, book_price, book_img, book_outline
+		isbn, book_title
 		from books where isbn=#{isbn}
 	</select>
 
-	<insert id="addBook" parameterType='string'>
-		insert into users(user_num, user_id, user_pw, email, user_name, birthday,
-		user_tel, pw_answer, gender)
-		values(userno_seq.nextval,#{userId}, #{password}, #{email}, #{userName}, #{birthday}, #{phoneNum},
-		#{answer}, #{gender})
+	<insert id="addBook" parameterType='book'>
+		insert into books(isbn,
+		book_title, author, publisher, publish_date, book_price,
+		book_img,
+		book_outline)
+		values(#{isbn},#{bookTitle}, #{author}, #{publisher},
+		#{publishDate}, #{bookPrice}, #{bookImg}, #{bookOutline})
 	</insert>
 
 	<update id="updateBook" parameterType='book'>
-		update users set user_id=#{userId}, user_pw =#{password}, email=#{email},
-		user_name=#{userName},
-		birthday=#{birthday}, user_tel=#{phoneNum}, pw_answer=#{answer}, gender=#{gender}
-		where user_num=#{userNum}
+		update books set
+		book_title =#{bookTitle}, author=#{author},
+		publisher=#{publisher},
+		publish_date=#{publishDate}, book_price=#{bookPrice},
+		book_img=#{bookImg}, book_outline=#{bookOutline}
+		where isbn=#{isbn}
 	</update>
 
 	<delete id="delBook" parameterType="int">
-		delete users where user_num=#{user_num}
+		delete books where
+		isbn=#{isbn}
 	</delete>
 
 	<resultMap id="bookMap" type="book">
 		<id property="isbn" column="isbn" />
 		<result property="bookTitle" column="book_title" />
-		<result property="author"	column="author"/>
+		<result property="author" column="author" />
 		<result property="publisher" column="publisher" />
 		<result property="publishDate" column="publish_date" />
 		<result property="bookPrice" column="book_price" />
