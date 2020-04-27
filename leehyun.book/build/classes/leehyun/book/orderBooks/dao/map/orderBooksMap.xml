@@ -9,7 +9,7 @@
    </select>
    
    <insert id="addOrderBooks" parameterType="orderBooks">
-      insert into orders
+      insert into order_books
       values(#{orderNum}, #{isbn}, #{orderCnt})
    </insert>
    

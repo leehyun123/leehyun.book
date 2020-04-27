@@ -8,6 +8,7 @@ public interface OrderService {
 	List<Order> listOrders();
 	List<Order> listUserOrders(int userNum);
 	List<Order> listAdminOrders(String deliveryStatus);
+	public int findOrderNum();
 	Order findOrder(int orderNum);
 	boolean purchase(Order order);
 	boolean correctOrder(Order order);

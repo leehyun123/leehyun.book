@@ -294,6 +294,7 @@ th, td{
       <h3>상품 확인</h3>
 
       <!-- 장바구니 내역 -->
+      <form action="orderProc.jsp" class="delivery">
       <table class="table fs24">
          <thead>
             <tr class="chart">
@@ -324,11 +325,10 @@ th, td{
             %>
          </tbody>
       </table>
-
       <br>
       <!-- 배송정보 -->
       <h3>배송 정보</h3>
-      <form action="orderProc.jsp" class="delivery">
+      
      	 <div class="div_float">
             <div class="div_half">
                <label class="d_op">수령인 : </label>

@@ -33,16 +33,23 @@
 		
 	orderService.purchase(order);
 	
+	int orderNum = orderService.findOrderNum();
+	orderNum -= 1;
+	
 	String[] isbns = request.getParameterValues("isbn");
 	String[] orderCnts = request.getParameterValues("orderCnt");
-		
-	System.out.println(userNum);
-	System.out.println(receiver);
-	System.out.println(baseAddr);
-	System.out.println(detailAddr);
-	System.out.println(receiverTel);
-	System.out.println(deliveryReq);
-	System.out.println(paymentType);
+	
+	System.out.println(isbns[0]);
+	
+	
+	for(int i = 0; i<isbns.length; i++){
+		OrderBooks orderBooks = new OrderBooks();
+		orderBooks.setOrderNum(orderNum);
+		orderBooks.setIsbn(Long.parseLong(isbns[i]));
+		orderBooks.setOrderCnt(Integer.parseInt(orderCnts[i]));
+		orderBooksService.purchaseOrderBooks(orderBooks);
+	}
+
 %>
 
 <c:redirect url="orderEnd.jsp"/>

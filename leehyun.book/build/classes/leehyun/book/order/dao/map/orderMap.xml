@@ -14,6 +14,10 @@
       order by order_num		
    </select>
    
+   <select id="getOrderNum" resultType="int">
+	  select last_number from user_sequences where sequence_name = 'ORDERNO_SEQ'
+   </select>
+   
    <select id="getAdminOrders" parameterType="string" resultMap="orderMap">
    	  select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
       from orders 

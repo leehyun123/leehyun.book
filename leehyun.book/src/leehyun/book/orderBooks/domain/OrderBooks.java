@@ -3,12 +3,12 @@ package leehyun.book.orderBooks.domain;
 public class OrderBooks {
 	private int orderCnt;
 	private int orderNum;
-	private int isbn;
+	private long isbn;
 
 	public OrderBooks() {
 	}
 
-	public OrderBooks(int orderCnt, int orderNum, int isbn) {
+	public OrderBooks(int orderCnt, int orderNum, long isbn) {
 		this.orderCnt = orderCnt;
 		this.orderNum = orderNum;
 		this.isbn = isbn;
@@ -22,7 +22,7 @@ public class OrderBooks {
 		return orderNum;
 	}
 
-	public int getIsbn() {
+	public long getIsbn() {
 		return isbn;
 	}
 
@@ -34,7 +34,7 @@ public class OrderBooks {
 		this.orderNum = orderNum;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(long isbn) {
 		this.isbn = isbn;
 	}
 }

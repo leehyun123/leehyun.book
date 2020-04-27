@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
+	public int findOrderNum() {
+		return orderDao.getOrderNum();
+	}
+	
+	@Override
 	public Order findOrder(int orderNum) {
 		return orderDao.getOrder(orderNum);
 	}
