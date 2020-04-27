@@ -24,6 +24,11 @@ public class OrderDaoImpl implements OrderDao{
 	}
 	
 	@Override
+	public List<Order> getAdminOrders(String deliveryStatus){
+		return orderMapper.getAdminOrders(deliveryStatus);
+	}
+	
+	@Override
 	public Order getOrder(int orderNum) {
 		return orderMapper.getOrder(orderNum);
 	}

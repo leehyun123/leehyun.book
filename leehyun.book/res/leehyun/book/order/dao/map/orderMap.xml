@@ -14,6 +14,13 @@
       order by order_num		
    </select>
    
+   <select id="getAdminOrders" parameterType="string" resultMap="orderMap">
+   	  select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
+      from orders 
+      where delivery_status=#{deliveryStatus}
+      order by order_num		
+   </select>
+   
    <select id="getOrder" parameterType="int" resultMap="orderMap">
       select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
       from orders where order_num=#{orderNum}
