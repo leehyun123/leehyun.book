@@ -40,6 +40,7 @@ label, p {
 	float: right;
 }
 
+
 .div_logo {
 	height: 180px;
 	text-align: center;
