@@ -249,7 +249,8 @@ hr {
 				onclick="location.href='#'">삭제</button>
 		</div>
 	</div>
-
+	
+	<!-- 도서 수정 -->
 	<%
 		String isbnNum = request.getParameter("cb");
 

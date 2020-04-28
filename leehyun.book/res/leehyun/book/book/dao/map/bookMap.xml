@@ -39,13 +39,13 @@
 	</select>
 
 	<insert id="addBook" parameterType='string'>
-		insert into users(user_num,
-		user_id, user_pw, email, user_name, birthday,
-		user_tel, pw_answer,
-		gender)
-		values(userno_seq.nextval,#{userId}, #{password}, #{email},
-		#{userName}, #{birthday}, #{phoneNum},
-		#{answer}, #{gender})
+		insert into users(isbn,
+		book_title, author, publisher, publish_date, book_price,
+		book_img,
+		book_outline)
+		values(#{isbn}, #{bookTitle}, #{author}, #{publisher},
+		#{publishDate},
+		#{bookPrice}, #{bookImg}, #{bookOutline})
 	</insert>
 
 	<update id="updateBook" parameterType='book'>

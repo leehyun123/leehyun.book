@@ -205,7 +205,7 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='book.jsp'">목록</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="location.href='02.html'">추가</button>
+				onclick="location.href='add.jsp'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="document.update.submit()">수정</button>
 			<button class="btn btn-default input-lg ad_btn"

@@ -1,3 +1,6 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+	pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -218,44 +221,53 @@ hr {
 	<div class="container">
 		<div class="tab">
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="location.href='01.html'">목록</button>
+				onclick="location.href='book.jsp'">목록</button>
 			<button class="btn btn-default input-lg ad_btn ad_btn_target"
-				onclick="location.href='02.html'">추가</button>
+				onclick="location.href='add.jsp'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='#'">수정</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='#'">삭제</button>
 		</div>
 	</div>
-	<div class="container" style="height: 400px;">
-		<div class="book_item">
-			<div class="book_img">
-				<div class="book_img2">도서 이미지</div>
-				<input class="img_btn" type="file" name="uploadFile">
+
+	<!-- 도서 등록 -->
+	<form action="addProc.jsp">
+		<div class="container" style="height: 420px;">
+
+			<div class="book_item">
+				<div class="book_img">
+					<div class="book_img2">도서 이미지</div>
+					<input class="img_btn" type="file" name="uploadFile">
+				</div>
+				<br> <input name="book_title" class="title"
+					placeholder="bookTitle" />
+				<div class="blk30"></div>
+				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
+					name="book_ISBN" class="book_info" placeholder="isbn" /><br>
+				<br> <label class="book_info">저자명&nbsp;</label> <input
+					type="text" name="book_writer" class="book_info"
+					placeholder="author" /><br> <br> <label
+					class="book_info">출판사&nbsp;</label> <input type="text"
+					name="book_pub" class="book_info" placeholder="publisher" /><br>
+				<br> <label class="book_info">출판일&nbsp;</label> <input
+					type="date" name="book_pub_date" class="book_info" /> <br> <br>
+				<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <input
+					type="number" name="book_price" placeholder="book_price"
+					value="bookPrice" /><label class="book_info">원</label>
+				<button class="cart_btn btn btn-info" type="submit">등록</button>
+				<br>
 			</div>
-			<br> <input name="book_title" class="title" placeholder="제목" type="text"/>
-			<div class="blk30"></div>
-			<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input name="book_ISBN"
-				class="book_info" type="text"/><br> <br>
-			<label class="book_info">저자명&nbsp;</label> <input name="book_writer"
-				class="book_info" type="text"/><br> <br> <label class="book_info">출판사&nbsp;</label>
-			<input name="book_pub" class="book_info" type="text"/><br> <br> <label
-				class="book_info">출판일&nbsp;</label> <input name="book_pub_date"
-				class="book_info" type="date"/><br> <br>
-			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <input
-				name="book_price" class="book_price" type="number"/><label class="book_info">원</label>
-			<button class="cart_btn btn btn-info" type="submit"
-				onClick="alert_add()">추가</button>
-			<br>
 		</div>
-	</div>
-	<div class="container">
-		<div class="blk30"></div>
-		<hr>
-		<h3 style="margin-left: 40px;">소개</h3>
-		<br>
-		<textarea class="content"></textarea>
-	</div>
+
+		<div class="container">
+			<div class="blk30"></div>
+			<hr>
+			<h3 style="margin-left: 40px;">소개</h3>
+			<br>
+			<textarea class="content" name="bookOutline"></textarea>
+		</div>
+	</form>
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
