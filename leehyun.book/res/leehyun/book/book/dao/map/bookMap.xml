@@ -49,12 +49,11 @@
 	</insert>
 
 	<update id="updateBook" parameterType='book'>
-		update users set
-		user_id=#{userId}, user_pw =#{password}, email=#{email},
-		user_name=#{userName},
-		birthday=#{birthday}, user_tel=#{phoneNum},
-		pw_answer=#{answer}, gender=#{gender}
-		where user_num=#{userNum}
+		update books set
+		book_title=#{bookTitle}, isbn=#{isbn}, author=#{author},
+		publisher=#{publisher}, publish_date=#{publishDate},
+		book_price=#{bookPrice}
+		where isbn=#{isbn}
 	</update>
 
 	<delete id="delBook" parameterType="int">
