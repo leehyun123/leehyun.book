@@ -230,10 +230,24 @@ hr {
 			<div class="blk20"></div>
 			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <label
 				class="book_price"><%=book.getbookPrice() %></label> <label class="book_info">원</label>
-			<button class="cart_btn btn btn-info" type="button" onClick="cart(<%=cartCnt%>)">
-				<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
-				담기
-			</button>
+			
+<%
+				if (session.getAttribute("sessionID") == null) {
+%>
+					<button class="cart_btn btn btn-info" type="button" onClick="location.href='../user/loginIn.jsp'">
+						<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
+						담기
+					</button>
+<%
+				} else {
+%>
+					<button class="cart_btn btn btn-info" type="button" onClick="cart(<%=cartCnt%>)">
+						<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
+						담기
+					</button>
+<%
+				}
+%> 
 			<form name="cartAdd" action="../order/cartProc.jsp">
 				<input name="isbn" value="<%=book.getisbn()%>" style="display: none;">
 			</form>
