@@ -143,7 +143,7 @@ hr {
 					<label class="col-lg-4 control-label">변경할 비밀번호: </label>
 					<div class="col-lg-2">
 						<input class="input_form" name="userPwd1" type="password"
-							placeholder='비밀번호' maxlength='8' required>
+							placeholder='비밀번호' maxlength='12' minlength='8' required>
 					</div>
 				</div>
 				<div class="blk15"></div>
@@ -151,7 +151,7 @@ hr {
 					<label class="col-lg-4 control-label">비밀번호 확인: </label>
 					<div class="col-lg-2">
 						<input class="input_form" name="userPwd2" type="password"
-							placeholder='비밀번호 확인' required>
+							placeholder='비밀번호 확인' maxlength='12' minlength='8' required>
 					</div>
 				</div>
 				<div>
