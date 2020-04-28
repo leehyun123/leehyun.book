@@ -16,44 +16,42 @@
 %>
 <div class="book_item">
 	<c:forEach var="book" items="${books}">
-		<form action="update.jsp">
-			<hr>
-			<div class="cb_in">
-				<input class="radio_btn" type="radio" name="cb" value="${book.isbn}" />
-			</div>
-			<div class="book_contents">
-				<div class="book_img">${book.bookImg }</div>
-				<div class="book_text">
-					<div>
-						<label class="title">${book.bookTitle }</label>
-						<div class="book_text_contents">
-							<div class="book_text_top">
-								<br> <label>저자명</label> <span>${book.author }</span> <label>가격</label>
-								<span>${book.bookPrice}</span> <label>ISBN</label> <span>${book.isbn }</span>
-							</div>
-							<div class="book_text_bottom">
-								<label>출판사</label> <span>${book.publisher }</span> <label>출판일</label>
-								<span>${book.publishDate }</span>
-							</div>
+		<hr>
+		<div class="cb_in">
+			<input class="radio_btn" type="radio" name="cb" value="${book.isbn }" />
+		</div>
+		<div class="book_contents">
+			<img class="book_img" src="../../img/book/${book.bookImg}.jpg"/>
+			<div class="book_text">
+				<div>
+					<label class="title">${book.bookTitle }</label>
+					<div class="book_text_contents">
+						<div class="book_text_top">
+							<br> <label>저자명</label> <span>${book.author }</span> <label>가격</label>
+							<span>${book.bookPrice}</span> <label>ISBN</label> <span>${book.isbn }</span>
+						</div>
+						<div class="book_text_bottom">
+							<label>출판사</label> <span>${book.publisher }</span> <label>출판일</label>
+							<span>${book.publishDate }</span>
 						</div>
 					</div>
-					<br>
-					<div>
-						<p>
-							<c:choose>
-								<c:when test="${fn:length(book.bookOutline) gt 100}">
-									<c:out value="${fn:substring(book.bookOutline, 0, 99)}" />...
-								</c:when>
-								<c:otherwise>
-									<c:out value="${book.bookOutline}"></c:out>
-								</c:otherwise>
-							</c:choose>
-						</p>
-					</div>
+				</div>
+				<br>
+				<div>
+					<p>
+						<c:choose>
+							<c:when test="${fn:length(book.bookOutline) gt 99}">
+								<c:out value="${fn:substring(book.bookOutline, 0, 98)}" />...
+							</c:when>
+							<c:otherwise>
+								<c:out value="${book.bookOutline}"></c:out>
+							</c:otherwise>
+						</c:choose>
+					</p>
 				</div>
 			</div>
-			<br>
-		</form>
+		</div>
+		<br>
 	</c:forEach>
 </div>
 <%

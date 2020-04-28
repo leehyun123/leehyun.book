@@ -211,7 +211,7 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='02.html'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="location.href='03.html'">수정</button>
+				onclick="location.href='update.jsp'">수정</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="alert_delete()">삭제</button>
 		</div>
@@ -250,7 +250,7 @@ hr {
 					<input class="radio_btn" type="radio" name="cb" />
 				</div>
 				<div class="book_contents">
-					<div class="book_img">${book.bookImg }</div>
+					<img class="book_img" src="../../img/book/${book.bookImg}.jpg"/>
 					<div class="book_text">
 						<div>
 							<label class="title">${book.bookTitle }</label>

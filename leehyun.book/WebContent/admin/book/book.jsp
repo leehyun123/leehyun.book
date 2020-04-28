@@ -207,7 +207,7 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='02.html'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="location.href='03.html'">수정</button>
+				onclick="document.update.submit()">수정</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="alert_delete()">삭제</button>
 		</div>
@@ -223,11 +223,11 @@ hr {
 		</div>
 
 		<!-- 도서 목록 -->
-
-		<div>
-			<jsp:include page='../book/list.jsp' />
-		</div>
-
+		<form action="update.jsp" name="update">
+			<div>
+				<jsp:include page='../book/list.jsp' />
+			</div>
+		</form>
 	</div>
 
 	<div class=footer>
