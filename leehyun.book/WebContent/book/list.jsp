@@ -18,7 +18,7 @@
 %>
 	<c:forEach var="book" items="${books}">
 		<div class="book_item" onClick="location.href='book/book.jsp?isbn=${book.isbn}'">
-			<div class="book_img">도서 이미지</div>
+			<img class="book_img" src="img/book/${book.bookImg}.jpg"/>
 			<h4>
 				<c:choose>
 					<c:when test="${fn:length(book.bookTitle) gt 12}">

@@ -95,7 +95,6 @@ label, p {
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 20px;
-	border: medium solid #8FC9DB;
 }
 
 .footer {

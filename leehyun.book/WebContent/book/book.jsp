@@ -112,7 +112,6 @@ label, p {
 	height: 400px;
 	margin-left: 40px;
 	margin-right: 50px;
-	border: medium solid #8FC9DB;
 	float: left;
 	text-align: center;
 	font-size: 25px;
@@ -218,9 +217,7 @@ hr {
 	<div class="blk30"></div>
 	<div class="container">
 		<div class="book_item">
-			<div class="book_img">
-				<br>도서 이미지
-			</div>
+			<img class="book_img" src="../img/book/<%=book.getbookImg() %>.jpg" />
 			<label class="title"><%=book.getbookTitle() %></label>
 			<div class="blk30"></div>
 			<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;&nbsp;</label> <label
