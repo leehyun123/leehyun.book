@@ -9,7 +9,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
-	List<User> users = userService.listUsers();
+
 %>
 
 <!DOCTYPE html>
@@ -137,8 +137,8 @@ header {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.html">로그인</a> / <a href="addUserIn.html">회원가입</a> /
-			<a href="loginIn.html">마이페이지</a> / <a href="loginIn.html">장바구니</a>
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> /
+			<a href="loginIn.jsp">마이페이지</a> / <a href="loginIn.jsp">장바구니</a>
 		</div>
 	</div>
 
@@ -152,13 +152,20 @@ header {
 	</div>
 	<br>
 	<br>
+	<%
+		String userId = (String)request.getAttribute("userId");
+	 %>
 	<div class="sign_form container">
 		<form class="form-horizontal" action="addUserProc.jsp" method="post">
 			<div class="form-group">
 				<label class="col-sm-5 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userId' type='text'
-						placeholder='아이디' maxlength='12' minlength="4" required>
+						placeholder='아이디' maxlength='12' minlength="4" 
+						<%if(userId != null){ %>
+						value=<%=userId %> 
+						<%} %>
+						required>
 				</div>
 				<div class="form-group">
 					<input type="submit" value="아이디 확인" formaction="idCheck.jsp">
@@ -250,7 +257,20 @@ header {
 				</div>
 			</div>
 			<br> <br>
-			<button class="sign_btn btn btn-info" type="submit">가입하기</button>
+			<button class="sign_btn btn btn-info" type="submit"
+			<%
+				if(msgFail == null && msgOk == null){
+			%>
+			disabled
+			<%
+				}else if(msgFail != null){
+			%>
+			disabled
+			<%
+			request.setAttribute("msgFail", null);
+				}
+			%>
+			>가입하기</button>
 		</form>
 	</div>
 	<div class=footer>

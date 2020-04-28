@@ -19,6 +19,7 @@
 	String phoneNum = request.getParameter("userTel");
 	String answer = request.getParameter("userA");
 	String birthday = request.getParameter("userDate");
+	
 	User user = new User();
 
 %>

@@ -11,12 +11,13 @@
 	request.setCharacterEncoding("utf-8");
 	request.setAttribute("msgOk", "사용가능한 아이디입니다.");
 	String userId = request.getParameter("userId");
+	request.setAttribute("userId", userId);
 %>
 
 <%
 	if (userId != null) {
-		for (User user1 : users) {
-			if (user1.getUserId().equals(userId)) {
+		for (User user : users) {
+			if (user.getUserId().equals(userId)) {
 				request.setAttribute("msgFail", "존재하는 아이디입니다.");
 				System.out.println("같음"); 
 %>
