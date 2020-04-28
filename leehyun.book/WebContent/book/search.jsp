@@ -139,23 +139,23 @@
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<a href="user/loginIn.html">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
+			<a href="../user/loginIn.jsp">로그인</a> / <a href="../user/addUserIn.jsp">회원가입</a>
 			/
 			<%
 				} else {
 			%>
 			<h5 class="welcome">${sessionID}님,환영합니다!&nbsp;&nbsp;/</h5>
-			<a href="user/logoutProc.jsp">로그아웃</a> /
+			<a href="../user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
 			%>
-			<a href="user/userInfo.jsp">마이페이지</a> / <a
+			<a href="../user/userInfo.jsp">마이페이지</a> / <a
 				href="../order/addUserIn.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
 		</div>
 	</div>
 	<div class="search_bar">
