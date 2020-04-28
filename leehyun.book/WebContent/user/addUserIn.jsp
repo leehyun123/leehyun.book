@@ -150,6 +150,13 @@ header {
 		<label class="white_text sign_title_text">회원가입</label>
 	</div>
 	<br>
+	<div class='container'>
+		<c:choose>
+			<c:when test='${!empty param.msgId}'>
+				<jsp:include page='msg.jsp' />
+			</c:when>
+		</c:choose>
+	</div>
 	<br>
 	<%
 		String userId = (String) request.getAttribute("userId");
@@ -258,15 +265,7 @@ header {
 				<%} else if (msgFail != null) {%> disabled
 				<%request.setAttribute("msgFail", null);
 			}%>>가입하기</button>
-			<br>
-			<br>
-			<div class='container'>
-				<c:choose>
-					<c:when test='${!empty param.msgId}'>
-						<jsp:include page='msg.jsp' />
-					</c:when>
-				</c:choose>
-			</div>
+			<br> <br>
 		</form>
 	</div>
 	<div class=footer>

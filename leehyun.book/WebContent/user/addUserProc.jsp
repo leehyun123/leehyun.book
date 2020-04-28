@@ -38,7 +38,7 @@
 
 			userService.join(user);
 %>
-<jsp:forward page="loginIn.jsp" />
+<c:redirect url='loginIn.jsp?msgId=41' />
 <%
 	} else {
 %>

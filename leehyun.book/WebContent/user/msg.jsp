@@ -18,13 +18,16 @@
 		<c:set var='msg' value='비밀번호가 일치하지 않습니다.' />
 	</c:when>
 	<c:when test='${param.msgId==21}'>
-		<c:set var='msg' value='비밀번호 변경을 완료하였습니다. 다시 로그인 해주세요.' />
+		<c:set var='msg' value='비밀번호 변경 완료: 다시 로그인 해주세요.' />
 	</c:when>
 	<c:when test='${param.msgId==30}'>
 		<c:set var='msg' value='로그인 실패: 아이디와 비밀번호를 다시 확인해주세요.' />
 	</c:when>
 	<c:when test='${param.msgId==40}'>
 		<c:set var='msg' value='가입 실패: 모든 항목을 입력해야 합니다.' />
+	</c:when>
+	<c:when test='${param.msgId==41}'>
+		<c:set var='msg' value='회원가입이 완료되었습니다. 로그인해서 이용해주세요.' />
 	</c:when>
 </c:choose>
 
