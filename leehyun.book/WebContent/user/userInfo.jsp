@@ -168,7 +168,7 @@ hr {
 			User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
 			String bday = user.getBirthday().substring(0, 11);
 			%>
-			<a href="../mypage/01.html">마이페이지</a> / <a href="cartOut.jspl">장바구니</a>
+			<a href="userInfo.jsp">마이페이지</a> / <a href="../order/cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -194,9 +194,9 @@ hr {
 			<li class='active' style="font-weight: bold;"><a
 				href='userInfo.jsp'><span class="glyphicon glyphicon-user"></span>
 					회원정보</a></li>
-			<li><a href='cartOut.jsp'><span
+			<li><a href='../order/cartOut.jsp'><span
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-			<li><a href='orderOut.jsp'><span
+			<li><a href='../order/orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
 			<li><a href='../refund/01.html'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
