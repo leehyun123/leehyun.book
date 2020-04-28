@@ -30,7 +30,7 @@
          closeOnConfirm : false
       }, function(isConfirm) {
          if (isConfirm) {
-            location.href = '03.html';
+            location.href = 'orderEnd.jsp';
          }
       });
    }
@@ -255,9 +255,9 @@ th, td{
 %>
    <div class="container">
       <div class="div_top">
-         <h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-         <a href="../main.jsp">로그아웃</a> / <a href="../mypage/01.html">마이페이지</a>
-         / <a href="01.html">장바구니</a>
+         <h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
+         <a href="../user/logoutProc.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
+         / <a href="cartOut.jsp">장바구니</a>
       </div>
       
    </div>
@@ -268,9 +268,9 @@ th, td{
    </div>
    <!-- 메인 검색창 -->
    <div class="search_bar">
-      <form action="../book/01.html">
+      <form action="../book/search.jsp">
          <label class="search_label">도서검색&nbsp;</label> <input
-            class="search_input" type="text" required />
+            class="search_input" type="text" name="search_words" required />
          <button class="search_btn btn btn-default" type="submit">
             <span class="glyphicon glyphicon-search">&nbsp;</span>검색
          </button>
@@ -281,11 +281,11 @@ th, td{
    <br>
    <div class='container'>
       <ul class='tab nav nav-tabs nav-justified'>
-         <li><a href='../user/07.html'><span
+         <li><a href='../user/userInfo.jsp'><span
                class="glyphicon glyphicon-user"></span> 회원정보</a></li>
-         <li class='active' style="font-weight: bold;"><a href='../order/01.html'><span
+         <li class='active' style="font-weight: bold;"><a href='cartOut.jsp'><span
                class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-         <li><a href='../order/04.html'><span
+         <li><a href='orderOut.jsp'><span
                class="glyphicon glyphicon-list"></span> 주문내역</a></li>
          <li><a href='../refund/01.html'><span
                class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
@@ -368,7 +368,7 @@ th, td{
 	                  <span class="glyphicon glyphicon-ok"></span> 결제
 	               </button>
 	               <button class="btn btn-danger bt_fr" type="button"
-	                  onclick="location.href='01.html'" style="font-size: 15px;">
+	                  onclick="location.href='cartOut.jsp'" style="font-size: 15px;">
 	                  <span class="glyphicon glyphicon-remove"></span> 취소
 	               </button>
 	            </div>

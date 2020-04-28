@@ -134,9 +134,9 @@ hr {
 %>
 	<div class="container">
 		<div class="div_top">
-			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../main.jsp">로그아웃</a> / <a href="../mypage/01.html">마이페이지</a>
-			/ <a href="01.html">장바구니</a>
+			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
+			<a href="../user/logout.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
+			/ <a href="cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -146,9 +146,9 @@ hr {
 	</div>
 	<!-- 메인 검색창 -->
 	<div class="search_bar">
-		<form class="search_form" action="../book/01.html">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
-				class="search_input" type="text" required />
+				class="search_input" type="text" name="search_words" required />
 			<button class="search_btn btn btn-default" type="submit">
 				<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 			</button>
@@ -159,12 +159,12 @@ hr {
 	<br>
 	<div class='tab container'>
 		<ul class='nav nav-tabs nav-justified'>
-			<li><a href='../user/07.html'><span
+			<li><a href='../user/userInfo.jsp'><span
 					class="glyphicon glyphicon-user"></span> 회원정보</a></li>
-			<li><a href='../order/01.html'><span
+			<li><a href='cartOut.jsp'><span
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
 			<li class='active' style="font-weight: bold;"><a
-				href='../order/04.html'><span class="glyphicon glyphicon-list"></span>
+				href='orderOut.jsp'><span class="glyphicon glyphicon-list"></span>
 					주문내역</a></li>
 			<li><a href='../refund/01.html'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
