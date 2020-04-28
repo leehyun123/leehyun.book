@@ -13,7 +13,7 @@
    
    String id = request.getParameter("userId");
    String pw = request.getParameter("password");
-   
+    
    if(id != null && pw != null){
       for(User user : users){
          if(user.getUserId().equals(id) && user.getPassword().equals(pw)){
@@ -32,4 +32,4 @@
       }
    }
 %>
-   <c:redirect url="loginIn.jsp"/>
+	<c:redirect url='loginIn.jsp?msgId=30' />

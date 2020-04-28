@@ -21,7 +21,7 @@
 		<c:set var='msg' value='비밀번호 변경을 완료하였습니다. 다시 로그인 해주세요.' />
 	</c:when>
 	<c:when test='${param.msgId==30}'>
-		<c:set var='msg' value='탈퇴 실패: 탈퇴시킬 사용자를 선택해야 합니다.' />
+		<c:set var='msg' value='로그인 실패: 아이디와 비밀번호를 다시 확인해주세요.' />
 	</c:when>
 	<c:when test='${param.msgId==40}'>
 		<c:set var='msg' value='가입 실패: 모든 항목을 입력해야 합니다.' />
@@ -31,6 +31,6 @@
 <div
 	class='alert fade in
 	${param.msgId == "11" || fn:endsWith(param.msgId, "1")?
-		"alert-success" : "alert-danger" }'>
+		"alert-success" : "alert-danger" }' style="text-align: center;">
 	<a href='#' class='close' data-dismiss='alert'>&times;</a> <strong>${msg}</strong>
 </div>
