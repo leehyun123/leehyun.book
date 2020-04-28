@@ -46,7 +46,7 @@
 			});
 		});
 	}
-
+	
 	function alert_secede() {
 		swal({
 			title : "탈퇴하시겠습니까?",
@@ -56,11 +56,20 @@
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
+		}, function alert_secede() {
+			swal({
+				title : "탈퇴 성공",
+				type : "success",
+				showCancelButton : false,
+				cancelButtonText : "",
+				confirmButtonText : "확인",
+				closeOnConfirm : true
 			}, function(isConfirm) {
 				if (isConfirm) {
 					location.href = "userDelProc.jsp";
 				}
 			});
+		});
 	}
 </script>
 <style>
