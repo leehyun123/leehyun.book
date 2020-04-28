@@ -43,13 +43,21 @@
 	
 	function alert_emp(){
 		swal({
-			title : "장바구니가 비어있습니다.",
-			text : "장바구니를 채워주세요.",
+			title : "체크된 항목이 없습니다.",
+			text : "선택해주세요.",
 			type : "warning",
 			showCancelButton : false,
 			confirmButtonText : "예",
 			closeOnConfirm : false
 		});
+	};
+	
+	function ck(){
+		if($("input:checkbox[class=cb_item]:checked").length == 0){
+			alert_emp();
+		}else{
+			document.cart.submit();
+		}
 	};
 
 	$( document ).ready( function() {
@@ -543,8 +551,8 @@ th, td {
 <%
 				if( ISBN.size() != 0 ){
 %>
-					<button class="btn btn-success" type="submit"
-						style="font-size: 15px;">
+					<button class="btn btn-success" type="button"
+						style="font-size: 15px;" onclick="ck()">
 						<span class="glyphicon glyphicon-ok"></span> 구매
 					</button>
 <%
