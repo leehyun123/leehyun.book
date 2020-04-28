@@ -49,6 +49,14 @@
 		orderBooks.setOrderCnt(Integer.parseInt(orderCnts[i]));
 		orderBooksService.purchaseOrderBooks(orderBooks);
 	}
+	
+	Cookie cookie = null;
+	for(String str : isbns){
+		cookie = new Cookie("ISBN" + str, "1");
+		cookie.setMaxAge(0);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+	}
 
 %>
 

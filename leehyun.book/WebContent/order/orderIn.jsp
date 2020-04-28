@@ -30,7 +30,7 @@
          closeOnConfirm : false
       }, function(isConfirm) {
          if (isConfirm) {
-            location.href = 'orderEnd.jsp';
+            document.order.submit();
          }
       });
    }
@@ -297,7 +297,7 @@ th, td{
       <h3>상품 확인</h3>
 
       <!-- 장바구니 내역 -->
-      <form action="orderProc.jsp">
+      <form action="orderProc.jsp" name="order">
       <table class="table fs24">
          <thead>
             <tr class="chart">
@@ -363,7 +363,7 @@ th, td{
 	                  <option value="신용카드">신용카드</option>
 	                  <option value="무통장 입금">무통장 입금</option>
 	               </select>
-	               <button class="btn btn-success bt_fr" type="submit"
+	               <button class="btn btn-success bt_fr" type="button"
 	                  onclick="alert_buy()" style="font-size: 15px;">
 	                  <span class="glyphicon glyphicon-ok"></span> 결제
 	               </button>
