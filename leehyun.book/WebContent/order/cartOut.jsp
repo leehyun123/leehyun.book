@@ -291,7 +291,6 @@ label, p {
 
 .div_top {
 	margin-top: 10px;
-	color: black;
 	height: 20px;
 	float: right;
 }
@@ -433,17 +432,17 @@ th, td {
 			<%
 				if(session.getAttribute("sessionID") == null){
 			%>
-			<a href="user/loginIn.html">로그인</a> / <a href="user/addUserIn.html">회원가입</a>
+			<a href="../user/loginIn.html">로그인</a> / <a href="../user/addUserIn.html">회원가입</a>
 			/
 			<%
 				}else{
 			%>
 			<h5 class="welcome">${sessionID}님,환영합니다! &nbsp;&nbsp;/</h5>
-			<a href="user/logoutProc.jsp">로그아웃</a> /
+			<a href="../user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
 			%>
-			<a href="../user/07.html">마이페이지</a> / <a href="cartOut.jsp">장바구니</a>
+			<a href="../user/userInfo.jsp">마이페이지</a> / <a href="cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -453,7 +452,7 @@ th, td {
 	</div>
 	<!-- 메인 검색창 -->
 	<div class="search_bar">
-		<form class="search_form" action="../book/01.html">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
 				class="search_input" type="text" required />
 			<button class="search_btn btn btn-default" type="submit">
@@ -466,12 +465,12 @@ th, td {
 	<br>
 	<div class='container'>
 		<ul class='tab nav nav-tabs nav-justified'>
-			<li><a href='../user/07.html'><span
+			<li><a href='../user/userInfo.jsp'><span
 					class="glyphicon glyphicon-user"></span> 회원정보</a></li>
 			<li class='active' style="font-weight: bold;"><a
-				href='../order/01.html'><span
+				href='cartOut.jsp'><span
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-			<li><a href='../order/04.html'><span
+			<li><a href='../order/orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
 			<li><a href='../refund/01.html'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>

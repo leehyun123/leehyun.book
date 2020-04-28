@@ -117,8 +117,8 @@ hr {
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../main.jsp">로그아웃</a> / <a href="../mypage/01.html">마이페이지</a>
-			/ <a href="01.html">장바구니</a>
+			<a href="../user/logoutProc.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
+			/ <a href="cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -127,7 +127,7 @@ hr {
 		</div>
 	</div>
 	<div class="search_bar">
-		<form class="search_form" action="../book/01.html">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
 				class="search_input" type="text" required />
 			<button class="search_btn btn btn-default" type="submit">
@@ -147,7 +147,7 @@ hr {
 			<span class="glyphicon glyphicon-list">&nbsp;</span>주문내역으로 이동
 		</button>
 		<button class="order_btn container btn btn-info" type="submit"
-			onclick="location.href='../user/00.html'">
+			onclick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>쇼핑 더 하러가기
 		</button>
 	</div>
