@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -116,16 +119,33 @@ label, p {
 .book_item {
 	margin-top: 5px;
 	margin-left: 10px;
-	height: 230px;
+	/* height: 230px; */
 	padding: 15px;
 }
 
+.book_contents {
+	overflow: hidden;
+}
+
 .book_img {
-	width: 170px;
+	width: 15%;
 	height: 200px;
-	margin-right: 15px;
+	margin-right: 5%;
 	border: 1px solid black;
 	float: left;
+}
+
+.book_text {
+	float: left;
+	width: 80%;
+}
+
+.book_text span {
+	font-size: 18px;
+}
+
+.book_text div {
+	width: 100%;
 }
 
 .title {
@@ -174,6 +194,7 @@ hr {
 	<div class="search_bar">
 		<label class="search_label" style="margin-left: 300px;">도서관리</label>
 	</div>
+
 	<div class="container">
 		<div class="tab">
 			<button class="btn btn-default input-lg ad_btn"
@@ -195,47 +216,15 @@ hr {
 				</button>
 			</form>
 		</div>
-		<div class="book_item">
-			<div class="cb_in">
-				<input class="radio_btn" type="radio" name="cb" />
-			</div>
-			<div class="book_img">도서 이미지</div>
-			<label class="title">2020 정보처리기사 필기</label><br> <label>저자명</label><label>길벗알앤디</label><br>
-			<label>출판사</label><label>길벗</label><br> <label>출판일</label> <label>2019년
-				11월</label><br> <label>&nbsp;&nbsp;가격&nbsp;&nbsp;</label><label>28,000</label><br>
-			<p>요약 줄거리 정보처리기사 필기 자격증을 위한 책 이걸 사면 당신도 받을 수 있다 합격목걸이</p>
+
+		<!-- 도서 목록 -->
+
+		<div>
+			<jsp:include page='../book/list.jsp' />
 		</div>
-		<div class="book_item">
-			<div class="cb_in">
-				<input class="radio_btn" type="radio" name="cb" />
-			</div>
-			<div class="book_img">도서 이미지</div>
-			<label class="title">2020 정보처리기사 필기</label><br> <label>저자명</label><label>길벗알앤디</label><br>
-			<label>출판사</label><label>길벗</label><br> <label>출판일</label> <label>2019년
-				11월</label><br> <label>&nbsp;&nbsp;가격&nbsp;&nbsp;</label><label>28,000</label><br>
-			<p>요약 줄거리 정보처리기사 필기 자격증을 위한 책 이걸 사면 당신도 받을 수 있다 합격목걸이</p>
-		</div>
-		<div class="book_item">
-			<div class="cb_in">
-				<input class="radio_btn" type="radio" name="cb" />
-			</div>
-			<div class="book_img">도서 이미지</div>
-			<label class="title">2020 정보처리기사 필기</label><br> <label>저자명</label><label>길벗알앤디</label><br>
-			<label>출판사</label><label>길벗</label><br> <label>출판일</label> <label>2019년
-				11월</label><br> <label>&nbsp;&nbsp;가격&nbsp;&nbsp;</label><label>28,000</label><br>
-			<p>요약 줄거리 정보처리기사 필기 자격증을 위한 책 이걸 사면 당신도 받을 수 있다 합격목걸이</p>
-		</div>
-		<div class="book_item">
-			<div class="cb_in">
-				<input class="radio_btn" type="radio" name="cb" />
-			</div>
-			<div class="book_img">도서 이미지</div>
-			<label class="title">2020 정보처리기사 필기</label><br> <label>저자명</label><label>길벗알앤디</label><br>
-			<label>출판사</label><label>길벗</label><br> <label>출판일</label> <label>2019년
-				11월</label><br> <label>&nbsp;&nbsp;가격&nbsp;&nbsp;</label><label>28,000</label><br>
-			<p>요약 줄거리 정보처리기사 필기 자격증을 위한 책 이걸 사면 당신도 받을 수 있다 합격목걸이</p>
-		</div>
+
 	</div>
+
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
