@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
+	public List<Order> searchOrder(String words){
+		return orderDao.pickOrder(words);
+	}
+
+	@Override
 	public int findOrderNum() {
 		return orderDao.getOrderNum();
 	}

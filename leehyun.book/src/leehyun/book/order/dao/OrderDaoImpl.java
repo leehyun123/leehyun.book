@@ -29,6 +29,11 @@ public class OrderDaoImpl implements OrderDao{
 	}
 	
 	@Override
+	public List<Order> pickOrder(String words){
+		return orderMapper.pickOrder(words);
+	}
+	
+	@Override
 	public int getOrderNum() {
 		return orderMapper.getOrderNum();
 	}
