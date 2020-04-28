@@ -40,7 +40,7 @@
 			closeOnConfirm : true
 		}, function(isConfirm) {
 			if (isConfirm) {
-				location.href = 'addUser.html';
+				location.href = 'addUserIn.jsp';
 			}
 		});
 	}

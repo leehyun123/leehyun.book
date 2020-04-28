@@ -18,7 +18,7 @@
 <%
 	}else{
 %>
-		<c:redirect url='pwChange.jsp?msgId=20' />
+		<c:redirect url='pwChangeIn.jsp?msgId=20' />
 <%
 	}
 %>

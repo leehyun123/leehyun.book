@@ -134,7 +134,7 @@ hr {
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<a href="user/loginIn.html">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
+			<a href="user/loginIn.jsp">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
 			/
 			<%
 				} else {

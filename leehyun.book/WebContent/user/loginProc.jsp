@@ -21,7 +21,7 @@
             session.setAttribute("sessionUserNum", user.getUserNum());
             if(id.equals("admin")){
 %>
-               <c:redirect url="../admin/main.html"/>
+               <c:redirect url="../admin/main.jsp"/>
 <%               
             }else{
 %>
@@ -32,4 +32,4 @@
       }
    }
 %>
-   <c:redirect url="loginIn.html"/>
+   <c:redirect url="loginIn.jsp"/>

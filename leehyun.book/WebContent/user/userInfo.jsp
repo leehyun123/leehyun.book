@@ -154,7 +154,7 @@ hr {
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<a href="loginIn.html">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
 			/
 			<%
 				} else {
@@ -264,7 +264,7 @@ hr {
 				</div>
 				<div>
 					<button class="sign_btn btn btn-info" type="button"
-						onclick="location.href='06.html'">비밀번호 변경</button>
+						onclick="location.href='pwChangeIn.jsp'">비밀번호 변경</button>
 				</div>
 			</div>
 			

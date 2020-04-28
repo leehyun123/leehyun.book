@@ -97,7 +97,7 @@ hr {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.html">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a
 				href="#">마이페이지</a> / <a href="#">장바구니</a>
 		</div>
 	</div>
@@ -116,7 +116,7 @@ hr {
 		<br>
 		<div class="blk70"></div>
 		<div class="div_bottom">
-			<a href="loginIn.html">로그인</a> | <a href="pwFindIn.jsp">비밀번호 찾기</a>
+			<a href="loginIn.jsp">로그인</a> | <a href="pwFindIn.jsp">비밀번호 찾기</a>
 		</div>
 	</div>
 	<div class=footer>

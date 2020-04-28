@@ -39,7 +39,7 @@
 			userService.join(user);
 			System.out.println("성공");
 %>
-<jsp:forward page="loginIn.html"/>
+<jsp:forward page="loginIn.jsp"/>
 <%
 	} else {
 			System.out.println("비밀번호가 일치하지 않습니다.");
