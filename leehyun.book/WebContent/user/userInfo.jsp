@@ -168,7 +168,7 @@ hr {
 			<%
 				} else {
 			%>
-			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
 			<a href="logoutProc.jsp">로그아웃</a> /
 			<%
 				}
@@ -187,9 +187,9 @@ hr {
 	</div>
 	<!-- 메인 검색창 -->
 	<div class="search_bar">
-		<form class="search_form" action="../book/01.html">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
-				class="search_input" type="text" required />
+				class="search_input" type="text" name="search_words" required />
 			<button class="search_btn btn btn-default" type="submit">
 				<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 			</button>

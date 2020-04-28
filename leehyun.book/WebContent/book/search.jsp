@@ -144,7 +144,7 @@
 			<%
 				} else {
 			%>
-			<h5 class="welcome">${sessionID}님,환영합니다!&nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID} 님, 환영합니다 !&nbsp;&nbsp;/</h5>
 			<a href="../user/logoutProc.jsp">로그아웃</a> /
 			<%
 				}
