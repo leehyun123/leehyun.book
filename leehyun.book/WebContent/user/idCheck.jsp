@@ -19,7 +19,6 @@
 		for (User user : users) {
 			if (user.getUserId().equals(userId)) {
 				request.setAttribute("msgFail", "존재하는 아이디입니다.");
-				System.out.println("같음"); 
 %>
 <jsp:forward page="addUserIn.jsp"/>
 <%

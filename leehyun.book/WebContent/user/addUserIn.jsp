@@ -9,7 +9,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
-
 %>
 
 <!DOCTYPE html>
@@ -137,8 +136,8 @@ header {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> /
-			<a href="loginIn.jsp">마이페이지</a> / <a href="loginIn.jsp">장바구니</a>
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a
+				href="loginIn.jsp">마이페이지</a> / <a href="loginIn.jsp">장바구니</a>
 		</div>
 	</div>
 
@@ -153,38 +152,35 @@ header {
 	<br>
 	<br>
 	<%
-		String userId = (String)request.getAttribute("userId");
-	 %>
+		String userId = (String) request.getAttribute("userId");
+	%>
 	<div class="sign_form container">
 		<form class="form-horizontal" action="addUserProc.jsp" method="post">
 			<div class="form-group">
 				<label class="col-sm-5 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userId' type='text'
-						placeholder='아이디' maxlength='12' minlength="4" 
-						<%if(userId != null){ %>
-						value=<%=userId %> 
-						<%} %>
-						required>
+						placeholder='아이디' maxlength='12' minlength="4"
+						<%if (userId != null) {%> value=<%=userId%> <%}%> required>
 				</div>
 				<div class="form-group">
 					<input type="submit" value="아이디 확인" formaction="idCheck.jsp">
 				</div>
 			</div>
 			<%
-			String msgFail = (String)request.getAttribute("msgFail");
-			String msgOk = (String)request.getAttribute("msgOk");
-			if(msgFail != null){
+				String msgFail = (String) request.getAttribute("msgFail");
+				String msgOk = (String) request.getAttribute("msgOk");
+				if (msgFail != null) {
 			%>
-			<h3><%= msgFail %></h3>
+			<h3><%=msgFail%></h3>
 			<%
-			}else if(msgOk != null){
+				} else if (msgOk != null) {
 			%>
-				<h3><%= msgOk %></h3>
-			<%	
-			}
+			<h3><%=msgOk%></h3>
+			<%
+				}
 			%>
-			
+
 			<div class="form-group">
 				<label class="col-sm-5 control-label">비밀번호: </label>
 				<div class="col-sm-4">
@@ -258,19 +254,19 @@ header {
 			</div>
 			<br> <br>
 			<button class="sign_btn btn btn-info" type="submit"
-			<%
-				if(msgFail == null && msgOk == null){
-			%>
-			disabled
-			<%
-				}else if(msgFail != null){
-			%>
-			disabled
-			<%
-			request.setAttribute("msgFail", null);
-				}
-			%>
-			>가입하기</button>
+				<%if (msgFail == null && msgOk == null) {%> disabled
+				<%} else if (msgFail != null) {%> disabled
+				<%request.setAttribute("msgFail", null);
+			}%>>가입하기</button>
+			<br>
+			<br>
+			<div class='container'>
+				<c:choose>
+					<c:when test='${!empty param.msgId}'>
+						<jsp:include page='msg.jsp' />
+					</c:when>
+				</c:choose>
+			</div>
 		</form>
 	</div>
 	<div class=footer>

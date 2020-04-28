@@ -18,7 +18,6 @@
 		if (userService.findPw(userId) != null) {
 			User user = userService.findPw(userId);
 			if (userAnswer.equals(user.getAnswer())) {
-				System.out.println(user.getAnswer());
 				session.setAttribute("sessionUserNum", user.getUserNum());
 %>
 	<jsp:forward page="pwChangeIn.jsp" />

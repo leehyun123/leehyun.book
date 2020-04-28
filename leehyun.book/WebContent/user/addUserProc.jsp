@@ -19,9 +19,8 @@
 	String phoneNum = request.getParameter("userTel");
 	String answer = request.getParameter("userA");
 	String birthday = request.getParameter("userDate");
-	
-	User user = new User();
 
+	User user = new User();
 %>
 
 <%
@@ -38,17 +37,21 @@
 			user.setGender(gender);
 
 			userService.join(user);
-			System.out.println("성공");
 %>
-<jsp:forward page="loginIn.jsp"/>
+<jsp:forward page="loginIn.jsp" />
 <%
 	} else {
-			System.out.println("비밀번호가 일치하지 않습니다.");
-		}
+%>
+<c:redirect url='addUserIn.jsp?msgId=20' />
+<%
+	}
 %>
 
 <%
 	}
-	System.out.println("실패, 모든 항목을 입력해주세요.");
 %>
-<jsp:forward page="addUserIn.jsp"/>
+<c:redirect url='addUserIn.jsp?msgId=40' />
+<%
+	
+%>
+<jsp:forward page="addUserIn.jsp" />
