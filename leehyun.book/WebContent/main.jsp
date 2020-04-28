@@ -87,6 +87,7 @@ label, p {
 	text-align: center;
 	border: thin solid #8FC9DB;
 	display: inline-block;
+	cursor: pointer;
 }
 
 .book_img {
