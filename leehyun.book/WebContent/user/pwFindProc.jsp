@@ -21,7 +21,7 @@
 				System.out.println(user.getAnswer());
 				session.setAttribute("sessionUserNum", user.getUserNum());
 %>
-	<jsp:forward page="pwChange.jsp" />
+	<jsp:forward page="pwChangeIn.jsp" />
 <%
 	} else {
 %>
