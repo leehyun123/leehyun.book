@@ -6,12 +6,13 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%
 	UserService userService = new UserServiceImpl();
-	String userPwd = request.getParameter("userPwd");
+
+	String userPwd1 = request.getParameter("userPwd1");
 	String userPwd2 = request.getParameter("userPwd2");
 	
-	if(userPwd.equals(userPwd2)){
+	if(userPwd1.equals(userPwd2)){
 		User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
-		user.setPassword(userPwd);
+		user.setPassword(userPwd1);
 		userService.correctUser(user);
 %>
 		<c:redirect url='loginIn.jsp?msgId=21' />

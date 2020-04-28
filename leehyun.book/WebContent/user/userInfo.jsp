@@ -206,6 +206,13 @@ hr {
 	<br>
 	<div class="sign_form container">
 		<h1 class="name">회원정보</h1>
+		<div class='container'>
+			<c:choose>
+				<c:when test='${!empty param.msgId}'>
+					<jsp:include page='msg.jsp'/>
+				</c:when>
+			</c:choose>
+		</div>
 		<br> <br>
 		<form class="form-horizontal" action="userModProc.jsp" method="post" name="userInfo">
 			<div class="form-group">
@@ -255,7 +262,7 @@ hr {
 						value="<%=user.getEmail()%>">
 				</div>
 			</div>
-
+			
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호: </label>
 				<div class="col-sm-4">
@@ -263,8 +270,8 @@ hr {
 						placeholder='현재 비밀번호' maxlength='16'>
 				</div>
 				<div>
-					<button class="sign_btn btn btn-info" type="button"
-						onclick="location.href='pwChangeIn.jsp'">비밀번호 변경</button>
+					<button class="sign_btn btn btn-info" type="submit"
+						formaction="pwCheck.jsp">비밀번호 변경</button>
 				</div>
 			</div>
 			
@@ -279,7 +286,7 @@ hr {
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호 답: </label>
 				<div class="col-sm-4">
-					<input class="form-control" name='pwA' type='email'
+					<input class="form-control" name='pwA' type='text'
 						value="<%=user.getAnswer()%>">
 				</div>
 			</div>

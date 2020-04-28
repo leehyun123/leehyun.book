@@ -125,7 +125,7 @@ hr {
 				<div class="form-group">
 					<label class="col-lg-4 control-label">변경할 비밀번호: </label>
 					<div class="col-lg-2">
-						<input class="input_form" name="userPwd" type="password"
+						<input class="input_form" name="userPwd1" type="password"
 							placeholder='비밀번호' maxlength='8' required>
 					</div>
 				</div>
