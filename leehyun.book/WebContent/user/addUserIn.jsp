@@ -160,6 +160,16 @@ header {
 	<br>
 	<%
 		String userId = (String) request.getAttribute("userId");
+		String userPwd = (String) request.getAttribute("userPwd");
+		String userPwd2 = (String) request.getAttribute("userPwd2");
+		String userName = (String) request.getAttribute("userName");
+		String userEmail = (String) request.getAttribute("userEmail");
+		String userTel = (String) request.getAttribute("userTel");
+		String userA = (String) request.getAttribute("userA");
+		String userDate = (String) request.getAttribute("userDate");
+		
+		String idCheck = (String) request.getAttribute("idCheck");
+
 	%>
 	<div class="sign_form container">
 		<form class="form-horizontal" action="addUserProc.jsp" method="post">
@@ -174,25 +184,12 @@ header {
 					<input type="submit" value="아이디 확인" formaction="idCheck.jsp">
 				</div>
 			</div>
-			<%
-				String msgFail = (String) request.getAttribute("msgFail");
-				String msgOk = (String) request.getAttribute("msgOk");
-				if (msgFail != null) {
-			%>
-			<h3><%=msgFail%></h3>
-			<%
-				} else if (msgOk != null) {
-			%>
-			<h3><%=msgOk%></h3>
-			<%
-				}
-			%>
-
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd' type='password'
-						placeholder='비밀번호' maxlength='16' minlength="8">
+						placeholder='비밀번호' maxlength='16' minlength="8"
+						<%if (userPwd != null) {%> value=<%=userPwd%> <%}%>>
 				</div>
 			</div>
 
@@ -200,7 +197,8 @@ header {
 				<label class="col-sm-4 control-label">비밀번호 확인: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd2' type='password'
-						placeholder='비밀번호 확인' maxlength='16' minlength="8">
+						placeholder='비밀번호 확인' maxlength='16' minlength="8"
+						<%if (userPwd2 != null) {%> value=<%=userPwd2%> <%}%>>
 				</div>
 			</div>
 
@@ -208,7 +206,8 @@ header {
 				<label class="col-sm-4 control-label">성명: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userName' type='text'
-						placeholder='성명' maxlength='8' minlength="2">
+						placeholder='성명' maxlength='8' minlength="2"
+						<%if (userName != null) {%> value=<%=userName%> <%}%>>
 				</div>
 			</div>
 
@@ -216,7 +215,7 @@ header {
 				<label class="col-sm-4 control-label">생년월일: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userDate' type='date'
-						value='2020-04-17'>
+						<%if (userDate != null) {%> value=<%=userDate%> <%}%>>
 				</div>
 			</div>
 
@@ -232,7 +231,8 @@ header {
 				<label class="col-sm-4 control-label">이메일: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userEmail' type='email'
-						placeholder='이메일'>
+						placeholder='이메일'
+						<%if (userEmail != null) {%> value=<%=userEmail%> <%}%>>
 				</div>
 			</div>
 
@@ -240,7 +240,8 @@ header {
 				<label class="col-sm-4 control-label">전화번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userTel' type='tel'
-						placeholder="특수문자를 제외한 숫자만 입력해주세요." minlength="9">
+						placeholder="특수문자를 제외한 숫자만 입력해주세요." minlength="9"
+						<%if (userTel != null) {%> value=<%=userTel%> <%}%>>
 				</div>
 			</div>
 
@@ -256,15 +257,14 @@ header {
 				<label class="col-sm-4 control-label">비밀번호 답변: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userA' type='text'
-						placeholder='답'>
+						placeholder='답' minlength="1"
+						<%if (userA != null) {%> value=<%=userA%> <%}%>>
 				</div>
 			</div>
 			<br> <br>
 			<button class="sign_btn btn btn-info" type="submit"
-				<%if (msgFail == null && msgOk == null) {%> disabled
-				<%} else if (msgFail != null) {%> disabled
-				<%request.setAttribute("msgFail", null);
-			}%>>가입하기</button>
+			<%if (idCheck == null || idCheck.equals("사용불가")) {%> disabled
+            <%} %>>가입하기</button>
 			<br> <br>
 		</form>
 	</div>

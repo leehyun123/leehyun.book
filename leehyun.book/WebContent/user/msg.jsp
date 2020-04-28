@@ -29,6 +29,15 @@
 	<c:when test='${param.msgId==41}'>
 		<c:set var='msg' value='회원가입이 완료되었습니다. 로그인해서 이용해주세요.' />
 	</c:when>
+	<c:when test='${param.msgId==50}'>
+		<c:set var='msg' value='이미 사용중인 아이디 입니다.' />
+	</c:when>
+	<c:when test='${param.msgId==51}'>
+		<c:set var='msg' value='사용 가능한 아이디 입니다!' />
+	</c:when>
+	<c:when test='${param.msgId==60}'>
+		<c:set var='msg' value='이미 가입된 전화번호 입니다.' />
+	</c:when>
 </c:choose>
 
 <div

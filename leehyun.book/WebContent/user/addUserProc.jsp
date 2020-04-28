@@ -20,10 +20,32 @@
 	String answer = request.getParameter("userA");
 	String birthday = request.getParameter("userDate");
 
-	User user = new User();
-%>
+	request.setAttribute("idCheck", "사용가능");
+	request.setAttribute("userId", userId);
+	request.setAttribute("userPwd", password);
+	request.setAttribute("userPwd2", password2);
+	request.setAttribute("userName", userName);
+	request.setAttribute("userEmail", email);
+	request.setAttribute("userTel", phoneNum);
+	request.setAttribute("userA", answer);
+	request.setAttribute("userDate", birthday);
 
+	User user = new User();
+
+	if (userId != null) {
+		for (User user1 : users) {
+			if (user1.getUserId().equals(userId)) {
+%>
+			<jsp:forward page='addUserIn.jsp?msgId=50' />
 <%
+			}
+			if (user1.getPhoneNum().equals(phoneNum)) {
+%>
+			<jsp:forward page='addUserIn.jsp?msgId=60' />
+<%
+			}
+		}
+	}
 	if (userId != null && password != null && password2 != null && userName != null && birthday != null
 			&& gender != null && email != null && phoneNum != null && answer != null) {
 		if (password.equals(password2)) {
@@ -38,20 +60,13 @@
 
 			userService.join(user);
 %>
-<c:redirect url='loginIn.jsp?msgId=41' />
+			<c:redirect url='loginIn.jsp?msgId=41' />
 <%
-	} else {
+		} else {
 %>
-<c:redirect url='addUserIn.jsp?msgId=20' />
+			<jsp:forward page='addUserIn.jsp?msgId=20' />
 <%
+		}
 	}
 %>
-
-<%
-	}
-%>
-<c:redirect url='addUserIn.jsp?msgId=40' />
-<%
-	
-%>
-<jsp:forward page="addUserIn.jsp" />
+<jsp:forward page='addUserIn.jsp?msgId=40' />
