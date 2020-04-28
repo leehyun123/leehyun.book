@@ -5,6 +5,7 @@
 <%@ page import='leehyun.book.book.domain.Book'%>
 <%@ page import='java.util.List'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
 	BookService bookService = new BookServiceImpl();
@@ -24,20 +25,29 @@
 			<div class="book_text">
 				<div>
 					<label class="title">${book.bookTitle }</label>
-					
-					<div class="book_text_top">
-					<br>
-						<label>저자명</label> <span>${book.author }</span> 
-						<label>출판사</label> <span>${book.publisher }</span>
-					</div>
-					<div>
-						<label>가격</label> <span>${book.bookPrice}</span>
-						<label>출판일</label> <span>${book.publishDate }</span>
+					<div class="book_text_contents">
+						<div class="book_text_top">
+							<br> <label>저자명</label> <span>${book.author }</span> <label>가격</label>
+							<span>${book.bookPrice}</span> <label>ISBN</label> <span>${book.isbn }</span>
+						</div>
+						<div class="book_text_bottom">
+							<label>출판사</label> <span>${book.publisher }</span> <label>출판일</label>
+							<span>${book.publishDate }</span>
+						</div>
 					</div>
 				</div>
 				<br>
 				<div>
-					<p>${book.bookOutline }</p>
+					<p>
+						<c:choose>
+							<c:when test="${fn:length(book.bookOutline) gt 100}">
+								<c:out value="${fn:substring(book.bookOutline, 0, 99)}" />...
+							</c:when>
+							<c:otherwise>
+								<c:out value="${book.bookOutline}"></c:out>
+							</c:otherwise>
+						</c:choose>
+					</p>
 				</div>
 			</div>
 		</div>

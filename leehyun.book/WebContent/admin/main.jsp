@@ -99,15 +99,15 @@ hr {
 	int ing = 0;
 	int com = 0;
 	List<Order> orders = null;
-	
+
 	orders = orderService.listAdminOrders("배송전");
-	if(orders != null)
+	if (orders != null)
 		bf = orders.size();
 	orders = orderService.listAdminOrders("배송중");
-	if(orders != null)
+	if (orders != null)
 		ing = orders.size();
 	orders = orderService.listAdminOrders("배송완료");
-	if(orders != null)
+	if (orders != null)
 		com = orders.size();
 %>
 <body>
@@ -127,25 +127,31 @@ hr {
 	<div class="container">
 		<br> <br> <label class="menu_label"> - 주문 관리</label><br>
 		<div class="order_bar">
-			<div class="order_mng alert-warning" onclick="location.href='order/bfDeli.jsp'">
-				배송전<br><%=bf %>
+			<div class="order_mng alert-warning"
+				onclick="location.href='order/bfDeli.jsp'">
+				배송전<br><%=bf%>
 			</div>
-			<div class="order_mng alert-info" onclick="location.href='order/02.html'">
-				배송중<br><%=ing %>
+			<div class="order_mng alert-info"
+				onclick="location.href='order/02.html'">
+				배송중<br><%=ing%>
 			</div>
-			<div class="order_mng alert-success" onclick="location.href='order/03.html'">
-				배송완료<br><%=com %>
+			<div class="order_mng alert-success"
+				onclick="location.href='order/03.html'">
+				배송완료<br><%=com%>
 			</div>
-			<div class="order_mng alert-danger" onclick="location.href='refund/01.html'">
+			<div class="order_mng alert-danger"
+				onclick="location.href='refund/01.html'">
 				환불 접수<br>3
 			</div>
 		</div>
 		<br> <br> <br> <label class="menu_label"> - 매출
-			정보</label><br> <label style="font-size: 25px; font-weight: 500;">&nbsp;&nbsp;&nbsp;&nbsp;매출 누계 : 17,853,000,000
-			원</label><br> <br> <br> <br>
+			정보</label><br> <label style="font-size: 25px; font-weight: 500;">&nbsp;&nbsp;&nbsp;&nbsp;매출
+			누계 : 17,853,000,000 원</label><br> <br> <br> <br>
 		<button class="mng_btn" onclick="location.href='book/book.jsp'">도서관리</button>
-		<button class="mng_btn" onclick="location.href='img/01.html'">배너 관리</button>
-		<button class="mng_btn" onclick="location.href='img/02.html'">로고 관리</button>
+		<button class="mng_btn" onclick="location.href='img/01.html'">배너
+			관리</button>
+		<button class="mng_btn" onclick="location.href='img/02.html'">로고
+			관리</button>
 	</div>
 	<div class=footer>
 		<hr>

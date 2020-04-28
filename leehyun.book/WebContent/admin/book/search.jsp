@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import='leehyun.book.book.service.BookService'%>
+<%@ page import='leehyun.book.book.service.BookServiceImpl'%>
+<%@ page import='leehyun.book.book.domain.Book'%>
+<%@ page import='java.util.List'%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -215,19 +219,82 @@ hr {
 			<form class="search_form" action="search.jsp">
 				<label class="search_label"
 					style="font-size: 20px; margin-top: 20px; color: black;">도서검색&nbsp;</label>
-				<input class="search_input" type="text" name="search_words" required />
+				<input class="search_input" type="text" required />
 				<button class="search_btn btn btn-default" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
 			</form>
 		</div>
 
-		<!-- 도서 목록 -->
+		<%
+			String words = request.getParameter("search_words");
 
-		<div>
-			<jsp:include page='../book/list.jsp' />
+			BookService bookService = new BookServiceImpl();
+			List<Book> books = bookService.searchBook(words);
+		%>
+		<br>
+		<p class="result container">
+			<span class="glyphicon glyphicon-search"> </span> "<%=words%>"에 대한 검색
+			결과입니다.
+		</p>
+		<%
+			if (books != null && books.size() > 0) {
+				pageContext.setAttribute("books", books);
+		%>
+
+		<!-- 검색 목록 -->
+		<div class="book_item">
+			<c:forEach var="book" items="${books}">
+				<hr>
+				<div class="cb_in">
+					<input class="radio_btn" type="radio" name="cb" />
+				</div>
+				<div class="book_contents">
+					<div class="book_img">${book.bookImg }</div>
+					<div class="book_text">
+						<div>
+							<label class="title">${book.bookTitle }</label>
+							<div class="book_text_contents">
+								<div class="book_text_top">
+									<br> <label>저자명</label> <span>${book.author }</span> <label>가격</label>
+									<span>${book.bookPrice}</span> <label>ISBN</label> <span>${book.isbn }</span>
+								</div>
+								<div class="book_text_bottom">
+									<label>출판사</label> <span>${book.publisher }</span> <label>출판일</label>
+									<span>${book.publishDate }</span>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div>
+							<p>
+								<c:choose>
+									<c:when test="${fn:length(book.bookOutline) gt 100}">
+										<c:out value="${fn:substring(book.bookOutline, 0, 99)}" />...
+							</c:when>
+									<c:otherwise>
+										<c:out value="${book.bookOutline}"></c:out>
+									</c:otherwise>
+								</c:choose>
+							</p>
+						</div>
+					</div>
+				</div>
+				<br>
+			</c:forEach>
 		</div>
 
+		<%
+			} else {
+		%>
+		<div class='alert alert-info'>
+			<hr>
+			<h3 style="text-align: center;">등록된 도서가 없습니다.</h3>
+			<hr>
+		</div>
+		<%
+			}
+		%>
 	</div>
 
 	<div class=footer>
