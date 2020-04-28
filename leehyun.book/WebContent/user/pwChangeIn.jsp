@@ -23,6 +23,10 @@ label, p {
 	font-size: large;
 }
 
+.welcome {
+	display: inline;
+}
+
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
@@ -36,7 +40,6 @@ label, p {
 
 .div_top {
 	margin-top: 10px;
-	color: white;
 	height: 20px;
 	float: right;
 }
@@ -97,8 +100,22 @@ hr {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a href="#">마이페이지</a>
-			/ <a href="#">장바구니</a>
+			<%
+				if (session.getAttribute("sessionID") == null) {
+			%>
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
+			/<a href="loginIn.jsp">마이페이지</a> / <a
+				href="loginIn.jsp">장바구니</a>
+			<%
+				} else {
+			%>
+			<h5 class="welcome">${sessionID}님,환영합니다!&nbsp;&nbsp;/</h5>
+			<a href="logoutProc.jsp">로그아웃</a> /
+			<a href="userInfo.jsp">마이페이지</a> / <a
+				href="../order/cartOut.jsp">장바구니</a>
+			<%
+				}
+			%>
 		</div>
 	</div>
 	<div class="div_logo">

@@ -102,8 +102,8 @@ hr {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a href="#">마이페이지</a>
-			/ <a href="#">장바구니</a>
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a href="loginIn.jsp">마이페이지</a>
+			/ <a href="loginIn.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">

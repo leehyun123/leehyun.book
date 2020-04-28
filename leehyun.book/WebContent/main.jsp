@@ -145,7 +145,7 @@ hr {
 				href="order/cartOut.jsp">장바구니</a>
 			<%
 				}
-			%> 
+			%>
 		</div>
 	</div>
 	<div class="div_logo">
