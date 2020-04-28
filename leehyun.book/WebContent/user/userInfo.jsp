@@ -215,6 +215,7 @@ hr {
 	<br>
 	<div class="sign_form container">
 		<h1 class="name">회원정보</h1>
+		<br>
 		<div class='container'>
 			<c:choose>
 				<c:when test='${!empty param.msgId}'>
@@ -222,7 +223,7 @@ hr {
 				</c:when>
 			</c:choose>
 		</div>
-		<br> <br>
+		<br>
 		<form class="form-horizontal" action="userModProc.jsp" method="post" name="userInfo">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">성명: </label>

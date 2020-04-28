@@ -127,7 +127,7 @@ hr {
 	<div class="container">
 		<h2>비밀번호 변경</h2>
 		<hr>
-		<div class="blk30"></div>
+		<br>
 		<div class='container'>
 			<c:choose>
 				<c:when test='${!empty param.msgId}'>
@@ -136,7 +136,7 @@ hr {
 			</c:choose>
 		</div>
 		<p class="result">변경할 비밀번호를 입력하세요.</p>
-		<div class="blk30"></div>
+		<br>
 		<div class="sign_form">
 			<form class="form-horizontal" action="pwChangeProc.jsp">
 				<div class="form-group">

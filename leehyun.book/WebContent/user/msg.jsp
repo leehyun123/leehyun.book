@@ -14,6 +14,9 @@
 	<c:when test='${param.msgId==10}'>
 		<c:set var='msg' value='일치하는 정보가 없습니다.' />
 	</c:when>
+	<c:when test='${param.msgId==11}'>
+		<c:set var='msg' value='회원정보 수정이 완료 되었습니다.' />
+	</c:when>
 	<c:when test='${param.msgId==20}'>
 		<c:set var='msg' value='비밀번호가 일치하지 않습니다.' />
 	</c:when>

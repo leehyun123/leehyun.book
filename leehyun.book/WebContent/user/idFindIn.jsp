@@ -133,7 +133,6 @@ hr {
 	<div class="container">
 		<h2>아이디 찾기</h2>
 		<hr>
-		<div class="blk40"></div>
 		<br>
 		<div class='container'>
 			<c:choose>
@@ -142,6 +141,7 @@ hr {
 				</c:when>
 			</c:choose>
 		</div>
+		<br>
 		<div class="sign_form">
 			<form class="form-horizontal" action="idFindProc.jsp">
 				<div class="form-group">

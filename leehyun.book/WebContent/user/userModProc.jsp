@@ -21,4 +21,4 @@
 	user.setAnswer(pwA);
 	userService.correctUser(user);
 %>
-<c:redirect url ="userInfo.jsp"/>
+<c:redirect url='userInfo.jsp?msgId=11' />
