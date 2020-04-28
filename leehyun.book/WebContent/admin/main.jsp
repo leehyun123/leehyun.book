@@ -143,7 +143,7 @@ hr {
 		<br> <br> <br> <label class="menu_label"> - 매출
 			정보</label><br> <label style="font-size: 25px; font-weight: 500;">&nbsp;&nbsp;&nbsp;&nbsp;매출 누계 : 17,853,000,000
 			원</label><br> <br> <br> <br>
-		<button class="mng_btn" onclick="location.href='book/01.html'">도서관리</button>
+		<button class="mng_btn" onclick="location.href='book/book.jsp'">도서관리</button>
 		<button class="mng_btn" onclick="location.href='img/01.html'">배너 관리</button>
 		<button class="mng_btn" onclick="location.href='img/02.html'">로고 관리</button>
 	</div>
