@@ -1,3 +1,6 @@
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
 <%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
@@ -125,6 +128,7 @@ hr {
 	int userNum = (int)session.getAttribute("sessionUserNum");
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
+	BookService bookService = new BookServiceImpl();
 	List<Order> listUserOrders = orderService.listUserOrders(userNum); 
 	
 %>
@@ -216,11 +220,23 @@ hr {
 							<td><%= order.getOrderNum() %></td>
 							<td><%= order.getOrderDate() %></td>
 <%
+						long isbn = 0;
 						for(OrderBooks orderBooks: listOrderBooks){
 							orderCnt += orderBooks.getOrderCnt();
+							isbn = orderBooks.getIsbn();
+						}
+						Book book = bookService.findBook(isbn);
+						
+						if(orderCnt == 1){
+%>							
+							<td><%= book.getbookTitle()%></td>
+<%						
+						}else{
+%>							
+							<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
+<%
 						}
 %>							
-							<td></td>
 							<td><%= orderCnt %></td>													
 							<td><%= order.getDeliveryNum() %></td>
 							<td><%= order.getDeliveryStatus() %></td>

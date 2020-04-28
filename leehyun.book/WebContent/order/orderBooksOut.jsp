@@ -1,3 +1,6 @@
+<%@page import="leehyun.book.order.domain.Order"%>
+<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderService"%>
 <%@page import="leehyun.book.book.domain.Book"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
@@ -233,8 +236,10 @@ hr {
 <body>
 <%
 	int orderNum = Integer.parseInt(request.getParameter("orderNum"));
+	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	BookService bookService = new BookServiceImpl();
+	Order order = orderService.findOrder(orderNum);
 	List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(orderNum);
 %>
 	<div class="container">
@@ -278,7 +283,7 @@ hr {
 		<h1 class="name">상세 주문내역</h1>
 		<!-- 주문번호 -->
 		<form class="subTitle_form" action="#" style="margin: 0 30px;">
-			<br> <span class="order_code"><%= orderNum %></span>
+			<br> <span class="order_code">주문번호: <%= orderNum %></span>
 		</form>
 		<br>
 		<!-- 상세 주문내역 -->
@@ -339,15 +344,15 @@ hr {
 		<div class="div_float">
 			<div class="div_half">
 				<label class="d_op">수령인 : </label>
-				<p class="d_op_in">이현</p>
+				<p class="d_op_in"><%= order.getReceiver() %></p>
 				<br> <label class="d_op">배송지 : </label>
-				<p class="d_op_in">서울특별시 마포구 서교동</p>
+				<p class="d_op_in"><%= order.getBaseAddr() %></p>
 				<br> <label class="d_op">&nbsp;</label>
-				<p class="d_op_in">쌍용강북교육센터</p>
+				<p class="d_op_in"><%= order.getDetailAddr() %></p>
 				<br> <label class="d_op">핸드폰번호 : </label>
-				<p class="d_op_in">010-0000-0000</p>
+				<p class="d_op_in"><%= order.getReceiverTel() %></p>
 				<br> <label class="d_op">요청사항 :</label>
-				<p class="d_op_in">부재 시 집앞에 놓아주세요.</p>
+				<p class="d_op_in"><%= order.getRequest() %></p>
 			</div>
 
 

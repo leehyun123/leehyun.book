@@ -239,6 +239,7 @@ th, td{
 <body>
 <%
    List<String> cartArr = (List<String>)session.getAttribute("cart");
+	
    
    for(String str: cartArr){
       String[] cartItem = request.getParameterValues(str);
