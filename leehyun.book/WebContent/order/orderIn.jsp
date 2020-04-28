@@ -239,19 +239,16 @@ th, td{
 <body>
 <%
    List<String> cartArr = (List<String>)session.getAttribute("cart");
-	
+
+	for(String str: cartArr){
+		if(request.getParameterValues(str) != null)
+    		session.setAttribute(str, request.getParameterValues(str));
+	}
    
-   for(String str: cartArr){
-      String[] cartItem = request.getParameterValues(str);
-   
-      if(cartItem.length == 5){
-         System.out.println(cartItem[0]);//ISBN
-         System.out.println(cartItem[1]);//이미지
-         System.out.println(cartItem[2]);//제목
-         System.out.println(cartItem[3]);//수량
-         System.out.println(cartItem[4]);//가격
-      }
-   }
+	String receiver = (String)request.getAttribute("receiver");
+	String baseAddr = (String)request.getAttribute("baseAddr");
+	String detailAddr = (String)request.getAttribute("detailAddr");
+	String receiverTel = (String)request.getAttribute("receiverTel");
 %>
    <div class="container">
       <div class="div_top">
@@ -311,7 +308,7 @@ th, td{
             <%
                int sum = 0;
                for(String str: cartArr){
-                  String[] cartItem = request.getParameterValues(str);
+                  String[] cartItem = (String[])session.getAttribute(str);
                   if(cartItem.length == 5){
                      int sumPrice = Integer.parseInt(cartItem[3]) * Integer.parseInt(cartItem[4]);
             %>
@@ -330,19 +327,29 @@ th, td{
       </table>
       <br>
       <!-- 배송정보 -->
+<%
+		if(request.getAttribute("conErr") != null){
+%>
+	      <div class="alert fade in alert-danger">
+		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>입력정보가 충분하지 않습니다.</strong>
+		  </div>
+<%
+		}
+%>
       <h3>배송 정보</h3>
-      
      	 <div class="div_float">
             <div class="div_half">
                <label class="d_op">수령인 : </label>
-               <input class="d_op_in" type="text" name="receiver" placeholder="수령인"><br> 
+               <input class="d_op_in" type="text" name="receiver" placeholder="수령인" <%if (receiver != null) {%> value=<%=receiver%> <%}%>><br> 
                <label class="d_op">배송지 : </label>
-               <input class="d_op_in" type="text" name="baseAddr" placeholder="기본 주소"><br> 
+               <input class="d_op_in" type="text" name="baseAddr" placeholder="기본 주소" <%if (baseAddr != null) {%> value=<%=baseAddr%> <%}%>><br> 
                <label class="d_op">&nbsp;</label>
-               <input class="d_op_in" type="text" name="detailAddr" placeholder="상세 주소"><br> 
+               <input class="d_op_in" type="text" name="detailAddr" placeholder="상세 주소" <%if (detailAddr != null) {%> value=<%=detailAddr%> <%}%>><br> 
                <label class="d_op">핸드폰번호 : </label>
-               <input class="d_op_in" type="tel" name="receiverTel" placeholder="특수문자를 제외한 숫자만 입력해주세요">
+               <input class="d_op_in" type="tel" name="receiverTel" placeholder="특수문자를 제외한 숫자만 입력해주세요" <%if (receiverTel != null) {%> value=<%=receiverTel%> <%}%>>
             </div>
+            
             <div class="div_half">
                <label class="d_op">배송요청사항</label>
                <textarea class="ta" name="deliveryReq"></textarea>

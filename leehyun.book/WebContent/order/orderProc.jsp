@@ -21,13 +21,31 @@
 	String paymentType = request.getParameter("paymentType");
 	int userNum = (int)session.getAttribute("sessionUserNum");
 	
+	request.setAttribute("receiver", receiver);
+	request.setAttribute("baseAddr", baseAddr);
+	request.setAttribute("detailAddr", detailAddr);
+	request.setAttribute("receiverTel", receiverTel);
+	
+	if(receiver.equals("") ||
+			baseAddr.equals("") || detailAddr.equals("") ||
+			receiverTel.equals("")){
+		request.setAttribute("conErr", 1);
+%>
+		<jsp:forward page="orderIn.jsp" />
+<%
+	}
+	
 	Order order = new Order();
 	order.setUserNum(userNum);
 	order.setReceiver(receiver);
 	order.setBaseAddr(baseAddr);
 	order.setDetailAddr(detailAddr);
 	order.setReceiverTel(receiverTel);
-	order.setRequest(deliveryReq);
+	if(deliveryReq.equals("")){
+		order.setRequest("없음");
+	}else{
+		order.setRequest(deliveryReq);
+	}
 	order.setPaymentType(paymentType);
 	order.setDeliveryStatus("배송전");
 		
@@ -38,9 +56,6 @@
 	
 	String[] isbns = request.getParameterValues("isbn");
 	String[] orderCnts = request.getParameterValues("orderCnt");
-	
-	System.out.println(isbns[0]);
-	
 	
 	for(int i = 0; i<isbns.length; i++){
 		OrderBooks orderBooks = new OrderBooks();

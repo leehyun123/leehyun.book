@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String ISBN = (String)request.getParameter("isbn");
-	System.out.println(ISBN);
 	Cookie cookie = null;
 	cookie = new Cookie("ISBN" + ISBN, ISBN);
 	cookie.setMaxAge(60 * 60 * 24 * 365);
