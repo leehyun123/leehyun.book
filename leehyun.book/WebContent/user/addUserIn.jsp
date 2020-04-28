@@ -157,7 +157,7 @@ header {
 	<div class="sign_form container">
 		<form class="form-horizontal" action="addUserProc.jsp" method="post">
 			<div class="form-group">
-				<label class="col-sm-5 control-label">아이디: </label>
+				<label class="col-sm-4 control-label">아이디: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userId' type='text'
 						placeholder='아이디' maxlength='12' minlength="4"
@@ -182,7 +182,7 @@ header {
 			%>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">비밀번호: </label>
+				<label class="col-sm-4 control-label">비밀번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd' type='password'
 						placeholder='비밀번호' maxlength='16' minlength="8">
@@ -190,7 +190,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">비밀번호 확인: </label>
+				<label class="col-sm-4 control-label">비밀번호 확인: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userPwd2' type='password'
 						placeholder='비밀번호 확인' maxlength='16' minlength="8">
@@ -198,7 +198,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">성명: </label>
+				<label class="col-sm-4 control-label">성명: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userName' type='text'
 						placeholder='성명' maxlength='8' minlength="2">
@@ -206,7 +206,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">생년월일: </label>
+				<label class="col-sm-4 control-label">생년월일: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userDate' type='date'
 						value='2020-04-17'>
@@ -214,7 +214,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">성별: </label>
+				<label class="col-sm-4 control-label">성별: </label>
 				<div class="col-sm-4">
 					<input class="gender_radio" name='gender' type='radio' value="남">남
 					<input class="gender_radio" name='gender' type='radio' value="여">여
@@ -222,7 +222,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">이메일: </label>
+				<label class="col-sm-4 control-label">이메일: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userEmail' type='email'
 						placeholder='이메일'>
@@ -230,7 +230,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">전화번호: </label>
+				<label class="col-sm-4 control-label">전화번호: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userTel' type='tel'
 						placeholder="특수문자를 제외한 숫자만 입력해주세요." minlength="9">
@@ -238,7 +238,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">비밀번호 질문: </label>
+				<label class="col-sm-4 control-label">비밀번호 질문: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userQ' type='text'
 						value='당신의 보물 제 1호는?' disabled>
@@ -246,7 +246,7 @@ header {
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-5 control-label">비밀번호 답변: </label>
+				<label class="col-sm-4 control-label">비밀번호 답변: </label>
 				<div class="col-sm-4">
 					<input class="form-control" name='userA' type='text'
 						placeholder='답'>
