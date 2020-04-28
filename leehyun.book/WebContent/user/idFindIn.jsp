@@ -5,13 +5,6 @@
 <%@ page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@ page import="leehyun.book.user.domain.User"%>
 <%@ page import="java.util.List, java.util.ArrayList"%>
-
-<%
-	request.setCharacterEncoding("utf-8");
-	UserService userService = new UserServiceImpl();
-	List<User> users = userService.listUsers();
-%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -28,14 +21,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	jQuery(document).ready(function() {
-		$("#modal").show();
-	});
-	function closeModal() {
-		$('.Modal').hide();
-	};
-</script>
 
 <style>
 label, p {
@@ -150,6 +135,13 @@ hr {
 		<hr>
 		<div class="blk40"></div>
 		<br>
+		<div class='container'>
+			<c:choose>
+				<c:when test='${!empty param.msgId}'>
+					<jsp:include page='msg.jsp'/>
+				</c:when>
+			</c:choose>
+		</div>
 		<div class="sign_form">
 			<form class="form-horizontal" action="idFindProc.jsp">
 				<div class="form-group">
@@ -166,44 +158,6 @@ hr {
 						<input class="input_form" name='userTel' type='tel'
 							placeholder='전화번호' required>
 					</div>
-				</div>
-				<div>
-					<%
-						String idFindMsg = (String) request.getAttribute("idFindMsg");
-						System.out.println(idFindMsg);
-						System.out.println(users);
-						if (idFindMsg != null) {
-							if (idFindMsg.equals("-1")) {
-					%>
-					<div id="modal" class="Modal">
-						<div class="modal-content">
-							<div class="page-header">
-								<h2>정보 오류</h2>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="row">
-										<div class="col-sm-12">
-											<h2>정보와 일치하는 아이디가 없습니다.</h2>
-										</div>
-									</div>
-								</div>
-							</div>
-							<hr>
-							<div class="page-footer">
-							<button class="exitButton" onClick="closeModal();">닫기</button>
-							</div>
-						</div>
-					</div>
-					<%
-							} else if (idFindMsg.equals("1")) {
-					%>
-					<jsp:forward page="idFindResultIn.jsp" />
-					<%
-						} else
-								System.out.println("db오류");
-						}
-					%>
 				</div>
 				<div>
 					<button class="find_btn btn btn-info" type="submit">아이디 찾기</button>

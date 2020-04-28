@@ -20,6 +20,7 @@
 	<c:when test='${param.msgId==30}'>
 		<c:set var='msg' value='탈퇴 실패: 탈퇴시킬 사용자를 선택해야 합니다.'/>
 	</c:when>
+	
 </c:choose>	
 	
 <div class='alert fade in
