@@ -1,10 +1,10 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@page import="leehyun.book.book.domain.Book"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
 <%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
-<%@ page language='java' contentType='text/html; charset=UTF-8'
-    pageEncoding='UTF-8'%>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
 <%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
@@ -212,39 +212,45 @@ hr {
 			</thead>
 			<tbody>
 <%
-					for(Order order: listUserOrders){
-						int orderCnt = 0;
-						List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
+					if(listUserOrders.size() != 0){
+						for(Order order: listUserOrders){
+							int orderCnt = 0;
+							List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>
-						<tr onClick="location.href='orderBooksOut.jsp?orderNum=<%= order.getOrderNum() %>'">
-							<td><%= order.getOrderNum() %></td>
-							<td><%= order.getOrderDate() %></td>
+							<tr onClick="location.href='orderBooksOut.jsp?orderNum=<%= order.getOrderNum() %>'">
+								<td><%= order.getOrderNum() %></td>
+								<td><%= order.getOrderDate() %></td>
 <%
-						long isbn = 0;
-						for(OrderBooks orderBooks: listOrderBooks){
-							orderCnt += orderBooks.getOrderCnt();
-							isbn = orderBooks.getIsbn();
-						}
-						Book book = bookService.findBook(isbn);
-						
-						if(orderCnt == 1){
+							long isbn = 0;
+							for(OrderBooks orderBooks: listOrderBooks){
+								orderCnt += orderBooks.getOrderCnt();
+								isbn = orderBooks.getIsbn();
+							}
+							Book book = bookService.findBook(isbn);
+							
+							if(orderCnt == 1){
 %>							
-							<td><%= book.getbookTitle()%></td>
+								<td><%= book.getbookTitle()%></td>
 <%						
-						}else{
+							}else{
 %>							
-							<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
+								<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
+<%
+							}
+%>							
+								<td><%= orderCnt %></td>													
+								<td><%= order.getDeliveryNum() %></td>
+								<td><%= order.getDeliveryStatus() %></td>
+								<td><%= order.getReceiver() %></td>
+							</tr>
 <%
 						}
-%>							
-							<td><%= orderCnt %></td>													
-							<td><%= order.getDeliveryNum() %></td>
-							<td><%= order.getDeliveryStatus() %></td>
-							<td><%= order.getReceiver() %></td>
-						</tr>
-				<%
+					}else{	
+%>
+					<tr><td colspan='8' style="height: 200px; padding-top: 80px; font-size: 35px;">주문 내역이 없습니다.</td></tr>
+<%
 					}
-				%>
+%>					
 			</tbody>
 		</table>
 	</div>

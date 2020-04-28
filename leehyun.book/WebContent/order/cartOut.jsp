@@ -517,7 +517,7 @@ th, td {
 					}
 				}else{
 %>
-					<tr><td colspan='6' style="height: 200px; padding-top: 80px; font-size: 50px;">장바구니가 비었습니다.</td></tr>
+					<tr><td colspan='6' style="height: 200px; padding-top: 80px; font-size: 35px;">장바구니가 비었습니다.</td></tr>
 <%
 				}
 %>
