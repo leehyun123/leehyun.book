@@ -1,6 +1,9 @@
+<%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.domain.Order"%>
 <%@page import="java.util.List"%>
@@ -121,7 +124,9 @@ hr {
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
 	OrderService orderService = new OrderServiceImpl();
+	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	List<Order> listUserOrders = orderService.listUserOrders(userNum); 
+	
 %>
 	<div class="container">
 		<div class="div_top">
@@ -189,8 +194,7 @@ hr {
 		</form>
 		<br> <br>
 		<!-- 주문내역 검색 결과 -->
-		<table class="table table-hover" style="cursor: pointer;"
-			onClick="location.href='05.html'">
+		<table class="table table-hover" style="cursor: pointer;">
 			<thead>
 				<tr class="chart">
 					<th>주문번호</th>
@@ -205,16 +209,23 @@ hr {
 			<tbody>
 <%
 					for(Order order: listUserOrders){
+						int orderCnt = 0;
+						List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>
-				<tr>
-					<td><%= order.getOrderNum() %></td>
-					<td><%= order.getOrderDate() %></td>
-					<td>주문내역</td>
-					<td>수량</td>
-					<td><%= order.getDeliveryNum() %></td>
-					<td><%= order.getDeliveryStatus() %></td>
-					<td><%= order.getReceiver() %></td>
-				</tr>
+						<tr onClick="location.href='orderBooksOut.jsp?orderNum=<%= order.getOrderNum() %>'">
+							<td><%= order.getOrderNum() %></td>
+							<td><%= order.getOrderDate() %></td>
+<%
+						for(OrderBooks orderBooks: listOrderBooks){
+							orderCnt += orderBooks.getOrderCnt();
+						}
+%>							
+							<td></td>
+							<td><%= orderCnt %></td>													
+							<td><%= order.getDeliveryNum() %></td>
+							<td><%= order.getDeliveryStatus() %></td>
+							<td><%= order.getReceiver() %></td>
+						</tr>
 				<%
 					}
 				%>

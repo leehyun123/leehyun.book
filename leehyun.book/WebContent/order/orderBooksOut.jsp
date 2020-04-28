@@ -1,7 +1,17 @@
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
+<%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>북적북적</title>
+<title>order.05 상세주문내역</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -221,6 +231,12 @@ hr {
 </style>
 </head>
 <body>
+<%
+	int orderNum = Integer.parseInt(request.getParameter("orderNum"));
+	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
+	BookService bookService = new BookServiceImpl();
+	List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(orderNum);
+%>
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
@@ -262,12 +278,12 @@ hr {
 		<h1 class="name">상세 주문내역</h1>
 		<!-- 주문번호 -->
 		<form class="subTitle_form" action="#" style="margin: 0 30px;">
-			<br> <span class="order_code">주문번호 : 02-031509</span>
+			<br> <span class="order_code"><%= orderNum %></span>
 		</form>
 		<br>
 		<!-- 상세 주문내역 -->
 		<h3>주문 내역</h3>
-		<table class="table table-hover">
+		<table class="table">
 			<thead>
 				<tr class="chart">
 					<th>#</th>
@@ -278,27 +294,24 @@ hr {
 				</tr>
 			</thead>
 			<tbody>
+<%
+			int sum = 0;
+			for(OrderBooks orderBooks: listOrderBooks){
+				long isbn = orderBooks.getIsbn();
+				Book book = bookService.findBook(isbn);
+				int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt(); 
+%>			
 				<tr>
 					<td><input type="checkbox" name="pick"></td>
-					<td>정보처리기사필기</td>
-					<td>1</td>
-					<td>28,000</td>
-					<td>28,000</td>
+					<td><%= book.getbookTitle() %></td>
+					<td><%= orderBooks.getOrderCnt() %></td>
+					<td><%= book.getbookPrice() %></td>
+					<td><%= sumPrice %></td>
 				</tr>
-				<tr>
-					<td><input type="checkbox" name="pick"></td>
-					<td>정보처리기사실기</td>
-					<td>1</td>
-					<td>30,000</td>
-					<td>30,000</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="pick"></td>
-					<td>죽고싶지만 떡볶이는</td>
-					<td>1</td>
-					<td>10,000</td>
-					<td>10,000</td>
-				</tr>
+<%
+			sum += sumPrice;
+			}
+%>				
 			</tbody>
 		</table>
 		<h3>환불 내역</h3>
@@ -341,8 +354,8 @@ hr {
 			<div class="div_half1">
 				<p>
 					배송비(￦): 2,500 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					금액(￦): 68,000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
-						class="span_bold">총 금액(￦): 70,500원</span>
+					금액(￦): <%= sum %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+						class="span_bold">총 금액(￦): <%= sum + 2500  %>원</span>
 				</p>
 			</div>
 		</div>
