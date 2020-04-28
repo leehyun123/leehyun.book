@@ -40,6 +40,17 @@
 			}
 		});
 	};
+	
+	function alert_emp(){
+		swal({
+			title : "장바구니가 비어있습니다.",
+			text : "장바구니를 채워주세요.",
+			type : "warning",
+			showCancelButton : false,
+			confirmButtonText : "예",
+			closeOnConfirm : false
+		});
+	};
 
 	$( document ).ready( function() {
 		$( '.check_all' ).click( function() {
@@ -529,10 +540,23 @@ th, td {
 		<br>
 		<div class="sub_result">
 			<div class="button-buy" align="left">
-				<button class="btn btn-success" type="submit"
-					style="font-size: 15px;">
-					<span class="glyphicon glyphicon-ok"></span> 구매
-				</button>
+<%
+				if( ISBN.size() != 0 ){
+%>
+					<button class="btn btn-success" type="submit"
+						style="font-size: 15px;">
+						<span class="glyphicon glyphicon-ok"></span> 구매
+					</button>
+<%
+				}else{
+%>
+					<button class="btn btn-success" type="button"
+						style="font-size: 15px;" onclick="alert_emp()">
+						<span class="glyphicon glyphicon-ok"></span> 구매
+					</button>
+<%
+				}
+%>
 			</div>
 
 			<div class="button-delete" align="left">
