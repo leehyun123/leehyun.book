@@ -1,5 +1,3 @@
-<%@page import="java.text.DecimalFormat"%>
-<%@page import="com.sun.scenario.effect.impl.prism.PrTexture"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
 <%@page import="leehyun.book.book.domain.Book"%>

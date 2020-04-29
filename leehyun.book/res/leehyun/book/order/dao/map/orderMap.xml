@@ -2,67 +2,102 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leehyun.book.order.dao.map.OrderMap">
-   <select id="getOrders" resultMap="orderMap">
-      select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
-      from orders order by order_num
-   </select>
-   
-   <select id="getUserOrders" parameterType="int" resultMap="orderMap">
-   	  select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
-      from orders 
-      where user_num=#{userNum}
-      order by order_num		
-   </select>
-   
-   <select id="pickOrder" parameterType="String" resultMap="orderMap">
-		select * 
-		from orders
-		where order_num
-		like
-		'%'||#{words}||'%'
+	<select id="getOrders" resultMap="orderMap">
+		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
+		request, payment_type, order_date, delivery_num, delivery_status
+		from orders order by order_num
 	</select>
-   
-   <select id="getOrderNum" resultType="int">
-	  select last_number from user_sequences where sequence_name = 'ORDERNO_SEQ'
-   </select>
-   
-   <select id="getAdminOrders" parameterType="string" resultMap="orderMap">
-   	  select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
-      from orders 
-      where delivery_status=#{deliveryStatus}
-      order by order_num		
-   </select>
-   
-   <select id="getOrder" parameterType="int" resultMap="orderMap">
-      select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_num, delivery_status
-      from orders where order_num=#{orderNum}
-   </select>
-   
-   <insert id="addOrder" parameterType='order'>
-      insert into orders(order_num, user_num, receiver, base_addr, detail_addr, receiver_tel, request, payment_type, order_date, delivery_status)
-      values(orderno_seq.nextval, #{userNum}, #{receiver}, #{baseAddr}, #{detailAddr}, #{receiverTel}, #{request}, #{paymentType}, sysdate, #{deliveryStatus})
-   </insert>
-   
-   <update id="updateOrder" parameterType='order'>
-      update orders set delivery_num=#{deliveryNum}, delivery_status=#{deliveryStatus}
-      where order_num=#{orderNum}
-   </update>
 
-   <delete id="delOrder" parameterType="int">
-      delete orders where order_num=#{orderNum}
-   </delete>
-   
-   <resultMap id ="orderMap" type="order">
-      <id     property="orderNum"      column="order_num"/>
-      <result property="userNum"       column="user_num"/>
-      <result property="receiver"      column="receiver"/>
-      <result property="baseAddr"      column="base_addr"/>
-      <result property="detailAddr"    column="detail_addr"/>
-      <result property="receiverTel"    column="receiver_tel"/>
-      <result property="request"       column="request"/>
-      <result property="paymentType"      column="payment_type"/>
-      <result property="orderDate"     column="order_date"/>
-      <result property="deliveryNum"     column="delivery_num"/>
-      <result property="deliveryStatus" column="delivery_status"/>
-   </resultMap>
+	<select id="getUserOrders" parameterType="int" resultMap="orderMap">
+		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
+		request, payment_type, order_date, delivery_num, delivery_status
+		from orders
+		where user_num=#{userNum}
+		order by order_num
+	</select>
+	
+	<!-- <select id="getUserOrders" parameterType="int" resultMap="orderMap">
+		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
+		request, payment_type, order_date, delivery_num, delivery_status
+		from orders
+		<![CDATA[
+		where order_date >= add_months(sysdate, -#{date})
+		]]>
+		order by order_num
+	</select> -->
+
+	<select id="pickOrder" parameterType="String" resultMap="orderMap">
+		SELECT DISTINCT
+			order_num,
+			user_num,
+			receiver,
+			base_addr,
+			detail_addr,
+			receiver_tel,
+			request,
+			payment_type,
+			order_date,
+			delivery_num,
+			delivery_status
+		FROM
+			orders
+			JOIN order_books USING ( order_num )
+			JOIN books USING ( isbn )
+		WHERE
+			book_title LIKE '%'||#{words}||'%'
+			OR order_num LIKE '%'||#{words}||'%'
+		order by order_num
+	</select>
+
+
+	<select id="getOrderNum" resultType="int">
+		select last_number from user_sequences where sequence_name = 'ORDERNO_SEQ'
+	</select>
+
+	<select id="getAdminOrders" parameterType="string"
+		resultMap="orderMap">
+		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
+		request, payment_type, order_date, delivery_num, delivery_status
+		from orders
+		where delivery_status=#{deliveryStatus}
+		order by order_num
+	</select>
+
+	<select id="getOrder" parameterType="int" resultMap="orderMap">
+		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
+		request, payment_type, order_date, delivery_num, delivery_status
+		from orders where order_num=#{orderNum}
+	</select>
+
+	<insert id="addOrder" parameterType='order'>
+		insert into orders(order_num, user_num, receiver, base_addr, detail_addr,
+		receiver_tel, request, payment_type, order_date, delivery_status)
+		values(orderno_seq.nextval, #{userNum}, #{receiver}, #{baseAddr},
+		#{detailAddr}, #{receiverTel}, #{request}, #{paymentType}, sysdate,
+		#{deliveryStatus})
+	</insert>
+
+	<update id="updateOrder" parameterType='order'>
+		update orders set delivery_num=#{deliveryNum},
+		delivery_status=#{deliveryStatus}
+		where order_num=#{orderNum}
+	</update>
+
+	<delete id="delOrder" parameterType="int">
+		delete orders where order_num=#{orderNum}
+	</delete>
+
+	<resultMap id="orderMap" type="order">
+		<id property="orderNum" column="order_num" />
+		<result property="userNum" column="user_num" />
+		<result property="receiver" column="receiver" />
+		<result property="baseAddr" column="base_addr" />
+		<result property="detailAddr" column="detail_addr" />
+		<result property="receiverTel" column="receiver_tel" />
+		<result property="request" column="request" />
+		<result property="paymentType" column="payment_type" />
+		<result property="orderDate" column="order_date" />
+		<result property="deliveryNum" column="delivery_num" />
+		<result property="deliveryStatus" column="delivery_status" />
+	</resultMap>
 </mapper>
