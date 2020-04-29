@@ -162,6 +162,13 @@ hr {
 	color: white;
 }
 
+.d_op2 {
+	width: 20%;
+	margin: 5px;
+	margin-left: 33px;
+	display: inline;
+}
+
 .d_op_in {
 	height: 35px;
 	margin: 5px;
@@ -358,25 +365,25 @@ th, td {
 			<h3>배송 정보</h3>
 			<div class="div_float">
 				<div class="div_half">
-					<label class="d_op">수령인 : </label> <input class="d_op_in"
+					<label class="d_op">수령인 : </label> <input maxlength="10" class="d_op_in"
 						type="text" name="receiver" placeholder="수령인"
 						<%if (receiver != null) {%> value=<%=receiver%> <%}%>><br>
-
-					<label class="d_op">배송지: &nbsp;</label>
-					<input class="d_op_in" type="text" id="baseAddr" placeholder="도로명주소" name="baseAddr" onclick="openAddress()"
+						<div class="d_op2">
+					<input class="btn btn-default"type="button" value="주소 찾기" onclick="openAddress()"/></div>
+					<input maxlength="30" class="d_op_in" type="text" id="baseAddr" placeholder="도로명주소" name="baseAddr" onclick="openAddress()"
 					<%if (baseAddr != null) {%> value=<%=baseAddr%> <%}%>><br>
-					<label class="d_op">&nbsp;</label>
-					<input class="d_op_in" type="text" id="detailAddr" placeholder="상세주소" name="detailAddr" 
+					<label class="d_op">상세주소 : </label>
+					<input maxlength="30" class="d_op_in" type="text" id="detailAddr" placeholder="상세주소" name="detailAddr" 
 					<%if (detailAddr != null) {%> value=<%=detailAddr%> <%}%>><br>
 					
-					<label class="d_op">핸드폰번호 : </label> <input class="d_op_in"
+					<label class="d_op">핸드폰번호 : </label> <input maxlength="13" class="d_op_in"
 						type="tel" name="receiverTel" placeholder="특수문자를 제외한 숫자만 입력해주세요"
 						<%if (receiverTel != null) {%> value=<%=receiverTel%> <%}%>>
 				</div>
 
 				<div class="div_half">
 					<label class="d_op">배송요청사항</label>
-					<textarea class="ta" name="deliveryReq"></textarea>
+					<textarea class="ta" name="deliveryReq" maxlength="100"></textarea>
 				</div>
 			</div>
 
