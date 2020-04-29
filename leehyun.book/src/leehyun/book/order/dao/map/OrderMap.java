@@ -8,6 +8,8 @@ public interface OrderMap {
 	List<Order> getOrders();
 
 	List<Order> getUserOrders(int userNum);
+	
+	List<Order> getUserOrdersDate(int date);
 
 	List<Order> getAdminOrders(String deliveryStatus);
 

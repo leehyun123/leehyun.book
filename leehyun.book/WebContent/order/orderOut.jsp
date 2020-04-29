@@ -123,22 +123,26 @@ hr {
 </style>
 </head>
 <body>
-<% 
+<%  
 	request.setCharacterEncoding("utf-8");
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
-	int date = 0;
-	if(request.getParameter("date") == null){
-		date = 0;
-	}else{
-		date = Integer.parseInt(request.getParameter("date"));
-	}
+	
 	
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	BookService bookService = new BookServiceImpl();
-	List<Order> listUserOrders = orderService.listUserOrders(userNum); 
+	List<Order> listUserOrders = null;
 	
+	int date = 0;
+	if(request.getParameter("date") == null){
+		listUserOrders = orderService.listUserOrders(userNum);
+		System.out.println("전체");
+	}else{
+		date = Integer.parseInt(request.getParameter("date"));
+		listUserOrders = orderService.listUserOrdersDate(date);
+		System.out.println(date + "월 전꺼");
+	}
 %>
 	<div class="container">
 		<div class="div_top">
@@ -178,6 +182,16 @@ hr {
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 		<br>
+<%
+		if(request.getAttribute("success") != null){
+%>
+	      <div class="alert fade in alert-danger">
+		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>주문이 취소되었습니다.</strong>
+		  </div>
+<%
+		}
+%>		
 		<!-- 주문내역 검색 -->
 		<h1 class="name">주문내역</h1>
 		<form class="subTitle_form" action="orderSearch.jsp">
@@ -224,7 +238,7 @@ hr {
 <%
 					if(listUserOrders.size() != 0){
 						for(Order order: listUserOrders){
-							if(date == 0){
+							if(order.getUserNum() == userNum){
 								int orderCnt = 0;
 								List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>

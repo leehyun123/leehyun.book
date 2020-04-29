@@ -287,10 +287,10 @@ hr {
 		<form class="subTitle_form" action="#" style="margin: 0 30px;">
 			<br> <span class="order_code">주문번호: <%= orderNum %></span>
 		</form>
-		<br>
+		<br>		
 		<!-- 상세 주문내역 -->
 		<h3>주문 내역</h3>
-		<form action="orderCancel.jsp?orderNum=<%= orderNum %>" name="orderCancel">
+		<form action="orderCancelProc.jsp" name="orderCancel" method="post">
 		<table class="table">
 			<thead>
 				<tr class="chart">
@@ -311,8 +311,8 @@ hr {
 				int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt(); 
 %>			
 				<tr>
-					<td><input type="checkbox" name="pick"></td>
-					<td><%= book.getbookTitle() %></td>
+					<td><input type="checkbox" name="pick"><input name="orderNum" value="<%=orderNum%>" style="display: none;"></td>
+					<td><%= book.getbookTitle() %><input name="isbn" value="<%=isbn%>" style="display: none;"></td>
 					<td><%= orderBooks.getOrderCnt() %></td>
 					<td><%= book.getbookPrice() %></td>
 					<td><%= sumPrice %></td>
@@ -371,7 +371,7 @@ hr {
 		</div>
 		<hr>
 		<br>
-		<button class="refund_btn btn btn-danger"
+		<button class="refund_btn btn btn-danger" type="button"
 <%
 		if(order.getDeliveryStatus().equals("배송전")){
 %>		

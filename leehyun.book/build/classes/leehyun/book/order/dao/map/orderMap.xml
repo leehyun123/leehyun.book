@@ -16,15 +16,14 @@
 		order by order_num
 	</select>
 	
-	<!-- <select id="getUserOrders" parameterType="int" resultMap="orderMap">
+	<select id="getUserOrdersDate" parameterType="int" resultMap="orderMap">
 		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
 		request, payment_type, order_date, delivery_num, delivery_status
 		from orders
-		<![CDATA[
-		where order_date >= add_months(sysdate, -#{date})
-		]]>
+		<!-- where order_date<![CDATA[ >= ]]>add_months(sysdate, ${date}) -->
+		where user_num=#{userNum}
 		order by order_num
-	</select> -->
+	</select>
 
 	<select id="pickOrder" parameterType="String" resultMap="orderMap">
 		SELECT DISTINCT

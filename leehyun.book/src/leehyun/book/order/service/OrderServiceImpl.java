@@ -22,6 +22,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> listUserOrders(int userNum) {
 		return orderDao.getUserOrders(userNum);
 	}
+	
+	@Override
+	public List<Order> listUserOrdersDate(int date) {
+		return orderDao.getUserOrders(date);
+	}
 
 	@Override
 	public List<Order> listAdminOrders(String deliveryStatus) {
