@@ -52,9 +52,31 @@
 		});
 	};
 	
+	function alert_cnterr(){
+		swal({
+			title : "수량을 확인해주세요.",
+			text : "체크한 도서의 수량은 최소 1개 여야 합니다.",
+			type : "warning",
+			showCancelButton : false,
+			confirmButtonText : "예",
+			closeOnConfirm : false
+		});
+	};
+	
 	function ck(){
 		if($("input:checkbox[class=cb_item]:checked").length == 0){
 			alert_emp();
+		}else if($("input:checkbox[name=cart0]").is(":checked") && $('input.cart0').val() < 1 || 
+				$("input:checkbox[name=cart1]").is(":checked") && $('input.cart1').val() < 1 ||
+				$("input:checkbox[name=cart2]").is(":checked") && $('input.cart2').val() < 1 ||
+				$("input:checkbox[name=cart3]").is(":checked") && $('input.cart3').val() < 1 ||
+				$("input:checkbox[name=cart4]").is(":checked") && $('input.cart4').val() < 1 ||
+				$("input:checkbox[name=cart5]").is(":checked") && $('input.cart5').val() < 1 ||
+				$("input:checkbox[name=cart6]").is(":checked") && $('input.cart6').val() < 1 ||
+				$("input:checkbox[name=cart7]").is(":checked") && $('input.cart7').val() < 1 ||
+				$("input:checkbox[name=cart8]").is(":checked") && $('input.cart8').val() < 1 ||
+				$("input:checkbox[name=cart9]").is(":checked") && $('input.cart9').val() < 1){
+			alert_cnterr();
 		}else{
 			document.cart.submit();
 		}
