@@ -137,11 +137,9 @@ hr {
 	int date = 0;
 	if(request.getParameter("date") == null){
 		listUserOrders = orderService.listUserOrders(userNum);
-		System.out.println("전체");
 	}else{
 		date = Integer.parseInt(request.getParameter("date"));
 		listUserOrders = orderService.listUserOrdersDate(date);
-		System.out.println(date + "월 전꺼");
 	}
 %>
 	<div class="container">
