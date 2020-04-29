@@ -59,6 +59,14 @@
 			document.cart.submit();
 		}
 	};
+	
+	function ck2(){
+		if($("input:checkbox[class=cb_item]:checked").length == 0){
+			alert_emp();
+		}else{
+			alert_delete()();
+		}
+	};
 
 	$( document ).ready( function() {
 		$( '.check_all' ).click( function() {
@@ -569,7 +577,7 @@ th, td {
 
 			<div class="button-delete" align="left">
 				<button class="btn btn-danger" type="button"
-					onclick="alert_delete()"  style="font-size: 15px;">
+					onclick="ck2()"  style="font-size: 15px;">
 					<span class="glyphicon glyphicon-remove"></span> 삭제
 				</button>
 			</div>
