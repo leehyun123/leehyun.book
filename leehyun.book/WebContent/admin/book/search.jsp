@@ -44,7 +44,7 @@
 				closeOnConfirm : true
 			}, function(isConfirm) {
 				if (isConfirm) {
-					location.href = '../main.html';
+					location.href = '../main.jsp';
 				}
 			});
 		});
@@ -192,7 +192,7 @@ hr {
 <body>
 	<div class="container">
 		<div class="div_top">
-			<a href="../../main.html">로그아웃</a>
+			<a href="../../user/logoutProc.jsp">로그아웃</a>
 		</div>
 	</div>
 	<div class="div_logo">
