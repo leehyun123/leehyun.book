@@ -141,22 +141,24 @@ hr {
          <li data-target="#myCarousel" data-slide-to="1"></li>
          <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
+      <form action = "imgProc.jsp" method="post" enctype="multipart/form-data">
       <div class="test_background">
          <div class="carousel-inner test_area">
             <div class="item active">
                <p>배너 이미지1</p>
-               <input class="img_btn" type="file" name="uploadFile">
+               <input class="img_btn" type="file" name="attachFile">
             </div>
             <div class="item">
                <p>배너 이미지2</p>
-               <input class="img_btn" type="file" name="uploadFile">
+               <input class="img_btn" type="file" name="attachFile">
             </div>
             <div class="item">
                <p>배너 이미지3</p>
-               <input class="img_btn" type="file" name="uploadFile">
+               <input class="img_btn" type="file" name="attachFile">
             </div>
          </div>
       </div>
+      
       <a class='left carousel-control' href='#myCarousel' data-slide='prev'>
          <span class='glyphicon glyphicon-chevron-left'></span>
       </a> <a class='right carousel-control' href='#myCarousel'
@@ -167,6 +169,10 @@ hr {
    <div class="blk30"></div>
    <div class="container">
       <button type="submit" class="edit btn btn-info" onClick="alert_banner()">수정 완료</button>
+   </div>
+   </form>
+   <br>
+   <div class="container">
       <button type="submit" class="edit btn btn-default">배너 추가</button>
    </div>
    <div class=footer>

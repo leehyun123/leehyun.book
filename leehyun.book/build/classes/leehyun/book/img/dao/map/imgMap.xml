@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leehyun.book.img.dao.map.UserMap">
+   <select id="getImgs" resultMap="imgMap">
+      select img_num, img_url
+      from imgs order by img_num
+   </select>
+   
+   <select id="getImg" parameterType="int" resultMap="imgMap">
+      select img_num, img_url
+      from imgs where img_num=#{imgNum}
+   </select>
+   
+   <insert id="addImg" parameterType='img'>
+      insert into imgs(img_num, img_url)
+      values(img_seq.nextval,#{img_url})
+   </insert>
+   
+   <update id="updateImg" parameterType='img'>
+      update imgs set img_url = #{imgUrl}
+      where img_num=#{img_Num}
+   </update>
+   
+   <resultMap id ="imgMap" type="img">
+      <id      property="imgNum"   column="img_num"/>
+      <result property="imgUrl"    column="img_url"/>
+   </resultMap>
+</mapper>
