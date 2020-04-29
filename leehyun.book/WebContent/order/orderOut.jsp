@@ -148,8 +148,8 @@ hr {
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../user/logout.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
-			/ <a href="cartOutProc.jsp">장바구니</a>
+			<a href="../user/logoutProc.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
+			/ <a href="cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
