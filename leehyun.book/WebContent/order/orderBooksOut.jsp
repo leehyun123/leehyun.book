@@ -37,11 +37,13 @@
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
-		}, function() {
-			swal("취소성공", "주문 취소되었습니다.", 'success');
+		}, function(isConfirm) {
+			if(isConfirm) {
+				document.orderCancel.submit();
+			}
 		});
 	}
-
+	
 	function alert_refund() {
 		swal({
 			title : "환불하시겠습니까?",
@@ -288,6 +290,7 @@ hr {
 		<br>
 		<!-- 상세 주문내역 -->
 		<h3>주문 내역</h3>
+		<form action="orderCancel.jsp?orderNum=<%= orderNum %>" name="orderCancel">
 		<table class="table">
 			<thead>
 				<tr class="chart">
@@ -296,6 +299,7 @@ hr {
 					<th>수량</th>
 					<th>가격</th>
 					<th>총액</th>
+					<th>비고</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -312,6 +316,7 @@ hr {
 					<td><%= orderBooks.getOrderCnt() %></td>
 					<td><%= book.getbookPrice() %></td>
 					<td><%= sumPrice %></td>
+					<td><%= order.getDeliveryStatus() %></td>
 				</tr>
 <%
 			sum += sumPrice;
@@ -366,13 +371,23 @@ hr {
 		</div>
 		<hr>
 		<br>
-		<!-- 상세 주문내역 결과 총액 -->
-		<button class="refund_btn btn btn-danger" type="submit"
-			onclick="alert_refund()">
-			<span class="glyphicon glyphicon-remove"></span> 주문취소 / 환불
+		<button class="refund_btn btn btn-danger"
+<%
+		if(order.getDeliveryStatus().equals("배송전")){
+%>		
+			onClick="alert_cancel()"
+<%
+		}else{
+%>
+			onClick="alert_refund()"
+<%
+		}
+%>						
+			><span class="glyphicon glyphicon-remove"></span> 주문취소 / 환불
 		</button>
+		</form>
 		<button class="order_btn btn btn-info" type="submit"
-			onclick="location.href='../main.jsp'">
+			onClick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list"></span> 쇼핑 더 하러가기
 		</button>
 	</div>
