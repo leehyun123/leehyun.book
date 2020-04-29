@@ -1,10 +1,10 @@
-package leehyun.book.refund.dao;
+package leehyun.book.refund.dao.map;
 
 import java.util.List;
 
 import leehyun.book.refund.domain.Refund;
 
-public interface RefundDao {
+public interface RefundMap {
 	List<Refund> getRefunds();
 	
 	List<Refund> getUserRefunds(int userNum);

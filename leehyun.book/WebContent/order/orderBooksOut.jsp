@@ -54,7 +54,9 @@
 			confirmButtonText : "예",
 			closeOnConfirm : false
 		}, function() {
-			location.href = "../refund/03.html";
+			location.href="../refund/03.html";
+			//document.refund.action = "refund.jsp";
+            //document.cart.submit();
 		});
 	}
 </script>
@@ -313,8 +315,8 @@ hr {
 				<tr>
 					<td><input type="checkbox" name="pick"><input name="orderNum" value="<%=orderNum%>" style="display: none;"></td>
 					<td><%= book.getbookTitle() %><input name="isbn" value="<%=isbn%>" style="display: none;"></td>
-					<td><%= orderBooks.getOrderCnt() %></td>
-					<td><%= book.getbookPrice() %></td>
+					<td><%= orderBooks.getOrderCnt() %><input name="orderCnt" value="<%=orderBooks.getOrderCnt()%>" style="display: none;"></td>
+					<td><%= book.getbookPrice() %><input name="bookPrice" value="<%=book.getbookPrice()%>" style="display: none;"></td>
 					<td><%= sumPrice %></td>
 					<td><%= order.getDeliveryStatus() %></td>
 				</tr>

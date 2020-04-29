@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leehyun.book.refund.dao.map.RefundBooksMap">
+   <select id="getRefundBooks" parameterType="int" resultMap="refundBooksMap">
+      select refund_num, isbn, refund_cnt
+      from refund_books
+      where refund_num=#{refundNum}
+   </select>
+   
+   <insert id="addRefundBooks" parameterType="refundBooks">
+      insert into refund_books
+      values(#{refundNum}, #{isbn}, #{refundCnt})
+   </insert>
+   
+   <delete id="delRefundBooks" parameterType="int">
+      delete refund_books where refund_num=#{refundNum}
+   </delete>
+   
+   <resultMap id ="refundBooksMap" 	type="refundBooks">
+      <result property="refundNum"   column="refund_num"/>
+      <result property="isbn"       column="isbn"/>
+      <result property="refundCnt"   column="refund_cnt"/>
+   </resultMap>
+</mapper>
