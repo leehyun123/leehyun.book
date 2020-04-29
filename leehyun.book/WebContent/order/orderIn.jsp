@@ -362,7 +362,7 @@ th, td {
 							String[] cartItem = (String[]) session.getAttribute(str);
 							if (cartItem.length == 5) {
 								int sumPrice = Integer.parseInt(cartItem[3]) * Integer.parseInt(cartItem[4]);
-					%>
+					%> 
 					<tr>
 						<td class="cen"><div class="book_img">
 								<input name="isbn" value="<%=cartItem[0]%>"
