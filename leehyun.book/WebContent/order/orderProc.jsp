@@ -1,8 +1,8 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
-<%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
-<%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
-<%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
+<%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderBooksService"%>
+<%@page import="leehyun.book.order.domain.OrderBooks"%>
 <%@ page import="leehyun.book.order.service.OrderService" %>
 <%@ page import="leehyun.book.order.service.OrderServiceImpl" %> 
 <%@ page import="leehyun.book.order.domain.Order" %>   

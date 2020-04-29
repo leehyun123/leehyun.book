@@ -4,10 +4,10 @@
 <%@page import="leehyun.book.book.domain.Book"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
-<%@page import="leehyun.book.orderBooks.domain.OrderBooks"%>
+<%@page import="leehyun.book.order.domain.OrderBooks"%>
 <%@page import="java.util.List"%>
-<%@page import="leehyun.book.orderBooks.service.OrderBooksServiceImpl"%>
-<%@page import="leehyun.book.orderBooks.service.OrderBooksService"%>
+<%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderBooksService"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
