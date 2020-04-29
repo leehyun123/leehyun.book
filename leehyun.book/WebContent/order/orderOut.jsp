@@ -123,7 +123,7 @@ hr {
 </style>
 </head>
 <body>
-<% 
+<%  
 	request.setCharacterEncoding("utf-8");
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
