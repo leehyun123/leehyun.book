@@ -1,4 +1,4 @@
-package leehyun.book.refundBooks.domain;
+package leehyun.book.refund.domain;
 
 public class RefundBooks {
 	private int refundCnt;
