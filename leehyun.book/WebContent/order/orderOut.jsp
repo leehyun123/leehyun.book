@@ -182,6 +182,16 @@ hr {
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 		<br>
+<%
+		if(request.getAttribute("success") != null){
+%>
+	      <div class="alert fade in alert-danger">
+		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>주문이 취소되었습니다.</strong>
+		  </div>
+<%
+		}
+%>		
 		<!-- 주문내역 검색 -->
 		<h1 class="name">주문내역</h1>
 		<form class="subTitle_form" action="orderSearch.jsp">
