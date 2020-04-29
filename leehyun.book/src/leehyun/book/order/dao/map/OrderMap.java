@@ -6,14 +6,20 @@ import leehyun.book.order.domain.Order;
 
 public interface OrderMap {
 	List<Order> getOrders();
+
 	List<Order> getUserOrders(int userNum);
+
 	List<Order> getAdminOrders(String deliveryStatus);
+
 	List<Order> pickOrder(String words);
+
 	int getOrderNum();
+
 	Order getOrder(int orderNum);
+
 	int addOrder(Order order);
+
 	int updateOrder(Order order);
+
 	int delOrder(int orderNum);
 }
-
-

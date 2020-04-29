@@ -23,19 +23,19 @@ public class BookDaoImpl implements BookDao {
 	public List<Book> getBooks() {
 		return books = mapper.getBooks();
 	}
-	
+
 	/* 장바구니 */
 	@Override
-	public List<Book> getCart(List<String> str){
+	public List<Book> getCart(List<String> str) {
 		return books = mapper.getCart(str);
 	}
 
-	/* 도서 검색*/
+	/* 도서 검색 */
 	@Override
 	public List<Book> pickBook(String words) {
 		return books = mapper.pickBooks(words);
 	}
-	
+
 	/* 도서 확인 */
 	@Override
 	public Book getBook(long isbn) {

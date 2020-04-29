@@ -9,19 +9,19 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Configuration {
 	private static SqlSession sqlSession;
-	
+
 	static {
 		try {
 			Reader reader = Resources.getResourceAsReader("leehyun/book/config/sqlMapConfig.xml");
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			sqlSession = sqlSessionFactory.openSession(true);
 			reader.close();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static <T>T getMapper(Class<T> arg){
+
+	public static <T> T getMapper(Class<T> arg) {
 		return sqlSession.getMapper(arg);
 	}
 }
