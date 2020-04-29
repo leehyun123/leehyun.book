@@ -8,6 +8,8 @@ public interface OrderService {
 	List<Order> listOrders();
 
 	List<Order> listUserOrders(int userNum);
+	
+	List<Order> listUserOrdersDate(int date);
 
 	List<Order> listAdminOrders(String deliveryStatus);
 

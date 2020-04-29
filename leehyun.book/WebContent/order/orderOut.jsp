@@ -127,18 +127,22 @@ hr {
 	request.setCharacterEncoding("utf-8");
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
-	int date = 0;
-	if(request.getParameter("date") == null){
-		date = 0;
-	}else{
-		date = Integer.parseInt(request.getParameter("date"));
-	}
+	
 	
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	BookService bookService = new BookServiceImpl();
-	List<Order> listUserOrders = orderService.listUserOrders(userNum); 
+	List<Order> listUserOrders = null;
 	
+	int date = 0;
+	if(request.getParameter("date") == null){
+		listUserOrders = orderService.listUserOrders(userNum);
+		System.out.println("전체");
+	}else{
+		date = Integer.parseInt(request.getParameter("date"));
+		listUserOrders = orderService.listUserOrdersDate(date);
+		System.out.println(date + "월 전꺼");
+	}
 %>
 	<div class="container">
 		<div class="div_top">
@@ -224,7 +228,7 @@ hr {
 <%
 					if(listUserOrders.size() != 0){
 						for(Order order: listUserOrders){
-							if(date == 0){
+							if(order.getUserNum() == userNum){
 								int orderCnt = 0;
 								List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>
