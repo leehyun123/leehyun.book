@@ -24,8 +24,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<Order> listUserOrdersDate(int date) {
-		return orderDao.getUserOrders(date);
+	public List<Order> listUserOrdersDate(int dat) {
+		return orderDao.getUserOrdersDate(dat);
 	}
 
 	@Override

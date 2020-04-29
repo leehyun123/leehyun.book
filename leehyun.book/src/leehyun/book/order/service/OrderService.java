@@ -9,7 +9,7 @@ public interface OrderService {
 
 	List<Order> listUserOrders(int userNum);
 	
-	List<Order> listUserOrdersDate(int date);
+	List<Order> listUserOrdersDate(int dat);
 
 	List<Order> listAdminOrders(String deliveryStatus);
 

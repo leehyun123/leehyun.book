@@ -9,8 +9,8 @@ public interface OrderDao {
 
 	List<Order> getUserOrders(int userNum); // 회원주문정보목록
 	
-	List<Order> getUserOrdersDate(int date); // 날짜 목록
-
+	List<Order> getUserOrdersDate(int dat); // 날짜 목록
+	
 	List<Order> getAdminOrders(String deliveryStatus);
 
 	List<Order> pickOrder(String words); // 주문정보검색

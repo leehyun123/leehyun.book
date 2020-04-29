@@ -24,8 +24,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<Order> getUserOrdersDate(int date) {
-		return orderMapper.getUserOrdersDate(date);
+	public List<Order> getUserOrdersDate(int dat) {
+		return orderMapper.getUserOrdersDate(dat);
 	}
 
 	@Override

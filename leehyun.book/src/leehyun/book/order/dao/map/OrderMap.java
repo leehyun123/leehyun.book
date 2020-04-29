@@ -9,8 +9,8 @@ public interface OrderMap {
 
 	List<Order> getUserOrders(int userNum);
 	
-	List<Order> getUserOrdersDate(int date);
-
+	List<Order> getUserOrdersDate(int dat);
+	
 	List<Order> getAdminOrders(String deliveryStatus);
 
 	List<Order> pickOrder(String words);

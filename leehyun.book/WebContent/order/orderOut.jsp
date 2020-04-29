@@ -1,3 +1,5 @@
+<%@page import="leehyun.book.order.dao.OrderDaoImpl"%>
+<%@page import="leehyun.book.order.dao.OrderDao"%>
 <%@page import="java.sql.Date"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
@@ -132,6 +134,7 @@ hr {
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	BookService bookService = new BookServiceImpl();
+	OrderDao orderDao = new OrderDaoImpl();
 	List<Order> listUserOrders = null;
 	
 	int date = 0;
@@ -139,14 +142,14 @@ hr {
 		listUserOrders = orderService.listUserOrders(userNum);
 	}else{
 		date = Integer.parseInt(request.getParameter("date"));
-		listUserOrders = orderService.listUserOrdersDate(date);
+		listUserOrders = orderService.listUserOrdersDate(date*-1);
 	}
 %>
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
 			<a href="../user/logout.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
-			/ <a href="cartOut.jsp">장바구니</a>
+			/ <a href="cartOutProc.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -204,16 +207,16 @@ hr {
 			<div class="col">
 				<div class="btn-group-toggle" data-toggle="buttons">
 					<h5 style="display: inline">기간 설정&nbsp;&nbsp;</h5>
-					<label class="btn btn-default" onclick="location.href='orderOut.jsp?date=1'">
+					<label class="btn btn-default <%if(date == 1){%>active<%}%>" onclick="location.href='orderOut.jsp?date=1'">
 						<input type="radio" name="date-radio" id="1Month">1개월
 					</label>
-					<label class="btn btn-default" onclick="location.href='orderOut.jsp?date=3'">
+					<label class="btn btn-default <%if(date == 3){%>active<%}%>" onclick="location.href='orderOut.jsp?date=3'">
 						<input type="radio" name="date-radio" id="3Month">3개월
 					</label>
-					<label class="btn btn-default" onclick="location.href='orderOut.jsp?date=6'">
+					<label class="btn btn-default <%if(date == 6){%>active<%}%>" onclick="location.href='orderOut.jsp?date=6'">
 						<input type="radio" name="date-radio" id="6Month">6개월
 					</label>
-					<label class="btn btn-default" onclick="location.href='orderOut.jsp'">
+					<label class="btn btn-default <%if(date == 0){%>active<%}%>" onclick="location.href='orderOut.jsp'">
 						<input type="radio" name="date-radio" id="All">전체
 					</label>
 				</div>
