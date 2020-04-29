@@ -1,10 +1,10 @@
-package leehyun.book.orderBooks.service;
+package leehyun.book.order.service;
 
 import java.util.List;
 
-import leehyun.book.orderBooks.dao.OrderBooksDao;
-import leehyun.book.orderBooks.dao.OrderBooksDaoImpl;
-import leehyun.book.orderBooks.domain.OrderBooks;
+import leehyun.book.order.dao.OrderBooksDao;
+import leehyun.book.order.dao.OrderBooksDaoImpl;
+import leehyun.book.order.domain.OrderBooks;
 
 public class OrderBooksServiceImpl implements OrderBooksService {
 	private OrderBooksDao orderBooksDao;

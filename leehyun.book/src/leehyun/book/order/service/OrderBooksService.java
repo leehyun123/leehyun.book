@@ -1,8 +1,8 @@
-package leehyun.book.orderBooks.service;
+package leehyun.book.order.service;
 
-import java.util.List;
+import java.util.List; 
 
-import leehyun.book.orderBooks.domain.OrderBooks;
+import leehyun.book.order.domain.OrderBooks;
 
 public interface OrderBooksService {
 	List<OrderBooks> listOrderBooks(int orderNum);

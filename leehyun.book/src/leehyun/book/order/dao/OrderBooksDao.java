@@ -1,8 +1,8 @@
-package leehyun.book.orderBooks.dao;
+package leehyun.book.order.dao;
 
 import java.util.List;
 
-import leehyun.book.orderBooks.domain.OrderBooks;
+import leehyun.book.order.domain.OrderBooks;
 
 public interface OrderBooksDao {
 	List<OrderBooks> getOrderBooks(int orderNum);

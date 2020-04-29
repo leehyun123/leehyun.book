@@ -1,10 +1,10 @@
-package leehyun.book.orderBooks.dao;
+package leehyun.book.order.dao;
 
 import java.util.List;
 
 import leehyun.book.config.Configuration;
-import leehyun.book.orderBooks.dao.map.OrderBooksMap;
-import leehyun.book.orderBooks.domain.OrderBooks;
+import leehyun.book.order.dao.map.OrderBooksMap;
+import leehyun.book.order.domain.OrderBooks;
 
 public class OrderBooksDaoImpl implements OrderBooksDao{
 	private OrderBooksMap orderBooksMapper;

@@ -1,4 +1,4 @@
-package leehyun.book.orderBooks.domain;
+package leehyun.book.order.domain;
 
 public class OrderBooks {
 	private int orderCnt;
