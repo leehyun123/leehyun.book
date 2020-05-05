@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
@@ -130,7 +131,13 @@ hr {
 		OrderService orderService = new OrderServiceImpl();
 		OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 		BookService bookService = new BookServiceImpl();
-		List<Order> searchOrders = orderService.searchOrder(words);
+		List<Order> searchOrderss = orderService.searchOrder(words);
+		List<Order> searchOrders = new ArrayList<>();
+		
+		for(Order order : searchOrderss){
+			if (order.getUserNum() == userNum)
+				searchOrders.add(order);
+		}
 	%>
 	<div class="container">
 		<div class="div_top">
@@ -166,7 +173,7 @@ hr {
 			<li class='active' style="font-weight: bold;"><a
 				href='orderOut.jsp'><span class="glyphicon glyphicon-list"></span>
 					주문내역</a></li>
-			<li><a href='../refund/01.html'><span
+			<li><a href='../refund/refundOut.jsp'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 		<br>
@@ -217,8 +224,6 @@ hr {
 <%
 			if (searchOrders.size() != 0) {
 				for (Order order : searchOrders) {
-
-					if (order.getUserNum() == userNum) {
 						int orderCnt = 0;
 						List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>
@@ -249,7 +254,6 @@ hr {
 								<td><%=order.getReceiver()%></td>
 							</tr>
 <%
-						}
 					}
 				}else{
 %>

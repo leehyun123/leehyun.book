@@ -1,5 +1,6 @@
 package leehyun.book.refund.dao.map;
 
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.refund.domain.Refund;
@@ -7,7 +8,19 @@ import leehyun.book.refund.domain.Refund;
 public interface RefundMap {
 	List<Refund> getRefunds();
 	
+	Refund getRefund(int refundNum);
+	
 	List<Refund> getUserRefunds(int userNum);
+	
+	List<Refund> getUserRefundsDate(HashMap<String, Object> map);
+	
+	List<Refund> pickRefund(HashMap<String, Object> map);
+	
+	List<Refund> pickRefundAdmin(String words);
+	
+	List<Refund> getOrderRefunds(int orderNum);
+	
+	int getRefundNum();
 	
 	int addRefund(Refund refund);
 	

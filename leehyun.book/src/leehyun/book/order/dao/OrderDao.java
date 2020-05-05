@@ -22,6 +22,8 @@ public interface OrderDao {
 	int addOrder(Order order); // 주문정보추가
 
 	int updateOrder(Order order); // 주문정보수정
+	
+	int updateOrderCom();
 
 	int delOrder(int orderNum); // 주문정보삭제
 }

@@ -1,5 +1,6 @@
 package leehyun.book.refund.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.config.Configuration;
@@ -26,5 +27,10 @@ public class RefundBooksDaoImpl implements RefundBooksDao{
 	@Override
 	public int delRefundBooks(int refundNum) {
 		return refundBooksMapper.delRefundBooks(refundNum);
+	}
+	
+	@Override
+	public Integer getCnt(HashMap<String, Object> map) {
+		return refundBooksMapper.getCnt(map);
 	}
 }

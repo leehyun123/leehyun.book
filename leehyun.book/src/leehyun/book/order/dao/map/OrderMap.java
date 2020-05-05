@@ -22,6 +22,8 @@ public interface OrderMap {
 	int addOrder(Order order);
 
 	int updateOrder(Order order);
+	
+	int updateOrderCom();
 
 	int delOrder(int orderNum);
 }

@@ -52,10 +52,15 @@ public class OrderDaoImpl implements OrderDao {
 	public int addOrder(Order order) {
 		return orderMapper.addOrder(order);
 	}
-
+	
 	@Override
 	public int updateOrder(Order order) {
 		return orderMapper.updateOrder(order);
+	}
+	
+	@Override
+	public int updateOrderCom() {
+		return orderMapper.updateOrderCom();
 	}
 
 	@Override

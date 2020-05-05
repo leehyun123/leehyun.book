@@ -1,5 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
+<%@page import="leehyun.book.refund.domain.RefundBooks"%>
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.refund.service.RefundBooksServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundBooksService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <head>
 <title>북적북적</title>
 <meta charset="utf-8">
@@ -149,11 +157,18 @@ hr {
 }
 </style>
 </head>
+<%
+	RefundBooksService refundBooksService = new RefundBooksServiceImpl();
+	BookService bookService = new BookServiceImpl();
+	int refundNum = Integer.parseInt(request.getParameter("refundNum"));
+	List<RefundBooks> refundBooks = refundBooksService.listRefundBooks(refundNum);
+	DecimalFormat df = new DecimalFormat("###,###");
+%>
 <body>
 	<div class="container">
 		<div class="div_top">
-			<h5 class="welcome">이현 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../main.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
+			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
+			<a href="../user/logoutProc.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
 			/ <a href="../order/cartOut.jsp">장바구니</a>
 		</div>
 	</div>
@@ -162,12 +177,12 @@ hr {
 			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
 		</div>
 	</div>
+	<!-- 메인 검색창 -->
 	<div class="search_bar">
-		<form class="search_form" action="#">
+		<form class="search_form" action="../book/search.jsp">
 			<label class="search_label">도서검색&nbsp;</label> <input
-				class="search_input" type="text" required />
-			<button class="search_btn btn btn-default" type="submit"
-				onclick="location.href='../book/search.jsp'">
+				class="search_input" type="text" name="search_words" required />
+			<button class="search_btn btn btn-default" type="submit">
 				<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 			</button>
 		</form>
@@ -183,7 +198,7 @@ hr {
 			<li><a href='../order/orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
 			<li class='active' style="font-weight: bold;"><a
-				href='../refund/01.html'><span
+				href='../refund/refundOut.jsp'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 	</div>
@@ -192,11 +207,11 @@ hr {
 		<h1 class="name">상세 환불내역</h1>
 		<!-- 환불번호 -->
 		<form class="subTitle_form" action="#" style="margin: 0 30px;">
-			<br> <span class="refund_code">환불번호 : 02-031509</span>
+			<br> <span class="refund_code">환불번호 : <%=refundNum %></span>
 		</form>
 		<br> <br>
 		<!-- 주문내역 검색 결과 -->
-		<table class="table table-hover">
+		<table class="table">
 			<thead>
 				<tr class="chart">
 					<th>도서명</th>
@@ -206,12 +221,22 @@ hr {
 				</tr>
 			</thead>
 			<tbody>
+<%
+				int ssum = 0;
+				for(RefundBooks refundBook : refundBooks){
+					Book book = bookService.findBook(refundBook.getIsbn());
+					int sum = refundBook.getRefundCnt() * book.getbookPrice();
+					ssum += sum;
+%>				
 				<tr>
-					<td>정보처리기사실기</td>
-					<td>1</td>
-					<td>30,000</td>
-					<td>30,000</td>
+					<td><%=book.getbookTitle() %></td>
+					<td><%=refundBook.getRefundCnt() %></td>
+					<td><%=df.format(book.getbookPrice()) %></td>
+					<td><%=df.format(sum) %></td>
 				</tr>
+<%
+				}
+%>		
 			</tbody>
 		</table>
 		<br>
@@ -220,13 +245,13 @@ hr {
 		<div class="sub_result">
 			<div class="sub_charge">
 				<p>
-					<span>총 환불 금액(￦): 30,000원</span>
+					<span>총 환불 금액(￦): <%=df.format(ssum) %>원</span>
 				</p>
 			</div>
 		</div>
 		<br>
 		<button class="order_btn btn btn-info" type="submit"
-			onclick="location.href='../user/00.html'">
+			onclick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>쇼핑 더 하러가기
 		</button>
 	</div>

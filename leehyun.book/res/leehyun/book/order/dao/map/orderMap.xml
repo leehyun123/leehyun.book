@@ -5,7 +5,7 @@
 	<select id="getOrders" resultMap="orderMap">
 		select order_num, user_num, receiver, base_addr, detail_addr, receiver_tel,
 		request, payment_type, order_date, delivery_num, delivery_status
-		from orders order by order_num
+		from orders order by order_num desc
 	</select>
 
 	<select id="getUserOrders" parameterType="int" resultMap="orderMap">
@@ -13,7 +13,7 @@
 		request, payment_type, order_date, delivery_num, delivery_status
 		from orders
 		where user_num=#{userNum}
-		order by order_num
+		order by order_num desc
 	</select>
 	
 	<select id="getUserOrdersDate" parameterType="int" resultMap="orderMap">
@@ -21,7 +21,7 @@
 		request, payment_type, order_date, delivery_num, delivery_status
 		from orders
 		where order_date &gt;= add_months(sysdate, ${value})
-		order by order_num
+		order by order_num desc
 	</select>
 
 	<select id="pickOrder" parameterType="String" resultMap="orderMap">
@@ -41,10 +41,12 @@
 			orders
 			JOIN order_books USING ( order_num )
 			JOIN books USING ( isbn )
+			JOIN users USING ( user_num )
 		WHERE
-			book_title LIKE '%'||#{words}||'%'
-			OR order_num LIKE '%'||#{words}||'%'
-		order by order_num
+			book_title LIKE '%'||#{word}||'%'
+			OR order_num LIKE '%'||#{word}||'%'
+			OR user_id LIKE '%'||#{word}||'%'
+		order by order_num desc
 	</select>
 
 
@@ -58,7 +60,7 @@
 		request, payment_type, order_date, delivery_num, delivery_status
 		from orders
 		where delivery_status=#{deliveryStatus}
-		order by order_num
+		order by order_num desc
 	</select>
 
 	<select id="getOrder" parameterType="int" resultMap="orderMap">
@@ -79,6 +81,15 @@
 		update orders set delivery_num=#{deliveryNum},
 		delivery_status=#{deliveryStatus}
 		where order_num=#{orderNum}
+	</update>
+	
+	<update id="updateOrderCom">
+		UPDATE orders
+		SET
+		    delivery_status = '구매확정'
+		WHERE
+		    order_date + 7 &lt;= sysdate
+		    AND delivery_status = '배송완료'
 	</update>
 
 	<delete id="delOrder" parameterType="int">

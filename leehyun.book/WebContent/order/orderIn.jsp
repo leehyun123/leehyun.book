@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
@@ -259,6 +260,7 @@ th, td {
 <body>
 	<%
 		List<String> cartArr = (List<String>) session.getAttribute("cart");
+		DecimalFormat df = new DecimalFormat("###,###");
 
 		for (String str : cartArr) {
 			if (request.getParameterValues(str) != null)
@@ -305,7 +307,7 @@ th, td {
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
 			<li><a href='orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
-			<li><a href='../refund/01.html'><span
+			<li><a href='../refund/refundOut.jsp'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 		<br>
@@ -339,9 +341,9 @@ th, td {
 									style="display: none;">
 							</div></td>
 						<td class="cen"><%=cartItem[2]%></td>
-						<td class="cen"><%=cartItem[3]%><input name="orderCnt"
-							value="<%=cartItem[3]%>" style="display: none;"></td>
-						<td class="cen"><%=sumPrice%></td>
+						<td class="cen"><%=cartItem[3]%>
+						<input name="orderCnt" value="<%=cartItem[3]%>" style="display: none;"></td>
+						<td class="cen"><%=df.format(sumPrice)%></td>
 					</tr>
 					<%
 						sum += sumPrice;
@@ -413,8 +415,8 @@ th, td {
 					</div>
 				</div>
 				<div class="buy_half pad_bottom">
-					<label><%=sum%></label><label class="l_m">+</label> <label>2,500</label><label
-						class="l_m">=</label> <label class="fs24"><%=sum + 2500%></label>
+					<label><%=df.format(sum)%></label><label class="l_m">+</label> <label>2,500</label><label
+						class="l_m">=</label> <label class="fs24"><%=df.format(sum + 2500)%></label>
 				</div>
 				<div class="buy_half"></div>
 			</div>

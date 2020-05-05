@@ -59,6 +59,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public boolean correctOrderCom() {
+		return orderDao.updateOrderCom() > 0;
+	}
+
+	@Override
 	public boolean cancelOrder(int orderNum) {
 		return orderDao.delOrder(orderNum) > 0;
 	}

@@ -1,3 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="leehyun.book.order.domain.OrderBooks"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
+<%@page import="leehyun.book.order.service.OrderBooksService"%>
 <%@page import="leehyun.book.user.domain.User"%>
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
@@ -23,31 +29,21 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	function alert_refund() {
+	function alert_order() {
 		swal({
 			title : "알림",
-			text : "배송전을 배송중으로 처리 하시겠습니까?",
+			text : "배송완료를 배송중으로 되돌리시겠습니까?",
 			type : "warning",
 			showCancelButton : true,
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
-		}, function() {
-			swal({
-				title : "배송중 처리 완료",
-				text : "메인으로 이동하시겠습니까?",
-				type : "success",
-				showCancelButton : true,
-				cancelButtonText : "아니오",
-				confirmButtonText : "예",
-				closeOnConfirm : true
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = '../main.jsp';
-				}
-			});
+		}, function(isConfirm) {
+			if (isConfirm) {
+				document.order.submit();
+			}
 		});
-	}
+	};
 </script>
 <style>
 label, p {
@@ -97,8 +93,8 @@ th {
 
 .rf_btn {
 	margin-left: 7px;
-	width: 100px;
-	height: 40px;
+	width: 120px;
+	height: 50px;
 }
 
 .footer {
@@ -142,9 +138,19 @@ td{
 </style>
 </head>
 <%
+	String words = request.getParameter("search_word");
+
 	OrderService orderService = new OrderServiceImpl();
 	UserService userService = new UserServiceImpl();
-	List<Order> orders = orderService.listAdminOrders("배송전");
+	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
+	BookService bookService = new BookServiceImpl();
+	List<Order> orderss = orderService.searchOrder(words);
+	List<Order> orders = new ArrayList<>();
+	
+	for(Order order : orderss){
+		if(order.getDeliveryStatus().equals("배송완료"))
+			orders.add(order);
+	}
 	
 	User user = null;	
 %>
@@ -160,21 +166,21 @@ td{
 		</div>
 	</div>
 	<div class="search_bar">
-		<label class="search_label">주문관리 - 배송전</label>
+		<label class="search_label">주문관리 - 배송완료</label>
 	</div>
 	<div class="container">
 		<div class="search_bar" style="background-color: white;">
-			<form class="search_form" action="#">
+			<form class="search_form" action="comDeliSearch.jsp">
 			<label class="search_label1"
 					style="font-size: 20px;  color: black;">정보검색&nbsp;</label>
-				<input class="search_input" type="text" required />
+				<input class="search_input" type="text" name="search_word" placeholder="<%=words %>" required />
 				<button class="search_btn btn btn-default" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
 			</form>
 		</div>
 		<br>
-		<form>
+		<form name="order" action="comDeliProc.jsp" >
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -188,24 +194,47 @@ td{
 				</thead>
 				<tbody>
 <%
+				if(orders.size() != 0){
 					for(Order order : orders){
 						user = userService.findUser(order.getUserNum());
+						List<OrderBooks> orderbooks = orderBooksService.listOrderBooks(order.getOrderNum());
+						Long isbn = 0L;
+						int cnt = 0;
+						for(OrderBooks orderbook : orderbooks){
+							cnt += orderbook.getOrderCnt();
+							isbn = orderbook.getIsbn();
+						}
 %>		
 						<tr>
-							<td><input type="checkbox" name="cb" value="" /></td>
-							<td onclick="location.href='04.html'"><%=order.getOrderDate() %></td>
-							<td onclick="location.href='04.html'"><%=user.getUserId() %></td>
-							<td onclick="location.href='04.html'"><%=order.getOrderNum() %></td>
-							<td><input type="text" name="deliNum"/></td>
-							<td onclick="location.href='04.html'">호밀 밭의 파수꾼 외 1건</td>
+							<td><input type="radio" name="orderNum" value="<%=order.getOrderNum() %>" /></td>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=order.getOrderDate() %></td>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=user.getUserId() %></td>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=order.getOrderNum() %></td>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=order.getDeliveryNum() %></td>
+<%
+							if(cnt == 1){
+%>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=bookService.findBook(isbn).getbookTitle() %></td>
+<%
+							}else{
+%>
+							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=bookService.findBook(isbn).getbookTitle() %> 외 <%=cnt-1 %>권</td>
+<%
+							}
+%>							
 						</tr>
 <%
 					}
+				}else{
+%>
+					<tr><td colspan='6' style="height: 200px; padding-top: 80px; font-size: 35px;">주문 내역이 없습니다.</td></tr>
+<%
+				}
 %>
 				</tbody>
 			</table>
 		</form>
-		<button class="rf_btn" onclick="alert_refund()">완료 처리</button>
+		<button class="rf_btn" onclick="alert_order()">되돌리기</button>
 	</div>
 	<div class=footer>
 		<hr>

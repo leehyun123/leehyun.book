@@ -1,23 +1,16 @@
-<%@page import="leehyun.book.order.dao.OrderDaoImpl"%>
-<%@page import="leehyun.book.order.dao.OrderDao"%>
-<%@page import="java.sql.Date"%>
-<%@ page language='java' contentType='text/html; charset=UTF-8'
-    pageEncoding='UTF-8'%>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-<%@page import="leehyun.book.book.domain.Book"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
-<%@page import="leehyun.book.order.domain.OrderBooks"%>
-<%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
-<%@page import="leehyun.book.order.service.OrderBooksService"%>
-<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
-<%@page import="leehyun.book.order.domain.Order"%>
+<%@page import="leehyun.book.refund.domain.RefundBooks"%>
+<%@page import="leehyun.book.refund.service.RefundBooksServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundBooksService"%>
+<%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundService"%>
 <%@page import="java.util.List"%>
-<%@page import="leehyun.book.order.service.OrderService"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="leehyun.book.refund.domain.Refund"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <head>
-<title>order.04 주문내역</title>
+<title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -34,11 +27,6 @@
 <style>
 label, p {
 	font-size: large;
-}
-
-th, td {
-	text-align: center;
-	font-size: 15px;
 }
 
 .logoimg {
@@ -84,6 +72,7 @@ th, td {
 .search_input {
 	width: 40%;
 	height: 40px;
+	color: black;
 }
 
 .search_btn {
@@ -96,7 +85,7 @@ th, td {
 .footer {
 	text-align: center;
 	height: 100px;
-	margin-top: 100px;
+	margin-top: 300px;
 	padding-top: 20px;
 }
 
@@ -113,6 +102,11 @@ hr {
 	font-size: 15px;
 }
 
+th, td {
+	text-align: center;
+	font-size: 16px;
+}
+
 .chart {
 	background-color: #8FC9DB;
 	color: white;
@@ -124,27 +118,19 @@ hr {
 }
 </style>
 </head>
-<body>
-<%  
+<%
 	request.setCharacterEncoding("utf-8");
 
+	String words = request.getParameter("search_words");
+	
 	int userNum = (int)session.getAttribute("sessionUserNum");
-	
-	
-	OrderService orderService = new OrderServiceImpl();
-	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
+	RefundService refundService = new RefundServiceImpl();
+	RefundBooksService refundBooksService = new RefundBooksServiceImpl();
 	BookService bookService = new BookServiceImpl();
-	OrderDao orderDao = new OrderDaoImpl();
-	List<Order> listUserOrders = null;
 	
-	int date = 0;
-	if(request.getParameter("date") == null){
-		listUserOrders = orderService.listUserOrders(userNum);
-	}else{
-		date = Integer.parseInt(request.getParameter("date"));
-		listUserOrders = orderService.listUserOrdersDate(date*-1);
-	}
+	List<Refund> refunds = refundService.listUserRefundsWord(userNum, words);
 %>
+<body>
 	<div class="container">
 		<div class="div_top">
 			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
@@ -168,37 +154,25 @@ hr {
 		</form>
 	</div>
 
-	<!-- 메인 nav Bar -->
 	<br>
-	<div class='tab container'>
-		<ul class='nav nav-tabs nav-justified'>
+	<div class='container'>
+		<ul class='tab nav nav-tabs nav-justified'>
 			<li><a href='../user/userInfo.jsp'><span
 					class="glyphicon glyphicon-user"></span> 회원정보</a></li>
-			<li><a href='cartOut.jsp'><span
+			<li><a href='../order/cartOut.jsp'><span
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-			<li class='active' style="font-weight: bold;"><a
-				href='orderOut.jsp'><span class="glyphicon glyphicon-list"></span>
-					주문내역</a></li>
-			<li><a href='../refund/refundOut.jsp'><span
+			<li><a href='../order/orderOut.jsp'><span
+					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
+			<li class='active' style="font-weight: bold;"><a href='refundOut.jsp'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 		<br>
-<%
-		if(request.getAttribute("success") != null){
-%>
-	      <div class="alert fade in alert-danger">
-		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>주문이 취소되었습니다.</strong>
-		  </div>
-<%
-		}
-%>		
-		<!-- 주문내역 검색 -->
-		<h1 class="name">주문내역</h1>
-		<form class="subTitle_form" action="orderSearch.jsp">
+		<!-- 환불내역 -->
+		<h1 class="name">환불내역</h1>
+		<form class="tab subTitle_form" action="refundSearch.jsp">
 			<p style="font-size: x-large; font-weight: bold;">
-				주문내역 검색&nbsp;&nbsp;&nbsp; <input class="search_input" name="search_words" type="text"
-					required style="margin-top: 50px;" />
+				환불내역 검색&nbsp;&nbsp;&nbsp; <input class="search_input" name="search_words" type="text"
+					required style="margin-top: 50px;" placeholder="<%=words%>"/>
 				<button class="search_btn btn btn-info" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
@@ -207,76 +181,70 @@ hr {
 			<div class="col">
 				<div class="btn-group-toggle" data-toggle="buttons">
 					<h5 style="display: inline">기간 설정&nbsp;&nbsp;</h5>
-					<label class="btn btn-default <%if(date == 1){%>active<%}%>" onclick="location.href='orderOut.jsp?date=1'">
+					<label class="btn btn-default" onclick="location.href='refundOut.jsp?date=1'">
 						<input type="radio" name="date-radio" id="1Month">1개월
 					</label>
-					<label class="btn btn-default <%if(date == 3){%>active<%}%>" onclick="location.href='orderOut.jsp?date=3'">
+					<label class="btn btn-default" onclick="location.href='refundOut.jsp?date=3'">
 						<input type="radio" name="date-radio" id="3Month">3개월
 					</label>
-					<label class="btn btn-default <%if(date == 6){%>active<%}%>" onclick="location.href='orderOut.jsp?date=6'">
+					<label class="btn btn-default" onclick="location.href='refundOut.jsp?date=6'">
 						<input type="radio" name="date-radio" id="6Month">6개월
 					</label>
-					<label class="btn btn-default <%if(date == 0){%>active<%}%>" onclick="location.href='orderOut.jsp'">
+					<label class="btn btn-default active" onclick="location.href='refundOut.jsp'">
 						<input type="radio" name="date-radio" id="All">전체
 					</label>
 				</div>
 			</div>
 		</form>
-		<br> <br>
-		<!-- 주문내역 검색 결과 -->
+		<br>
+		<br>
 		<table class="table table-hover" style="cursor: pointer;">
 			<thead>
-				<tr class="chart">
+				<tr class='chart'>
+					<th>접수일자</th>
 					<th>주문번호</th>
-					<th>주문날짜</th>
-					<th>주문내역</th>
-					<th>송장번호</th>
-					<th>배송상태</th>
-					<th>수령자</th>
+					<th>환불번호</th>
+					<th>환불내역</th>
+					<th>처리상태</th>
 				</tr>
 			</thead>
 			<tbody>
 <%
-					if(listUserOrders.size() != 0){
-						for(Order order: listUserOrders){
-							if(order.getUserNum() == userNum){
-								int orderCnt = 0;
-								List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
-%>
-								<tr onClick="location.href='orderBooksOut.jsp?orderNum=<%= order.getOrderNum() %>'">
-									<td><%= order.getOrderNum() %></td>
-									<td><%= order.getOrderDate() %></td>
-<%
-								long isbn = 0;
-								for(OrderBooks orderBooks: listOrderBooks){
-									orderCnt += orderBooks.getOrderCnt();
-									isbn = orderBooks.getIsbn();
-								}
-								Book book = bookService.findBook(isbn);
-								
-								if(orderCnt == 1){
-%>							
-									<td><%= book.getbookTitle()%></td>
-<%						
-								}else{
-%>							
-									<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
-<%
-								}
-%>							
-									<td><%= order.getDeliveryNum()==0 ? "배송전" : order.getDeliveryNum()%></td>
-									<td><%= order.getDeliveryStatus() %></td>
-									<td><%= order.getReceiver() %></td>
-								</tr>
-<%
-							}
+				if(refunds.size() != 0){
+					for(Refund refund : refunds){
+						List<RefundBooks> refundBook = refundBooksService.listRefundBooks(refund.getRefundNum());
+						int cnt = 0;
+						Long isbn = 0L;
+						for(RefundBooks refundBooks : refundBook){
+							cnt += refundBooks.getRefundCnt();
+							isbn = refundBooks.getIsbn();
 						}
-					}else{	
+%>							
+				<tr  onclick="location.href='refundBooksOut.jsp?refundNum=<%=refund.getRefundNum() %>'">
+					<td><%=refund.getRefundDate() %></td>
+					<td><%=refund.getOrderNum() %></td>
+					<td><%=refund.getRefundNum() %></td>
+<%
+					if(cnt == 1){
 %>
-					<tr><td colspan='8' style="height: 200px; padding-top: 80px; font-size: 35px;">주문 내역이 없습니다.</td></tr>
+					<td><%=bookService.findBook(isbn).getbookTitle() %></td>
+<%
+					}else{
+%>
+					<td><%=bookService.findBook(isbn).getbookTitle() %> 외 <%=cnt-1 %>권</td>
 <%
 					}
-%>					
+%>
+					<td><%=refund.getRefundStatus() %></td>
+				</tr>
+<%
+					}
+				}else{
+%>
+				<tr><td colspan='8' style="height: 200px; padding-top: 80px; font-size: 35px;">환불 내역이 없습니다.</td></tr>
+<%
+				}
+%>
 			</tbody>
 		</table>
 	</div>

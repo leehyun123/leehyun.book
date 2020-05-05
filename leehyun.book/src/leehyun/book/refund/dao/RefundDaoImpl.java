@@ -1,5 +1,6 @@
 package leehyun.book.refund.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.config.Configuration;
@@ -19,8 +20,39 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
+	public Refund getRefund(int refundNum){
+		return refundMapper.getRefund(refundNum);
+	}
+	
+	@Override
 	public List<Refund> getUserRefunds(int userNum){
 		return refundMapper.getUserRefunds(userNum);
+	}
+	
+	@Override
+	public List<Refund> getUserRefundsDate(HashMap<String, Object> map){
+		return refundMapper.getUserRefundsDate(map);
+	}
+	
+	@Override
+	public List<Refund> pickRefund(HashMap<String, Object> map){
+		return refundMapper.pickRefund(map);
+	}
+	
+	
+	@Override
+	public List<Refund> pickRefundAdmin(String words){
+		return refundMapper.pickRefundAdmin(words);
+	}
+	
+	@Override
+	public List<Refund> getOrderRefunds(int orderNum){
+		return refundMapper.getOrderRefunds(orderNum);
+	}
+	
+	@Override
+	public int getRefundNum(){
+		return refundMapper.getRefundNum();
 	}
 	
 	@Override

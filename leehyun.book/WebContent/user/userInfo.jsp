@@ -207,7 +207,7 @@ hr {
 					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
 			<li><a href='../order/orderOut.jsp'><span
 					class="glyphicon glyphicon-list"></span> 주문내역</a></li>
-			<li><a href='../refund/01.html'><span
+			<li><a href='../refund/refundOut.jsp'><span
 					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
 		</ul>
 	</div>

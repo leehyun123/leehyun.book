@@ -8,6 +8,10 @@ public class Refund {
 	private String refundStatus;
 	private int orderNum;
 
+	{
+		refundStatus = "환불요청";
+	}
+	
 	public Refund() {
 	}
 

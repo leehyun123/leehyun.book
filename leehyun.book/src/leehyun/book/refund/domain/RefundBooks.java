@@ -3,9 +3,12 @@ package leehyun.book.refund.domain;
 public class RefundBooks {
 	private int refundCnt;
 	private int refundNum;
-	private int isbn;
+	private long isbn;
 
-	public RefundBooks(int refundCnt, int refundNum, int isbn) {
+	public RefundBooks() {
+	}
+	
+	public RefundBooks(int refundCnt, int refundNum, long isbn) {
 		this.refundCnt = refundCnt;
 		this.refundNum = refundNum;
 		this.isbn = isbn;
@@ -19,7 +22,7 @@ public class RefundBooks {
 		return refundNum;
 	}
 
-	public int getIsbn() {
+	public long getIsbn() {
 		return isbn;
 	}
 
@@ -31,7 +34,7 @@ public class RefundBooks {
 		this.refundNum = refundNum;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(long isbn) {
 		this.isbn = isbn;
 	}
 

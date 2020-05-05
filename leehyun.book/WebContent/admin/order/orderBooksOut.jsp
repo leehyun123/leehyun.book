@@ -1,27 +1,27 @@
-<%@page import="java.text.DecimalFormat"%>
 <%@page import="leehyun.book.refund.domain.RefundBooks"%>
-<%@page import="leehyun.book.refund.service.RefundBooksServiceImpl"%>
-<%@page import="leehyun.book.refund.service.RefundBooksService"%>
 <%@page import="leehyun.book.refund.domain.Refund"%>
-<%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
-<%@page import="leehyun.book.refund.service.RefundService"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="leehyun.book.order.domain.Order"%>
-<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
-<%@page import="leehyun.book.order.service.OrderService"%>
 <%@page import="leehyun.book.book.domain.Book"%>
-<%@page import="leehyun.book.book.service.BookServiceImpl"%>
-<%@page import="leehyun.book.book.service.BookService"%>
 <%@page import="leehyun.book.order.domain.OrderBooks"%>
 <%@page import="java.util.List"%>
+<%@page import="leehyun.book.refund.service.RefundBooksServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundBooksService"%>
+<%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundService"%>
 <%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderBooksService"%>
-<%@ page language='java' contentType='text/html; charset=UTF-8'
-    pageEncoding='UTF-8'%>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="leehyun.book.order.service.OrderServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderService"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
+<%@page import="leehyun.book.user.service.UserServiceImpl"%>
+<%@page import="leehyun.book.user.service.UserService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
-<title>order.05 상세주문내역</title>
+<title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -34,66 +34,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	function alert_cancel() {
-		swal({
-			title : "취소하시겠습니까?",
-			text : "상품 전체의 주문이 취소 됩니다.",
-			type : "warning",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function(isConfirm) {
-			if(isConfirm) {
-				document.refund.action = "orderCancelProc.jsp";
-				document.refund.submit();
-			}
-		});
-	};
-	
-	function alert_refund() {
-		swal({
-			title : "환불하시겠습니까?",
-			text : "체크된 항목들의 목록페이지로 이동합니다.",
-			type : "warning",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function() {
-            document.refund.submit();
-		});
-	};
-	
-	function alert_emp(){
-		swal({
-			title : "체크된 항목이 없습니다.",
-			text : "선택해주세요.",
-			type : "warning",
-			showCancelButton : false,
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		});
-	};
-	
-	function ck(){
-		if($("input:checkbox[class=cb_item]:checked").length == 0){
-			alert_emp();
-		}else{
-			alert_refund();
-		}
-	};
-	
-</script>
 <style>
 label, p {
 	font-size: large;
-}
-
-th, td {
-	text-align: center;
-	font-size: 16px;
 }
 
 .logoimg {
@@ -107,12 +50,9 @@ th, td {
 	margin-top: 50px;
 }
 
-.welcome {
-	display: inline;
-}
-
 .div_top {
 	margin-top: 10px;
+	color: white;
 	height: 20px;
 	float: right;
 }
@@ -122,37 +62,34 @@ th, td {
 	text-align: center;
 }
 
-.search_bar {
-	height: 70px;
-	background-color: #8FC9DB;
-	text-align: center;
-}
-
 .search_label {
 	color: white;
 	margin: 10px;
 	margin-top: 14px;
+	margin-left: 300px;
+	font-size: 30px;
+}
+.search_label1 {
+	color: white;
+	margin: 10px;
+	margin-top: 14px;
 	margin-left: 30px;
-	font-size: x-large;
+	font-size: 30px;
+}
+th {
+	text-align: center;
 }
 
-.search_input {
-	width: 40%;
-	height: 40px;
-	color: black;
-}
-
-.search_btn {
-	margin-left: 2%;
-	margin-bottom: 4px;
-	width: 80px;
-	height: 40px;
+.rf_btn {
+	margin-left: 7px;
+	width: 120px;
+	height: 50px;
 }
 
 .footer {
 	text-align: center;
 	height: 100px;
-	margin-top: 100px;
+	margin-top: 20px;
 	padding-top: 20px;
 }
 
@@ -164,66 +101,33 @@ hr {
 	border: solid 0.8px #8FC9DB;
 }
 
-.tab {
-	text-align: center;
-	font-size: 15px;
-}
-
-.subTitle_form {
-	overflow: hidden;
-}
-
-.subTitle_form .button-cancel {
-	float: right;
-}
-
-.subTitle_form .order_code {
-	float: left;
-}
-
 .order_code {
 	font-weight: bold;
 	font-size: 28px;
 	float: left;
 }
 
-.sub_result {
-	overflow: hidden;
+.search_input {
+	width: 70%;
+	height: 40px;
+	color: black;
 }
 
-.sub_result .button-refund {
-	float: left;
+.search_btn {
+	margin-left: 2%;
+	margin-bottom: 4px;
+	width: 80px;
+	height: 40px;
 }
 
-.sub_result .sub_charge {
-	float: right;
-}
-
-.span_bold {
-	font-weight: bold;
-}
-
-.chart {
+.search_bar {
+	margin-top: 30px;
+	height: 70px;
 	background-color: #8FC9DB;
-	color: white;
 }
 
-.order_btn {
-	font-weight: 600;
-	font-size: 18px;
-	font-align: center;
-	width: 250px;
-	height: 40px;
-	float: right;
-	margin-left: 20px;
-}
-
-.refund_btn {
-	font-weight: 600;
-	font-size: 18px;
-	font-align: center;
-	width: 250px;
-	height: 40px;
+td{
+	text-align: center;
 }
 
 .div_float {
@@ -257,31 +161,28 @@ hr {
 	display: inline;
 }
 
-.name {
-	text-align: center;
-	font-weight: 700;
-}
 </style>
 </head>
-<body>
 <%
 	int orderNum = Integer.parseInt(request.getParameter("orderNum"));
+	UserService userService = new UserServiceImpl();
+	BookService bookService = new BookServiceImpl();
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
 	RefundService refundService = new RefundServiceImpl();
 	RefundBooksService refundBooksService = new RefundBooksServiceImpl();
-	BookService bookService = new BookServiceImpl();
+	DecimalFormat df = new DecimalFormat("###,###");
+	
 	Order order = orderService.findOrder(orderNum);
 	List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(orderNum);
 	List<Refund> refunds = refundService.listOrderRefunds(orderNum);
-	DecimalFormat df = new DecimalFormat("###,###");
+
 	
 %>
+<body>
 	<div class="container">
 		<div class="div_top">
-			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="../user/logoutProc.jsp">로그아웃</a> / <a href="../user/userInfo.jsp">마이페이지</a>
-			/ <a href="cartOut.jsp">장바구니</a>
+			<a href="../../user/logoutProc.jsp">로그아웃</a>
 		</div>
 	</div>
 	<div class="div_logo">
@@ -290,44 +191,16 @@ hr {
 		</div>
 	</div>
 	<div class="search_bar">
-		<form class="search_form" action="../book/search.jsp">
-			<label class="search_label">도서검색&nbsp;</label> <input
-				class="search_input" type="text" name="search_words" required />
-			<button class="search_btn btn btn-default" type="submit">
-				<span class="glyphicon glyphicon-search">&nbsp;</span>검색
-			</button>
-		</form>
+		<label class="search_label">주문상세내역</label>
 	</div>
-
-	<br>
-	<div class='tab container'>
-		<ul class='nav nav-tabs nav-justified'>
-			<li><a href='../user/userInfo.jsp'><span
-					class="glyphicon glyphicon-user"></span> 회원정보</a></li>
-			<li><a href='../order/cartOut.jsp'><span
-					class="glyphicon glyphicon-shopping-cart"></span> 장바구니</a></li>
-			<li class='active' style="font-weight: bold;"><a
-				href='../order/orderOut.jsp'><span class="glyphicon glyphicon-list"></span>
-					주문내역</a></li>
-			<li><a href='../refund/refundOut.jsp'><span
-					class="glyphicon glyphicon-refresh"></span> 환불내역</a></li>
-		</ul>
-	</div>
-	<br>
 	<div class="container">
-		<h1 class="name">상세 주문내역</h1>
-		<!-- 주문번호 -->
-		<form class="subTitle_form" action="#" style="margin: 0 30px;">
-			<br> <span class="order_code">주문번호: <%= orderNum %></span>
-		</form>
-		<br>		
+		<span class="order_code">주문번호: <%= orderNum %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: <%=userService.findUser(order.getUserNum()).getUserId() %></span>
+		<br><br><br><br>		
 		<!-- 상세 주문내역 -->
 		<h3>주문 내역</h3>
-		<form action="../refund/refundIn.jsp" name="refund" method="post">
 		<table class="table">
 			<thead>
 				<tr class="chart">
-					<th>#<input name="orderNum" value="<%=orderNum%>" style="display: none;"></th>
 					<th>도서명</th>
 					<th>수량</th>
 					<th>환불가능수량</th>
@@ -345,16 +218,6 @@ hr {
 				int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
 %>			
 				<tr>
-					<td><input class="cb_item" type="checkbox" name="isbn" value="<%=isbn%>"
-<%
-					if(orderBooks.getOrderCnt() - refundBooksService.getCnt(isbn, orderNum) == 0){
-%>
-						disabled
-<%
-					}
-%>
-					
-					></td>
 					<td><%= book.getbookTitle() %></td>
 					<td><%= orderBooks.getOrderCnt() %></td>
 					<td><%= orderBooks.getOrderCnt() - refundBooksService.getCnt(isbn, orderNum)%></td>
@@ -431,8 +294,6 @@ hr {
 				<br> <label class="d_op">요청사항 :</label>
 				<p class="d_op_in"><%= order.getRequest() %></p>
 			</div>
-
-
 			<div class="div_half1">
 				<p>
 					배송비(￦): 2,500 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -441,29 +302,6 @@ hr {
 				</p>
 			</div>
 		</div>
-		<hr>
-		<br>
-		
-<%
-		if(order.getDeliveryStatus().equals("배송전")){
-%>		
-			<button class="refund_btn btn btn-danger" type="button" onClick="alert_cancel()">
-			<span class="glyphicon glyphicon-remove"></span> 주문취소
-			</button>
-<%
-		}else{
-%>
-			<button class="refund_btn btn btn-danger" type="button" onClick="ck()">
-			<span class="glyphicon glyphicon-remove"></span> 환불
-			</button>
-<%
-		}
-%>						
-		</form>
-		<button class="order_btn btn btn-info" type="submit"
-			onClick="location.href='../main.jsp'">
-			<span class="glyphicon glyphicon-list"></span> 쇼핑 더 하러가기
-		</button>
 	</div>
 	<div class=footer>
 		<hr>

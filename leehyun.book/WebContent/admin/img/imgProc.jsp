@@ -10,8 +10,10 @@
 	
 	ServletContext ctx = getServletContext();
 	attachPath = ctx.getRealPath(attachPath);
+	
 	System.out.println("attachPath: " + attachPath);
 	request.setCharacterEncoding("utf-8");
+	
 	MultipartRequest mRequest = null;
 	try{
 	

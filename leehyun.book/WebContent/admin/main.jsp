@@ -1,3 +1,6 @@
+<%@page import="leehyun.book.refund.domain.Refund"%>
+<%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundService"%>
 <%@page import="java.util.List"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderService"%>
@@ -95,9 +98,14 @@ hr {
 </head>
 <%
 	OrderService orderService = new OrderServiceImpl();
+	RefundService refundService = new RefundServiceImpl();
+
+	orderService.correctOrderCom();
 	int bf = 0;
 	int ing = 0;
 	int com = 0;
+	int com2 = 0;
+	int refundCnt = 0;
 	List<Order> orders = null;
 
 	orders = orderService.listAdminOrders("배송전");
@@ -109,6 +117,16 @@ hr {
 	orders = orderService.listAdminOrders("배송완료");
 	if (orders != null)
 		com = orders.size();
+	orders = orderService.listAdminOrders("구매확정");
+	if (orders != null)
+		com2 = orders.size();
+	
+	List<Refund> refunds = refundService.listRefunds();
+	
+	for(Refund refund : refunds){
+		if(refund.getRefundStatus().equals("환불요청"))
+			refundCnt++;			
+	}
 %>
 <body>
 	<div class="container">
@@ -128,20 +146,24 @@ hr {
 		<br> <br> <label class="menu_label"> - 주문 관리</label><br>
 		<div class="order_bar">
 			<div class="order_mng alert-warning"
-				onclick="location.href='order/bfDeli.jsp'">
+				onclick="location.href='order/bfDeliOut.jsp'">
 				배송전<br><%=bf%>
 			</div>
 			<div class="order_mng alert-info"
-				onclick="location.href='order/02.html'">
+				onclick="location.href='order/ingDeliOut.jsp'">
 				배송중<br><%=ing%>
 			</div>
 			<div class="order_mng alert-success"
-				onclick="location.href='order/03.html'">
+				onclick="location.href='order/comDeliOut.jsp'">
 				배송완료<br><%=com%>
 			</div>
+			<div class="order_mng"
+				onclick="location.href='order/com2DeliOut.jsp'">
+				구매확정<br><%=com2%>
+			</div>
 			<div class="order_mng alert-danger"
-				onclick="location.href='refund/01.html'">
-				환불 접수<br>3
+				onclick="location.href='refund/refundOut.jsp'">
+				환불 접수<br><%=refundCnt%>
 			</div>
 		</div>
 		<br> <br> <br> <label class="menu_label"> - 매출

@@ -22,6 +22,8 @@ public interface OrderService {
 	boolean purchase(Order order);
 
 	boolean correctOrder(Order order);
+	
+	boolean correctOrderCom();
 
 	boolean cancelOrder(int orderNum);
 }

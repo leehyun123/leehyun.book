@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="leehyun.book.book.domain.Book"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
@@ -24,9 +25,9 @@
 		if(cartcnt < 10 ) {
 			swal({
 				title : "장바구니 담기 성공!",
-				text : "장바구니로 이동하시겠습니까?",
+				text : "",
 				type : "success",
-				showCancelButton : true,
+				showCancelButton : false,
 				cancelButtonText : "아니오",
 				confirmButtonText : "예",
 				closeOnConfirm : false
@@ -182,6 +183,8 @@ hr {
 	Cookie[] cookies = request.getCookies();
 	
 	BookService bookService = new BookServiceImpl();
+	
+	DecimalFormat df = new DecimalFormat("###,###");
 
 	int cartCnt = 0;
 
@@ -229,7 +232,7 @@ hr {
 				class="book_info"><%=book.getpublishDate() %></label><br> <br>
 			<div class="blk20"></div>
 			<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <label
-				class="book_price"><%=book.getbookPrice() %></label> <label class="book_info">원</label>
+				class="book_price"><%=df.format(book.getbookPrice()) %></label> <label class="book_info">원</label>
 			
 <%
 				if (session.getAttribute("sessionID") == null) {

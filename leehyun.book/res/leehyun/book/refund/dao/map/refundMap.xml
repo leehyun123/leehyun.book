@@ -2,38 +2,113 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leehyun.book.refund.dao.map.RefundMap">
-   <select id="getRefunds" resultMap="refundMap">
-      select *
-      from refunds 
-      order by refund_num
-   </select>
-   
-   <select id="getUserRefunds" parameterType="int" resultMap="refundMap">
-      select refund_num, order_num, refund_date, refund_status 
-      from refunds 
-      join orders 
-      using(order_num)
-	  where user_num=#{userNum}
-   </select>
-    
-   <insert id="addRefund" parameterType="refund">
-      insert into refunds
-      values(refundno_seq.nextval, #{orderNum}, #{refundDate}, #{refundStatus})
-   </insert>
-   
-   <update id="updateRefund" parameterType="refund">
-      update refunds set refund_status=#{refundStatus}
-      where refund_num=#{refundNum}
-   </update>
+	<select id="getRefunds" resultMap="refundMap">
+		select *
+		from refunds
+		order by refund_status desc,
+		    order_num desc,
+		    refund_num desc
+	</select>
+	
+	<select id="getRefund" parameterType="int" resultMap="refundMap">
+		select *
+		from refunds
+		where refund_num=#{refundNum}
+		order by refund_num desc
+	</select>
 
-   <delete id="delRefund" parameterType="int">
-      delete refunds where refund_num=#{refundNum}
-   </delete>
-   
-   <resultMap id ="refundMap" type="refund">
-      <id      property="refundNum"   column="refund_num"/>
-      <result property="orderNum"    column="order_num"/>
-      <result property="refundDate"   column="refund_date"/>
-      <result property="refundStatus"   column="refund_status"/>
-   </resultMap>
+	<select id="getUserRefunds" parameterType="int" resultMap="refundMap">
+		select refund_num, order_num, refund_date, refund_status
+		from refunds
+		join orders
+		using(order_num)
+		where user_num=#{userNum}
+		order by refund_num desc
+	</select>
+
+	<select id="getUserRefundsDate" parameterType="hashmap" resultMap="refundMap">
+		select refund_num, order_num, refund_date, refund_status
+		from refunds
+		join orders
+		using(order_num)
+		where user_num=#{userNum} and refund_date &gt;= add_months(sysdate, #{date})
+		order by refund_num desc
+	</select>
+
+	<select id="pickRefund" parameterType="hashmap" resultMap="refundMap">
+		SELECT DISTINCT
+		    refund_num,
+		    order_num,
+		    refund_date,
+		    refund_status
+		FROM
+		    orders
+		    JOIN refunds USING ( order_num )
+		    JOIN refund_books USING ( refund_num )
+		    JOIN books USING ( isbn )
+		WHERE
+		    ( book_title LIKE '%'||#{words}||'%'
+		      OR order_num LIKE '%'||#{words}||'%'
+		      OR refund_num LIKE '%'||#{words}||'%' )
+		    AND user_num = #{userNum}
+		ORDER BY
+		    order_num desc,
+		    refund_num desc
+	</select>
+	
+	<select id="pickRefundAdmin" parameterType="string" resultMap="refundMap">
+		SELECT DISTINCT
+		    refund_num,
+		    order_num,
+		    refund_date,
+		    refund_status
+		FROM
+		    orders
+		    JOIN refunds USING ( order_num )
+		    JOIN refund_books USING ( refund_num )
+		    JOIN books USING ( isbn )
+		    JOIN users USING ( user_num )
+		WHERE
+		    ( book_title LIKE '%'||#{words}||'%'
+		      OR order_num LIKE '%'||#{words}||'%'
+		      OR refund_num LIKE '%'||#{words}||'%' 
+		      OR user_id LIKE '%'||#{words}||'%' )
+		ORDER BY
+			refund_status desc,
+		    order_num desc,
+		    refund_num desc
+	</select>
+
+	<select id="getOrderRefunds" parameterType="int" resultMap="refundMap">
+		select refund_num, order_num, refund_date, refund_status
+		from refunds
+		where order_num=#{orderNum}
+		order by refund_num desc
+	</select>
+
+	<select id="getRefundNum" resultType="int">
+		select last_number from
+		user_sequences where sequence_name = 'REFUNDNO_SEQ'
+	</select>
+
+	<insert id="addRefund" parameterType="refund">
+		insert into refunds
+		values(refundno_seq.nextval, #{orderNum}, sysdate, #{refundStatus})
+	</insert>
+
+	<update id="updateRefund" parameterType="refund">
+		update refunds set refund_status=#{refundStatus}
+		where refund_num=#{refundNum}
+	</update>
+
+	<delete id="delRefund" parameterType="int">
+		delete refunds where refund_num=#{refundNum}
+	</delete>
+
+	<resultMap id="refundMap" type="refund">
+		<id property="refundNum" column="refund_num" />
+		<result property="orderNum" column="order_num" />
+		<result property="refundDate" column="refund_date" />
+		<result property="refundStatus" column="refund_status" />
+	</resultMap>
 </mapper>
