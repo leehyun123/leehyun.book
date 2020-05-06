@@ -30,10 +30,11 @@
 	
 	Img img = new Img();
 	
-	for(int i = 0; i< 3; i++){
-		if(mRequest.getFilesystemName("attachFile" + i) != null){
-		img.setImgUrl(mRequest.getFilesystemName("attachFile" + i));
-		imgService.joinImg(img);
+	for(int i = 2; i<= 4; i++){
+		if(mRequest.getFilesystemName("attachFile" + (i - 2)) != null){
+		img.setImgNum(i);
+		img.setImgUrl(mRequest.getFilesystemName("attachFile" + (i - 2)));
+		imgService.correctImg(img);
 		}
 	}
 	}catch(IOException e){

@@ -14,7 +14,7 @@
    
    <insert id="addImg" parameterType='img'>
       insert into imgs(img_num, img_url)
-      values(img_seq.nextval,#{imgUrl})
+      values(#{imgNum}, #{imgUrl})
    </insert>
    
    <update id="updateImg" parameterType='img'>

@@ -8,6 +8,17 @@
 <%@page import="java.util.List"%>
 <%
 	ImgService imgService = new ImgServiceImpl();
+
+	for(int i = 1; i <= 4; i++){
+		Img imgtest = imgService.findImg(i);
+		if(imgtest == null){
+			imgtest = new Img();
+			imgtest.setImgNum(i);
+			imgtest.setImgUrl("noImg.png");
+			imgService.joinImg(imgtest);
+		}
+	}
+
 	List<Img> imgs = imgService.listImgs();
 %>
 <!DOCTYPE html>
@@ -100,8 +111,9 @@ label, p {
 }
 
 .img_btn {
-   margin-top: 50px;
-   float: right;
+   position: absolute;
+   top: 120px;
+   left: 900px;
 }
 
 hr {
@@ -125,6 +137,10 @@ hr {
 .edit {
    float: right;
    margin-right: 15px;
+}
+
+.pr{
+	position: relative;
 }
 </style>
 </head>
@@ -157,23 +173,22 @@ hr {
 
             %>
             <div class="item active">
-               <c:choose>
-               	<c:when test="${empty imgs}">
-               	이미지없음.
-               	</c:when>
-               	<c:otherwise>
-					<img src='../../img/<%=imgs.get(imgs.size()-1).getImgUrl()%>'>               		
-               	</c:otherwise>
-               </c:choose>
-               <input class="img_btn" type="file" name="attachFile0">
+            	<div class="pr">
+            		<input class="img_btn" type="file" name="attachFile0">
+					<img src='../../img/<%=imgs.get(1).getImgUrl()%>'>               		
+               </div>
             </div>
             <div class="item">
-               <p>배너 이미지2</p>
-               <input class="img_btn" type="file" name="attachFile1">
+               <div class="pr">
+            		<input class="img_btn" type="file" name="attachFile1">
+					<img src='../../img/<%=imgs.get(2).getImgUrl()%>'>               		
+               </div>
             </div>
             <div class="item">
-               <p>배너 이미지3</p>
-               <input class="img_btn" type="file" name="attachFile2">
+               <div class="pr">
+            		<input class="img_btn" type="file" name="attachFile2">
+					<img src='../../img/<%=imgs.get(3).getImgUrl()%>'>               		
+               </div>
             </div>
          </div>
       </div>
