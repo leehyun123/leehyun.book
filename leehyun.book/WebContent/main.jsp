@@ -1,5 +1,6 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>북적북적</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,20 +136,24 @@ hr {
 				if (session.getAttribute("sessionID") == null) {
 			%>
 			<a href="user/loginIn.jsp">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
-			/ <a href="user/loginIn.jsp">마이페이지</a> / <a
-				href="user/loginIn.jsp">장바구니</a>
+			/ <a href="user/loginIn.jsp">마이페이지</a> / <a href="user/loginIn.jsp">장바구니</a>
 			<%
 				} else {
+					String name = (String) session.getAttribute("sessionID");
+					if (name.equals("관리자")) {
 			%>
-			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
-			<a href="user/logoutProc.jsp">로그아웃</a> /
-			<a href="user/userInfo.jsp">마이페이지</a> / <a
-				href="order/cartOut.jsp">장바구니</a>
+			<c:redirect url="admin/main.jsp" />
+			<%
+				}
+			%>
+			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<a href="user/logoutProc.jsp">로그아웃</a> / <a href="user/userInfo.jsp">마이페이지</a>
+			/ <a href="order/cartOut.jsp">장바구니</a>
 			<%
 				}
 			%>
 		</div>
-		
+
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
@@ -184,7 +189,7 @@ hr {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 메인 도서 목록들 -->
 	<br>
 	<div class="item_cb">
