@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@page import="leehyun.book.img.domain.Img"%>
+<%@page import="leehyun.book.img.service.ImgService"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -129,24 +133,39 @@ hr {
 }
 </style>
 </head>
+<%
+	ImgService imgService = new ImgServiceImpl();
+
+	for(int i = 1; i <= 4; i++){
+		Img imgtest = imgService.findImg(i);
+		if(imgtest == null){
+			imgtest = new Img();
+			imgtest.setImgNum(i);
+			imgtest.setImgUrl("noImg.png");
+			imgService.joinImg(imgtest);
+		}
+	}
+
+	List<Img> imgs = imgService.listImgs();
+%>
 <body>
 	<div class="container">
 		<div class="div_top">
 			<%
-				if (session.getAttribute("sessionID") == null) {
+				if(session.getAttribute("sessionID") == null){
 			%>
 			<a href="user/loginIn.jsp">로그인</a> / <a href="user/addUserIn.jsp">회원가입</a>
 			/ <a href="user/loginIn.jsp">마이페이지</a> / <a href="user/loginIn.jsp">장바구니</a>
 			<%
-				} else {
-					String name = (String) session.getAttribute("sessionID");
-					if (name.equals("관리자")) {
+				}else{
+					String name = (String)session.getAttribute("sessionID");
+					if(name.equals("관리자")){
 			%>
 			<c:redirect url="admin/main.jsp" />
 			<%
 				}
 			%>
-			<h5 class="welcome">${sessionID}님,환영합니다 ! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID}님,환영합니다! &nbsp;&nbsp;/</h5>
 			<a href="user/logoutProc.jsp">로그아웃</a> / <a href="user/userInfo.jsp">마이페이지</a>
 			/ <a href="order/cartOut.jsp">장바구니</a>
 			<%
@@ -169,25 +188,34 @@ hr {
 			</button>
 		</form>
 	</div>
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel"
+		data-interval="false">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 		</ol>
+
 		<div class="test_background">
 			<div class="carousel-inner test_area">
 				<div class="item active">
-					<p>배너 이미지1</p>
+					<img src='img/<%=imgs.get(1).getImgUrl()%>'>
 				</div>
 				<div class="item">
-					<p>배너 이미지2</p>
+					<img src='img/<%=imgs.get(2).getImgUrl()%>'>
 				</div>
 				<div class="item">
-					<p>배너 이미지3</p>
+					<img src='img/<%=imgs.get(3).getImgUrl()%>'>
 				</div>
 			</div>
 		</div>
+
+		<a class='left carousel-control' href='#myCarousel' data-slide='prev'>
+			<span class='glyphicon glyphicon-chevron-left'></span>
+		</a> <a class='right carousel-control' href='#myCarousel'
+			data-slide='next'> <span
+			class='glyphicon glyphicon-chevron-right'></span>
+		</a>
 	</div>
 
 	<!-- 메인 도서 목록들 -->

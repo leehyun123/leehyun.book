@@ -169,9 +169,6 @@ hr {
      
       <div class="test_background">
          <div class="carousel-inner test_area">
-            <%
-
-            %>
             <div class="item active">
             	<div class="pr">
             		<input class="img_btn" type="file" name="attachFile0">
