@@ -8,7 +8,7 @@
 <%
 	if(session.getAttribute("sessionID")==null){
 %>
-		<c:redirect url="../main.jsp"/>
+		<c:redirect url="../err/errPage.jsp"/>
 <%
 	}
 	UserService userService = new UserServiceImpl();
