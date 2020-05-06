@@ -11,6 +11,9 @@
 <%
 	ImgService imgService = new ImgServiceImpl();
 
+	request.setAttribute("suc", null);
+	request.setAttribute("noc", null);
+
 	String attachPath = "/img";
 	int fileMaxSize = 1024 * 1024 * 5;
 	String enctype = "utf-8";
@@ -29,12 +32,21 @@
 			new DefaultFileRenamePolicy());
 	
 	Img img = new Img();
+	int cnt = 0;
 	
 	for(int i = 2; i<= 4; i++){
 		if(mRequest.getFilesystemName("attachFile" + (i - 2)) != null){
-		img.setImgNum(i);
-		img.setImgUrl(mRequest.getFilesystemName("attachFile" + (i - 2)));
-		imgService.correctImg(img);
+			img.setImgNum(i);
+			img.setImgUrl(mRequest.getFilesystemName("attachFile" + (i - 2)));
+			imgService.correctImg(img);
+		}else{
+			cnt++;
+		}
+		
+		if(cnt == 3){
+			request.setAttribute("noc", 1);
+		}else{
+			request.setAttribute("suc", 1);
 		}
 	}
 	}catch(IOException e){

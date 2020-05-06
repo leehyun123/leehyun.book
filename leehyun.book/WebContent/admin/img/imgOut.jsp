@@ -40,19 +40,44 @@
 <script>
    function alert_banner() {
       swal({
-         title : "배너 수정 성공",
-         text : "메인으로 이동하시겠습니까?",
-         type : "success",
+         title : "알림",
+         text : "배너이미지 변경을 적용하시겠습니까?",
+         type : "info",
          showCancelButton : true,
          cancelButtonText : "아니오",
          confirmButtonText : "예",
          closeOnConfirm : true
       }, function(isConfirm) {
          if (isConfirm) {
-            location.href = '../main.jsp';
+            document.img.submit();
          }
       });
    }
+   
+   $(document).ready(function() {
+		$(".img_btn1").on("change", miri);
+   });
+   
+   function miri(e) {
+	   var files = e.target.files;
+	   var filesArr = Array.prototype.slice.call(files);
+	   
+	   filesArr.forEach(function(f){
+		   if(!f.type.match("image.*")) {
+			   alert("확장자는 이미지 확장자만 가능합니다.");
+			   $(".img_btn1").val("");
+			   return;
+		   }
+		   
+		   var sel_file = f;
+		   
+		   var reader = new FileReader();
+		   reader.onload = function(e) {
+			   $("#img1").attr("src", e.target.result);
+		   }
+		   reader.readAsDataURL(f);
+	   });
+   };
 </script>
 <style>
 label, p {
@@ -159,7 +184,7 @@ hr {
       <label class="search_label">배너 관리</label>
    </div>
    <div class="blk30"></div>
-   <form action = "imgProc.jsp" method="post" enctype="multipart/form-data">
+   <form name="img" action = "imgProc.jsp" method="post" enctype="multipart/form-data">
    <div id="myCarousel" class="carousel slide" data-ride="carousel"  data-interval="false">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -171,25 +196,24 @@ hr {
          <div class="carousel-inner test_area">
             <div class="item active">
             	<div class="pr">
-            		<input class="img_btn" type="file" name="attachFile0">
-					<img src='../../img/<%=imgs.get(1).getImgUrl()%>'>               		
+            		<input class="img_btn img_btn1" type="file" name="attachFile0">
+					<img id="img1" src='../../img/<%=imgs.get(1).getImgUrl()%>'>               		
                </div>
             </div>
             <div class="item">
                <div class="pr">
-            		<input class="img_btn" type="file" name="attachFile1">
-					<img src='../../img/<%=imgs.get(2).getImgUrl()%>'>               		
+            		<input class="img_btn img_btn2" type="file" name="attachFile1">
+					<img id="img2" src='../../img/<%=imgs.get(2).getImgUrl()%>'>               		
                </div>
             </div>
             <div class="item">
                <div class="pr">
-            		<input class="img_btn" type="file" name="attachFile2">
-					<img src='../../img/<%=imgs.get(3).getImgUrl()%>'>               		
+            		<input class="img_btn img_btn3" type="file" name="attachFile2">
+					<img id="img3" src='../../img/<%=imgs.get(3).getImgUrl()%>'>               		
                </div>
             </div>
          </div>
       </div>
-      
       <a class='left carousel-control' href='#myCarousel' data-slide='prev'>
          <span class='glyphicon glyphicon-chevron-left'></span>
       </a> <a class='right carousel-control' href='#myCarousel'
@@ -197,15 +221,31 @@ hr {
          class='glyphicon glyphicon-chevron-right'></span>
       </a>
    </div>
+   
    <div class="blk30"></div>
+<%
+				if (request.getAttribute("noc") != null) {
+%>
+			<div class="alert fade in alert-info">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>변경 내용이 없습니다!</strong>
+			</div>
+<%
+				}else if (request.getAttribute("suc") != null) {
+%>
+			<div class="alert fade in alert-success">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>변경 성공!</strong>
+			</div>
+<%
+				}
+%>
+
    <div class="container">
-      <button type="submit" class="edit btn btn-info">수정 완료</button>
+      <button type="button" class="edit btn btn-info" onclick="alert_banner()">수정 완료</button>
    </div>
    </form>
    <br>
-   <div class="container">
-      <button type="submit" class="edit btn btn-default">배너 추가</button>
-   </div>
    <div class=footer>
       <hr>
       <p class='footertext'>
