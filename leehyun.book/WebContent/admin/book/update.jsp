@@ -85,7 +85,7 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -113,7 +113,7 @@ label, p {
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 }
 
 .search_label {
@@ -135,7 +135,7 @@ label, p {
 }
 
 .ad_btn_target {
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 }
 
 .book_item {
@@ -158,7 +158,7 @@ label, p {
 	width: 330px;
 	height: 350px;
 	margin: 0px;
-	border: medium solid #8FC9DB;
+	border: medium solid #2f5597;
 	text-align: center;
 	font-size: 25px;
 }
@@ -187,7 +187,7 @@ label, p {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 .blk30 {

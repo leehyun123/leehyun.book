@@ -37,7 +37,7 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -63,7 +63,7 @@ label, p {
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 	text-align: center;
 }
 
@@ -100,7 +100,7 @@ label, p {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 .blk30 {
@@ -109,7 +109,7 @@ hr {
 
 .order_end {
 	text-align: center;
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 	color: navy;
 	height: 150px;
 }

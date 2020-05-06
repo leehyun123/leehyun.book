@@ -63,7 +63,7 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -98,7 +98,7 @@ label, p {
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 }
 
 .div_top {
@@ -190,7 +190,7 @@ label, p {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 </style>
 </head>

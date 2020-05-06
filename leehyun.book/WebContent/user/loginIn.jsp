@@ -28,13 +28,13 @@
    src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 hr {
-   border: solid 0.8px #8FC9DB;
+   border: solid 0.8px #2f5597;
 }
 
 .div_logo {
    width: 300px;
    height: 70px;
-   color: #8FC9DB;
+   color: #2f5597;
    text-align: center;
    margin: 0 auto;
 }

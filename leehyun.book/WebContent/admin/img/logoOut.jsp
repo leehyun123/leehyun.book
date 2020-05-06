@@ -52,6 +52,31 @@
 			}
 		});
 	}
+	
+	$(document).ready(function() {
+		$("#imgin").on("change", miri);
+   });
+   
+   function miri(e) {
+	   var files = e.target.files;
+	   var filesArr = Array.prototype.slice.call(files);
+	   
+	   filesArr.forEach(function(f){
+		   if(!f.type.match("image.*")) {
+			   alert("확장자는 이미지 확장자만 가능합니다.");
+			   $("#imgin").val("");
+			   return;
+		   }
+		   
+		   var sel_file = f;
+		   
+		   var reader = new FileReader();
+		   reader.onload = function(e) {
+			   $("#img").attr("src", e.target.result);
+		   }
+		   reader.readAsDataURL(f);
+	   });
+   };
 </script>
 <style>
 label, p {
@@ -70,7 +95,7 @@ h2 {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -85,7 +110,7 @@ h2 {
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 }
 
 .search_label {
@@ -116,7 +141,7 @@ h2 {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 .edit {
@@ -150,8 +175,8 @@ hr {
 	<form action = "logoProc.jsp" method="post" enctype="multipart/form-data">
 	<div class="container">
 		<h2>MAIN 로고 이미지</h2>
-		<input class="img_btn" type="file" name="uploadFile">
-		<img src='../../img/<%=img.getImgUrl()%>'>
+		<input id="imgin" class="img_btn" type="file" name="uploadFile">
+		<img id="img" src='../../img/<%=img.getImgUrl()%>'>
 	</div>
 	<div class="container" style="margin-top: 30px;">
 		<button type="submit" class="edit btn btn-success">수정 완료</button>

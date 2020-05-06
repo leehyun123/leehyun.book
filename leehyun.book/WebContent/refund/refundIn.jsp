@@ -78,7 +78,7 @@ th, td {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	font-size: 80px;
 	border: 1px solid black;
@@ -106,7 +106,7 @@ th, td {
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 	text-align: center;
 }
 
@@ -143,7 +143,7 @@ th, td {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 .tab {
@@ -180,7 +180,7 @@ hr {
 }
 
 .chart {
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 	color: white;
 }
 
@@ -197,7 +197,7 @@ hr {
 .div_float {
 	padding: 15px;
 	height: 210px;
-	border: 3px solid #8FC9DB;
+	border: 3px solid #2f5597;
 }
 
 .d_op {

@@ -36,7 +36,7 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	font-size: 80px;
 	border: 1px solid black;
@@ -70,11 +70,11 @@ label, p {
 }
 
 .footerHr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 hr {
-	border: solid 0.5px #8FC9DB;
+	border: solid 0.5px #2f5597;
 }
 
 .find_btn {

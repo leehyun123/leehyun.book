@@ -57,10 +57,12 @@
    }
    
    $(document).ready(function() {
-		$(".img_btn1").on("change", miri);
+	   $(".img_btn1").on("change", miri1);
+	   $(".img_btn2").on("change", miri2);
+	   $(".img_btn3").on("change", miri3);
    });
    
-   function miri(e) {
+   function miri1(e) {
 	   var files = e.target.files;
 	   var filesArr = Array.prototype.slice.call(files);
 	   
@@ -80,6 +82,48 @@
 		   reader.readAsDataURL(f);
 	   });
    };
+   
+   function miri2(e) {
+	   var files = e.target.files;
+	   var filesArr = Array.prototype.slice.call(files);
+	   
+	   filesArr.forEach(function(f){
+		   if(!f.type.match("image.*")) {
+			   alert("확장자는 이미지 확장자만 가능합니다.");
+			   $(".img_btn2").val("");
+			   return;
+		   }
+		   
+		   var sel_file = f;
+		   
+		   var reader = new FileReader();
+		   reader.onload = function(e) {
+			   $("#img2").attr("src", e.target.result);
+		   }
+		   reader.readAsDataURL(f);
+	   });
+   };
+   
+   function miri3(e) {
+	   var files = e.target.files;
+	   var filesArr = Array.prototype.slice.call(files);
+	   
+	   filesArr.forEach(function(f){
+		   if(!f.type.match("image.*")) {
+			   alert("확장자는 이미지 확장자만 가능합니다.");
+			   $(".img_btn3").val("");
+			   return;
+		   }
+		   
+		   var sel_file = f;
+		   
+		   var reader = new FileReader();
+		   reader.onload = function(e) {
+			   $("#img3").attr("src", e.target.result);
+		   }
+		   reader.readAsDataURL(f);
+	   });
+   };
 </script>
 <style>
 label, p {
@@ -94,7 +138,7 @@ label, p {
 }
 
 .logoimg {
-   color: #8FC9DB;
+   color: #2f5597;
    background-color: white;
    width: 600px;
    margin-right: auto;
@@ -109,7 +153,7 @@ label, p {
 
 .search_bar {
    height: 70px;
-   background-color: #8FC9DB;
+   background-color: #2f5597;
 }
 
 .search_label {
@@ -142,7 +186,7 @@ label, p {
 }
 
 hr {
-   border: solid 0.8px #8FC9DB;
+   border: solid 0.8px #2f5597;
 }
 
 .test_background {

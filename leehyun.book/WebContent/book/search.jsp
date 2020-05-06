@@ -49,7 +49,7 @@
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -59,7 +59,7 @@
 
 .search_bar {
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 	text-align: center;
 }
 
@@ -116,7 +116,7 @@
 	width: 250px;
 	padding: 15px;
 	text-align: center;
-	border: thin solid #8FC9DB;
+	border: thin solid #2f5597;
 	display: inline-block;
 	cursor: pointer;
 }

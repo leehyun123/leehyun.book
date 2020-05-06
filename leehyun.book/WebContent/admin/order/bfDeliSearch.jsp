@@ -60,7 +60,7 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
+	color: #2f5597;
 	background-color: white;
 	width: 600px;
 	margin-right: auto;
@@ -116,7 +116,7 @@ th {
 }
 
 hr {
-	border: solid 0.8px #8FC9DB;
+	border: solid 0.8px #2f5597;
 }
 
 .search_input {
@@ -135,7 +135,7 @@ hr {
 .search_bar {
 	margin-top: 30px;
 	height: 70px;
-	background-color: #8FC9DB;
+	background-color: #2f5597;
 }
 
 td{
