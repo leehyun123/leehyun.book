@@ -71,7 +71,7 @@ hr {
       <div class="blk70"></div>
       <div class="div_logo">
          <a href='../main.jsp' style="text-decoration: none">
-            <img src='../img/<%=img.getImgUrl()%>' width="450">
+            <img src='../img/<%=img.getImgUrl()%>' width="280">
          </a>
       </div>
       <div class="blk30"></div>

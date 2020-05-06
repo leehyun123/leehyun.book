@@ -51,8 +51,6 @@
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
