@@ -7,7 +7,6 @@
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
 <%@page import="leehyun.book.order.domain.Order"%>
-<%@page import="java.util.List"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -253,6 +252,7 @@ td{
 			</table>
 		</form>
 		<button class="rf_btn" onclick="alert_order()">배송중 처리</button>
+		<a href="javascript:history.go(-1)"><button class="rf_btn">뒤로가기</button></a>
 	</div>
 	<div class=footer>
 		<hr>

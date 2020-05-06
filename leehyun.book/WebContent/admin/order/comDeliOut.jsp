@@ -7,7 +7,6 @@
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
 <%@page import="leehyun.book.order.domain.Order"%>
-<%@page import="java.util.List"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
