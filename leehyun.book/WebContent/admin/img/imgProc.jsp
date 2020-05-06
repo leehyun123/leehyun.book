@@ -3,8 +3,15 @@
 <%@ page import = "com.oreilly.servlet.MultipartRequest"%>
 <%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import = "java.io.IOException" %>
+<%@page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@page import="leehyun.book.img.service.ImgService"%>
+<%@page import="leehyun.book.img.domain.Img"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%
-	String attachPath = "/admin/img";
+	ImgService imgService = new ImgServiceImpl();
+
+	String attachPath = "/img";
 	int fileMaxSize = 1024 * 1024 * 5;
 	String enctype = "utf-8";
 	
@@ -21,12 +28,17 @@
 			attachPath, fileMaxSize, enctype,
 			new DefaultFileRenamePolicy());
 	
-	request.setAttribute("title", mRequest.getParameter("title"));
-	request.setAttribute("attachName", mRequest.getFilesystemName("attachFile"));
+	Img img = new Img();
 	
+	for(int i = 0; i< 3; i++){
+		if(mRequest.getFilesystemName("attachFile" + i) != null){
+		img.setImgUrl(mRequest.getFilesystemName("attachFile" + i));
+		imgService.joinImg(img);
+		}
+	}
 	}catch(IOException e){
 		e.printStackTrace();
 		throw e;
 	}
 %> 
-<jsp:forward page="01.html"/>
+<jsp:forward page="imgOut.jsp"/>
