@@ -465,11 +465,11 @@ hr {
 <%
 		}
 %>						
-		</form>
 		<button class="order_btn btn btn-primary" type="submit"
 			onClick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list"></span> 쇼핑 더 하러가기
 		</button>
+		</form>
 	</div>
 	<div class=footer>
 		<hr>
