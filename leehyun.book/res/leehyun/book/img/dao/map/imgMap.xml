@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="leehyun.book.img.dao.map.UserMap">
+<mapper namespace="leehyun.book.img.dao.map.ImgMap">
    <select id="getImgs" resultMap="imgMap">
       select img_num, img_url
       from imgs order by img_num

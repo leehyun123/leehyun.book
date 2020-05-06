@@ -160,7 +160,7 @@ hr {
                	이미지없음.
                	</c:when>
                	<c:otherwise>
-					<img src='../../img/<%=%>'>               		
+					<img src='../../img/<%=imgs.get(imgs.size()-1)%>'>               		
                	</c:otherwise>
                </c:choose>
                <input class="img_btn" type="file" name="attachFile0">

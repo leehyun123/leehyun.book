@@ -7,8 +7,10 @@
     <error-code>404</error-code>
     <location>/err/noPageUrl.html</location>
   </error-page>
+  <!-- 
   <error-page>
     <error-code>500</error-code>
     <location>/err/errPage.html</location>
   </error-page>
+   -->
 </web-app>
