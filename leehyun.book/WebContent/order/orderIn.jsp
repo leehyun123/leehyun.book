@@ -3,6 +3,14 @@
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ page import='java.util.*'%>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%
+   request.setCharacterEncoding("utf-8");
+   ImgService imgService = new ImgServiceImpl();
+   Img img = imgService.findImg(1);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,8 +69,6 @@ label, p {
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -287,7 +293,7 @@ th, td {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"> <img src='../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<!-- 메인 검색창 -->
