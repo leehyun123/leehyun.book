@@ -289,7 +289,7 @@ hr {
 				<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> 
 				<input type="number" name="book_price" class="book_price"
 					value="<%=book.getbookPrice()%>" /><label class="book_info">원</label>
-				<button class="cart_btn btn btn-info" type="submit" onClick="alert_update()">수정</button>
+				<button class="cart_btn btn btn-primary" type="submit" onClick="alert_update()">수정</button>
 				<br>
 			</form>
 		</div>

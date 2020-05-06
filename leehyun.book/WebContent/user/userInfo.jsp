@@ -288,7 +288,7 @@ hr {
 						placeholder='현재 비밀번호' maxlength='16'>
 				</div>
 				<div>
-					<button class="sign_btn btn btn-info" type="submit"
+					<button class="sign_btn btn btn-primary" type="submit"
 						formaction="pwCheck.jsp">비밀번호 변경</button>
 				</div>
 			</div>

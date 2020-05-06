@@ -106,7 +106,7 @@ hr {
 	String id = (String)session.getAttribute("sessionID");
 	if(!id.equals("관리자")){
 %>
- 	<c:redirect url="../err/errPage.jsp"/> 
+ 	<c:redirect url="../err/errPage.html"/> 
 <%
 	}
 	OrderService orderService = new OrderServiceImpl();

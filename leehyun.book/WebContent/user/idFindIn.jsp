@@ -166,7 +166,7 @@ hr {
 					</div>
 				</div>
 				<div>
-					<button class="find_btn btn btn-info" type="submit">아이디 찾기</button>
+					<button class="find_btn btn btn-primary" type="submit">아이디 찾기</button>
 				</div>
 			</form>
 		</div>

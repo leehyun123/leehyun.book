@@ -455,7 +455,7 @@ th, td {
 
 if(session.getAttribute("sessionID")==null){
 %>
-	<c:redirect url="../err/errPage.jsp"/>
+	<c:redirect url="../err/errPage.html"/>
 <%
 }
 

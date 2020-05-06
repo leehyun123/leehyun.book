@@ -243,14 +243,14 @@ hr {
 <%
 				if (session.getAttribute("sessionID") == null) {
 %>
-					<button class="cart_btn btn btn-info" type="button" onClick="location.href='../user/loginIn.jsp'">
+					<button class="cart_btn btn btn-primary" type="button" onClick="location.href='../user/loginIn.jsp'">
 						<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
 						담기
 					</button>
 <%
 				} else {
 %>
-					<button class="cart_btn btn btn-info" type="button" onClick="cart(<%=cartCnt%>)">
+					<button class="cart_btn btn btn-primary" type="button" onClick="cart(<%=cartCnt%>)">
 						<span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>장바구니에
 						담기
 					</button>

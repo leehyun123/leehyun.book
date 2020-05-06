@@ -287,7 +287,7 @@ hr {
 %>
 
    <div class="container">
-      <button type="button" class="edit btn btn-info" onclick="alert_banner()">수정 완료</button>
+      <button type="button" class="edit btn btn-primary" onclick="alert_banner()">수정 완료</button>
    </div>
    </form>
    <br>

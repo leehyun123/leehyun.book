@@ -1,5 +1,5 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
-    pageEncoding='UTF-8'%>
+	pageEncoding='UTF-8'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="leehyun.book.user.service.UserService"%>
 <%@ page import="leehyun.book.user.service.UserServiceImpl"%>
@@ -9,20 +9,20 @@
 <%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
 <%@ page import="leehyun.book.img.domain.Img"%>
 <%
-   request.setCharacterEncoding("utf-8");
-   ImgService imgService = new ImgServiceImpl();
-   Img img = imgService.findImg(1);
+	request.setCharacterEncoding("utf-8");
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
 
-	if(session.getAttribute("sessionID")==null){
-%>
-		<c:redirect url="../err/errPage.jsp"/>
-<%
-	}
 	UserService userService = new UserServiceImpl();
 	List<User> users = userService.listUsers();
 	request.setCharacterEncoding("utf-8");
-	
+
 	String userName = request.getParameter("userName");
+	if (userName == null) {
+%>
+<c:redirect url="../err/errPage.html" />
+<%
+	}
 %>
 
 <!DOCTYPE html>
@@ -113,7 +113,8 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"><img src='../img/<%=img.getImgUrl()%>' width="450"></a>
+			<a href='../main.jsp' style="text-decoration: none;"><img
+				src='../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 
@@ -122,7 +123,11 @@ hr {
 		<hr>
 		<div class="blk30"></div>
 		<br>
-		<h3 class="result"><%=userName %> 고객님의 아이디는, <%=request.getAttribute("userId") %> 입니다.</h3>
+		<h3 class="result"><%=userName%>
+			고객님의 아이디는,
+			<%=request.getAttribute("userId")%>
+			입니다.
+		</h3>
 		<br>
 		<div class="blk70"></div>
 		<div class="div_bottom">

@@ -264,7 +264,7 @@ header {
 				</div>
 			</div>
 			<br> <br>
-			<button class="sign_btn btn btn-info" type="submit"
+			<button class="sign_btn btn btn-primary" type="submit"
 			<%if (idCheck == null || idCheck.equals("사용불가")) {%> disabled
             <%} %>>가입하기</button>
 			<br> <br>

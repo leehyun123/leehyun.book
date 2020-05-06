@@ -262,7 +262,7 @@ hr {
 				<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> <input
 					type="number" name="book_price" placeholder="book_price"
 					value="bookPrice" /><label class="book_info">원</label>
-				<button class="cart_btn btn btn-info" type="submit">등록</button>
+				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
 		</div>

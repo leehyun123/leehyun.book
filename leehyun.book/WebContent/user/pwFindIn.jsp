@@ -158,7 +158,7 @@ hr {
 					</div>
 				</div>
 				<div>
-					<button class="find_btn btn btn-info" type="submit">비밀번호
+					<button class="find_btn btn btn-primary" type="submit">비밀번호
 						찾기</button>
 				</div>
 			</form>

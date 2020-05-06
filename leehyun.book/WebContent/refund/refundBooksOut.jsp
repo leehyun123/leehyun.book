@@ -257,7 +257,7 @@ hr {
 			</div>
 		</div>
 		<br>
-		<button class="order_btn btn btn-info" type="submit"
+		<button class="order_btn btn btn-primary" type="submit"
 			onclick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>쇼핑 더 하러가기
 		</button>

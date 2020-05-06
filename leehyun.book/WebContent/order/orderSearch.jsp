@@ -189,7 +189,7 @@ hr {
 			<p style="font-size: x-large; font-weight: bold;">
 				주문내역 검색&nbsp;&nbsp;&nbsp; <input class="search_input"
 					name="search_words" type="text" required style="margin-top: 50px;" placeholder="<%=words%>"/>
-				<button class="search_btn btn btn-info" type="submit">
+				<button class="search_btn btn btn-primary" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
 			</p>

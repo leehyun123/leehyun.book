@@ -11,7 +11,7 @@
 
 if(session.getAttribute("sessionID")==null){
 %>
-	<c:redirect url="../err/errPage.jsp"/>
+	<c:redirect url="../err/errPage.html"/>
 <%
 }
 %>
@@ -154,11 +154,11 @@ hr {
 	</div>
 	<div class="blk30"></div>
 	<div class="container">
-		<button class="order_btn container btn btn-info" type="submit"
+		<button class="order_btn container btn btn-primary" type="submit"
 			onclick="location.href='orderOut.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>주문내역으로 이동
 		</button>
-		<button class="order_btn container btn btn-info" type="submit"
+		<button class="order_btn container btn btn-primary" type="submit"
 			onclick="location.href='../main.jsp'">
 			<span class="glyphicon glyphicon-list">&nbsp;</span>쇼핑 더 하러가기
 		</button>

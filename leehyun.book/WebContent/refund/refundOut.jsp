@@ -195,7 +195,7 @@ th, td {
 			<p style="font-size: x-large; font-weight: bold;">
 				환불내역 검색&nbsp;&nbsp;&nbsp; <input class="search_input" name="search_words" type="text"
 					required style="margin-top: 50px;" />
-				<button class="search_btn btn btn-info" type="submit">
+				<button class="search_btn btn btn-primary" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
 			</p>

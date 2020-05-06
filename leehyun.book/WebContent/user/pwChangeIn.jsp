@@ -110,7 +110,7 @@ hr {
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<c:redirect url="../err/errPage.jsp"/>
+			<c:redirect url="../err/errPage.html"/>
 			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
 			/<a href="loginIn.jsp">마이페이지</a> / <a
 				href="loginIn.jsp">장바구니</a>
@@ -163,7 +163,7 @@ hr {
 					</div>
 				</div>
 				<div>
-					<button class="find_btn btn btn-info" type="submit">비밀번호 변경</button>
+					<button class="find_btn btn btn-primary" type="submit">비밀번호 변경</button>
 				</div>
 			</form>
 		</div>
