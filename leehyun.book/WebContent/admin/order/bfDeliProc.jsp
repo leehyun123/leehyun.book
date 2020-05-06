@@ -6,13 +6,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	OrderService orderService = new OrderServiceImpl();
+	String tmp = request.getParameter("orderNum");
+	
+	String[] tmp2 = tmp.split("n");
 	
 	int orderNum = 0;
 	int deliveryNum = 0;
 	
 	try{
-		orderNum = Integer.parseInt(request.getParameter("orderNum"));
-		deliveryNum = Integer.parseInt(request.getParameter("deliNum"));
+		orderNum = Integer.parseInt(tmp2[0]);
+		deliveryNum = Integer.parseInt(request.getParameter("deliNum"+tmp2[1]));
 	}catch(Exception e){
 		request.setAttribute("msgFail", 1);
 %>

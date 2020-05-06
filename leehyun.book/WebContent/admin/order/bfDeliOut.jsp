@@ -204,7 +204,9 @@ td{
 				<tbody>
 <%
 				if(orders.size() != 0){
+					int i = 0;
 					for(Order order : orders){
+						i++;
 						user = userService.findUser(order.getUserNum());
 						List<OrderBooks> orderbooks = orderBooksService.listOrderBooks(order.getOrderNum());
 						Long isbn = 0L;
@@ -215,11 +217,11 @@ td{
 						}
 %>		
 						<tr>
-							<td><input type="radio" name="orderNum" value="<%=order.getOrderNum() %>" /></td>
+							<td><input type="radio" name="orderNum" value="<%=order.getOrderNum() + "n" + i%>" /></td>
 							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=order.getOrderDate() %></td>
 							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=user.getUserId() %></td>
 							<td onclick="location.href='orderBooksOut.jsp?orderNum=<%=order.getOrderNum() %>'"><%=order.getOrderNum() %></td>
-							<td><input type="text" name="deliNum"/></td>
+							<td><input type="text" name="deliNum<%=i%>" maxlength="9"/></td>
 <%
 							if(cnt == 1){
 %>
