@@ -9,7 +9,7 @@
 <style>
 
 </style>
-<%
+<%  
 	BookService bookService = new BookServiceImpl();
 	List<Book> books = bookService.listBooks();
 
