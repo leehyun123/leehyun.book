@@ -1,10 +1,14 @@
 <%@page import="leehyun.book.user.domain.User"%>
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ page import='java.util.*'%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -46,7 +50,7 @@
 			});
 		});
 	}
-	
+
 	function alert_secede() {
 		swal({
 			title : "탈퇴하시겠습니까?",
@@ -158,31 +162,36 @@ hr {
 </style>
 </head>
 <body>
+<%
+	request.setCharacterEncoding("utf-8");
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
+%>
 	<div class="container">
 		<div class="div_top">
+		
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
-			/
+			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> /
 			<%
 				} else {
 			%>
-			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID}님, 환영합니다 ! &nbsp;&nbsp;/</h5>
 			<a href="logoutProc.jsp">로그아웃</a> /
 			<%
 				}
-			
-			UserService userService = new UserServiceImpl();
-			User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
-			String bday = user.getBirthday().substring(0, 11);
+
+				UserService userService = new UserServiceImpl();
+				User user = userService.findUser((int) session.getAttribute("sessionUserNum"));
+				String bday = user.getBirthday().substring(0, 11);
 			%>
 			<a href="userInfo.jsp">마이페이지</a> / <a href="../order/cartOut.jsp">장바구니</a>
 		</div>
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<!-- 메인 검색창 -->
@@ -219,12 +228,13 @@ hr {
 		<div class='container'>
 			<c:choose>
 				<c:when test='${!empty param.msgId}'>
-					<jsp:include page='msg.jsp'/>
+					<jsp:include page='msg.jsp' />
 				</c:when>
 			</c:choose>
 		</div>
 		<br>
-		<form class="form-horizontal" action="userModProc.jsp" method="post" name="userInfo">
+		<form class="form-horizontal" action="userModProc.jsp" method="post"
+			name="userInfo">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">성명: </label>
 				<div class="col-sm-4">
@@ -272,7 +282,7 @@ hr {
 						value="<%=user.getEmail()%>">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호: </label>
 				<div class="col-sm-4">
@@ -284,7 +294,7 @@ hr {
 						formaction="pwCheck.jsp">비밀번호 변경</button>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호 질문: </label>
 				<div class="col-sm-4">
@@ -292,7 +302,7 @@ hr {
 						value="당신의 보물 제 1호는?" disabled>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-4 control-label">비밀번호 답: </label>
 				<div class="col-sm-4">
@@ -300,7 +310,7 @@ hr {
 						value="<%=user.getAnswer()%>">
 				</div>
 			</div>
-			
+
 		</form>
 	</div>
 	<br>

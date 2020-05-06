@@ -4,7 +4,6 @@
 <%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
 <%@page import="leehyun.book.refund.service.RefundBooksService"%>
 <%@page import="leehyun.book.refund.service.RefundService"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="leehyun.book.order.domain.OrderBooks"%>
 <%@page import="leehyun.book.book.service.BookServiceImpl"%>
 <%@page import="leehyun.book.book.service.BookService"%>
@@ -12,9 +11,12 @@
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
 <%@page import="leehyun.book.order.domain.Order"%>
-<%@page import="java.util.List"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderService"%>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%@ page import="java.util.List, java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -49,6 +51,11 @@
 		});
 	};
 </script>
+<%
+	request.setCharacterEncoding("utf-8");
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
+%>
 <style>
 label, p {
 	font-size: large;
@@ -57,8 +64,6 @@ label, p {
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -160,7 +165,7 @@ td{
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">

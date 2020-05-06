@@ -5,7 +5,9 @@
 <%@ page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@ page import="leehyun.book.user.domain.User"%>
 <%@ page import="java.util.List, java.util.ArrayList"%>
-
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -100,6 +102,12 @@ hr {
 </style>
 </head>
 <body>
+
+<%
+	request.setCharacterEncoding("utf-8");
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
+%>
 	<div class="container">
 		<div class="div_top">
 			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a href="loginIn.jsp">마이페이지</a>
@@ -108,7 +116,7 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 
