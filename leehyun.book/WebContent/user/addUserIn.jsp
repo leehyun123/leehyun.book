@@ -5,10 +5,14 @@
 <%@ page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@ page import="leehyun.book.user.domain.User"%>
 <%@ page import="java.util.List, java.util.ArrayList"%>
-
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
 %>
 
 <!DOCTYPE html>
@@ -52,8 +56,6 @@ label, p {
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -143,7 +145,7 @@ header {
 
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">
