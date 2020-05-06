@@ -1,3 +1,25 @@
+<%@ page language='java' contentType='text/html; charset=UTF-8'
+    pageEncoding='UTF-8'%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%@ page import="java.util.List, java.util.ArrayList"%>
+
+<%
+	request.setCharacterEncoding("utf-8");
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
+	if(img == null){
+		img = new Img();
+		img.setImgNum(1);
+		img.setImgUrl("noImg.png");
+		imgService.joinImg(img);
+	}
+	
+	
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,8 +72,6 @@ h2 {
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -107,7 +127,6 @@ hr {
 
 .logo_img {
 	margin-top: 18px; 
-	border : medium solid #8FC9DB;
 	width: 100%;
 	height: 190px;
 }
@@ -121,23 +140,24 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+		<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">
 		<label class="search_label">로고 관리</label>
 	</div>
 	<div style="height: 20px;"></div>
-
+	<form action = "logoProc.jsp" method="post" enctype="multipart/form-data">
 	<div class="container">
 		<h2>MAIN 로고 이미지</h2>
 		<input class="img_btn" type="file" name="uploadFile">
-		<div class="logo_img">로고 이미지</div>
+		<img src='../../img/<%=img.getImgUrl()%>'>
 	</div>
 	<div class="container" style="margin-top: 30px;">
-		<button type="submit" class="edit btn btn-success"
-			onClick="alert_banner()">수정 완료</button>
+		<button type="submit" class="edit btn btn-success">수정 완료</button>
+	
 	</div>
+	</form>
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

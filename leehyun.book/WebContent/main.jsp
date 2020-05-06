@@ -24,10 +24,8 @@ label, p {
 }
 
 .logoimg {
-	color: #8FC9DB;
 	background-color: white;
 	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -147,6 +145,7 @@ hr {
 	}
 
 	List<Img> imgs = imgService.listImgs();
+	Img img = imgService.findImg(1);
 %>
 <body>
 	<div class="container">
@@ -176,7 +175,7 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='main.jsp' style="text-decoration: none;"><img src='img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">

@@ -178,7 +178,7 @@ hr {
 		<button class="mng_btn" onclick="location.href='book/book.jsp'">도서관리</button>
 		<button class="mng_btn" onclick="location.href='img/imgOut.jsp'">배너
 			관리</button>
-		<button class="mng_btn" onclick="location.href='img/02.html'">로고
+		<button class="mng_btn" onclick="location.href='img/logoOut.jsp'">로고
 			관리</button>
 	</div>
 	<div class=footer>
