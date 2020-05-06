@@ -153,14 +153,16 @@ hr {
      
       <div class="test_background">
          <div class="carousel-inner test_area">
-            
+            <%
+
+            %>
             <div class="item active">
                <c:choose>
                	<c:when test="${empty imgs}">
                	이미지없음.
                	</c:when>
                	<c:otherwise>
-					<img src='../../img/<%=imgs.get(imgs.size()-1)%>'>               		
+					<img src='../../img/<%=imgs.get(imgs.size()-1).getImgUrl()%>'>               		
                	</c:otherwise>
                </c:choose>
                <input class="img_btn" type="file" name="attachFile0">
