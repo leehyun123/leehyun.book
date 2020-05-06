@@ -8,6 +8,13 @@
 	OrderService orderService = new OrderServiceImpl();
 	String tmp = request.getParameter("orderNum");
 	
+	if(tmp == null){
+		request.setAttribute("msgFail", 1);
+%>
+		<jsp:forward page="bfDeliOut.jsp" />
+<%
+	}
+	
 	String[] tmp2 = tmp.split("n");
 	
 	int orderNum = 0;
