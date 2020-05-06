@@ -55,10 +55,12 @@ hr {
 }
 
 .login_btn {
-   width: 300px;
+   width: 400px;
    height: 50px;
    margin: 0 auto;
    display: block;
+   background-color: #2f5597;
+   color: white;
 }
 
 .item_center {
