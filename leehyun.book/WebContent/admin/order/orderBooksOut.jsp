@@ -139,35 +139,32 @@ td{
 
 .div_float {
 	padding: 15px;
-	height: 210px;
 	border: 3px solid #2f5597;
+	height: auto;
+    overflow: hidden;
 }
 
 .d_op {
-	width: 20%;
+	width: 11%;
 	margin: 5px;
 }
 
 .div_half {
-	width: 50%;
-	display: inline;
+	width: 100%;
 	float: left;
 }
 
 .div_half1 {
 	width: 50%;
 	display: inline;
-	float: left;
-	padding-top: 13%;
+	float: right;
+	padding-top: 5%;
 }
 
 .d_op_in {
-	height: 35px;
 	margin: 5px;
-	width: 60%;
-	display: inline;
+    display: inline;
 }
-
 </style>
 </head>
 <%
