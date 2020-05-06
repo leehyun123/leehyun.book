@@ -307,6 +307,8 @@ td{
 			</div>
 		</div>
 	</div>
+	<a href="javascript:history.go(-1)"><button class="rf_btn" style="float: right; margin-right: 7px;">
+		<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</button></a>
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
