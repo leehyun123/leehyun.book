@@ -160,7 +160,7 @@ td{
 	float: right;
 	padding-top: 5%;
 }
-
+ 
 .d_op_in {
 	margin: 5px;
     display: inline;
