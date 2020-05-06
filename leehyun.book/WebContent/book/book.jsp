@@ -5,8 +5,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%@ page import="java.util.List, java.util.ArrayList"%>
+<%
+   request.setCharacterEncoding("utf-8");
+   ImgService imgService = new ImgServiceImpl();
+   Img img = imgService.findImg(1);
+%>
 <title>북적북적</title>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -61,8 +69,6 @@ label, p {
 .logoimg {
 	color: #8FC9DB;
 	background-color: white;
-	font-size: 80px;
-	border: 1px solid black;
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
@@ -205,7 +211,7 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"> 로고이미지</a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">

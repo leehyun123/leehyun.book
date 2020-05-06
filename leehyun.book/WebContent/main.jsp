@@ -209,10 +209,10 @@ hr {
 			</div>
 		</div>
 
-		<a class='left carousel-control' href='#myCarousel' data-slide='prev'>
+		<a class='carousel-control' href='#myCarousel' data-slide='prev'>
 			<span class='glyphicon glyphicon-chevron-left'></span>
-		</a> <a class='right carousel-control' href='#myCarousel'
-			data-slide='next'> <span
+		</a> <a class='carousel-control' href='#myCarousel'
+			data-slide='next' style="margin-left: 85%"> <span
 			class='glyphicon glyphicon-chevron-right'></span>
 		</a>
 	</div>

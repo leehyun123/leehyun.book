@@ -1,6 +1,15 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
     pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%@ page import="java.util.List, java.util.ArrayList"%>
+<%
+   request.setCharacterEncoding("utf-8");
+   ImgService imgService = new ImgServiceImpl();
+   Img img = imgService.findImg(1);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,7 +35,6 @@ hr {
    width: 300px;
    height: 70px;
    color: #8FC9DB;
-   border: 1px solid black;
    text-align: center;
    margin: 0 auto;
 }
@@ -63,7 +71,7 @@ hr {
       <div class="blk70"></div>
       <div class="div_logo">
          <a href='../main.jsp' style="text-decoration: none">
-            <h1>로고 이미지</h1>
+            <img src='../img/<%=img.getImgUrl()%>' width="450">
          </a>
       </div>
       <div class="blk30"></div>
