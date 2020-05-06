@@ -259,6 +259,11 @@ th, td {
 </head>
 <body>
 	<%
+	if(session.getAttribute("sessionID")==null){
+		%>
+			<c:redirect url="../main.jsp"/>
+		<%
+		}
 		List<String> cartArr = (List<String>) session.getAttribute("cart");
 		DecimalFormat df = new DecimalFormat("###,###");
 

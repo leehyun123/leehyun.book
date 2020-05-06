@@ -447,6 +447,13 @@ th, td {
 </style>
 </head>
 <%
+
+if(session.getAttribute("sessionID")==null){
+%>
+	<c:redirect url="../main.jsp"/>
+<%
+}
+
 	int te = 300;	
 
 	BookService bookService = new BookServiceImpl();

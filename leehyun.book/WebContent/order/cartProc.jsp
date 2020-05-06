@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
+if(session.getAttribute("sessionID")==null){
+%>
+	<c:redirect url="../main.jsp"/>
+<%
+}
 	String ISBN = (String)request.getParameter("isbn");
 	Cookie cookie = null;
 	cookie = new Cookie("ISBN" + ISBN, ISBN);

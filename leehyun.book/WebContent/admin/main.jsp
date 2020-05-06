@@ -97,6 +97,11 @@ hr {
 </style>
 </head>
 <%
+	if(session.getAttribute("sessionID")==null){
+%>
+		<c:redirect url="../main.jsp"/>
+<%
+	}
 	OrderService orderService = new OrderServiceImpl();
 	RefundService refundService = new RefundServiceImpl();
 

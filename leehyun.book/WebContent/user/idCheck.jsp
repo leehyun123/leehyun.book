@@ -6,6 +6,11 @@
 <%@ page import="leehyun.book.user.domain.User"%>
 <%@ page import="java.util.List, java.util.ArrayList"%>
 <%
+if(session.getAttribute("sessionID")==null){
+%>
+	<c:redirect url="../addUserIn.jsp"/>
+<%
+}
 	UserService userService = new UserServiceImpl();
 	List<User> users = userService.listUsers();
 	request.setCharacterEncoding("utf-8");
