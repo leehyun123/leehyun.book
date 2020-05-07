@@ -285,7 +285,7 @@ th, td {
 	%>
 	<div class="container">
 		<div class="div_top">
-			<h5 class="welcome">${sessionID}님,환영합니다! &nbsp;&nbsp;/</h5>
+			<h5 class="welcome">${sessionID} 님, 환영합니다 ! &nbsp;&nbsp;/</h5>
 			<a href="../user/logoutProc.jsp">로그아웃</a> / <a
 				href="../user/userInfo.jsp">마이페이지</a> / <a href="cartOut.jsp">장바구니</a>
 		</div>
@@ -324,6 +324,16 @@ th, td {
 		<br>
 		<h1 class="name">결제 정보</h1>
 		<br>
+		<%
+				if (request.getAttribute("conErr") != null) {
+			%>
+			<div class="alert fade in alert-danger">
+				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>입력정보가
+					충분하지 않습니다.</strong>
+			</div>
+			<%
+				}
+			%>
 		<!-- 상품확인 -->
 		<h3>상품 확인</h3>
 
@@ -365,16 +375,6 @@ th, td {
 			</table>
 			<br>
 			<!-- 배송정보 -->
-			<%
-				if (request.getAttribute("conErr") != null) {
-			%>
-			<div class="alert fade in alert-danger">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>입력정보가
-					충분하지 않습니다.</strong>
-			</div>
-			<%
-				}
-			%>
 			<h3>배송 정보</h3>
 			<div class="div_float">
 				<div class="div_half">
