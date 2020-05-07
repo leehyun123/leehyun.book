@@ -52,7 +52,7 @@
 		update books set
 		book_title=#{bookTitle}, isbn=#{isbn}, author=#{author},
 		publisher=#{publisher}, publish_date=#{publishDate},
-		book_price=#{bookPrice}, book_img=#{bookImg)
+		book_price=#{bookPrice}, book_img=#{bookImg}
 		where isbn=#{isbn}
 	</update>
 

@@ -48,10 +48,38 @@
 			closeOnConfirm : false
 		}, function(isConfirm) {
 			if (isConfirm) {
-				location.href = 'delProc.jsp';
+				document.update.action = "delProc.jsp";
+				document.update.submit();
 			}
 		});
 	}
+	
+	function alert_emp(){
+		swal({
+			title : "체크된 항목이 없습니다.",
+			text : "선택해주세요.",
+			type : "warning",
+			showCancelButton : false,
+			confirmButtonText : "예",
+			closeOnConfirm : false
+		});
+	};
+	
+	function ck1(){
+		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+			alert_emp();
+		}else{
+			document.update.submit();
+		}
+	};
+	
+	function ck2(){
+		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+			alert_emp();
+		}else{
+			alert_delete();
+		}
+	};
 </script>
 <style>
 label, p {
@@ -213,9 +241,9 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='add.jsp'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="document.update.submit()">수정</button>
+				onclick="ck1()">수정</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="alert_delete()">삭제</button>
+				onclick="ck2()">삭제</button>
 		</div>
 		<div class="search_bar" style="background-color: white;">
 			<form class="search_form" action="search.jsp">

@@ -22,12 +22,16 @@
 <%
 	if (books != null && books.size() > 0) {
 		pageContext.setAttribute("books", books);
+		int i = 0;
 %>
 <div class="book_item">
 	<c:forEach var="book" items="${books}">
 		<hr>
 		<div class="cb_in">
-			<input class="radio_btn" type="radio" name="cb" value="${book.isbn }" />
+			<input class="radio_btn" type="radio" name="cb" value="${book.isbn}" <%if(i == 0){
+				%>checked<% i++;}%>
+				/>
+			
 		</div>
 		<div class="book_contents">
 			<img class="book_img" src="../../img/book/${book.bookImg}"/>
