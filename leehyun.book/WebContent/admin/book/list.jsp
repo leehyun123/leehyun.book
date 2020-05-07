@@ -10,7 +10,16 @@
 <%
 	BookService bookService = new BookServiceImpl();
 	List<Book> books = bookService.listBooks();
-
+%>	
+<%
+	String id = (String)session.getAttribute("sessionID");
+	if(!id.equals("관리자")){
+%>
+ 	<c:redirect url="../err/errPage.html"/> 
+<%
+	}
+%>		
+<%
 	if (books != null && books.size() > 0) {
 		pageContext.setAttribute("books", books);
 %>

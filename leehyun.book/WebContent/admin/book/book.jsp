@@ -11,6 +11,14 @@
 	ImgService imgService = new ImgServiceImpl();
 	Img img = imgService.findImg(1);
 %>
+<%
+	String id = (String)session.getAttribute("sessionID");
+	if(!id.equals("관리자")){
+%>
+ 	<c:redirect url="../err/errPage.html"/> 
+<%
+	}
+%>	
 
 <!DOCTYPE html>
 <html lang="ko">
