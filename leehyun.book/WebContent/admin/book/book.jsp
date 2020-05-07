@@ -197,6 +197,11 @@ label, p {
 	padding-top: 90px;
 }
 
+.ad_btn_target {
+	background-color: #2f5597;
+	color: white;
+}
+
 .radio_btn {
 	width: 20px;
 	height: 20px;
@@ -236,7 +241,7 @@ hr {
 
 	<div class="container">
 		<div class="tab">
-			<button class="btn btn-default input-lg ad_btn"
+			<button class="btn btn-default input-lg ad_btn ad_btn_target"
 				onclick="location.href='book.jsp'">목록</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='add.jsp'">추가</button>

@@ -32,6 +32,8 @@
 	String bookPrice = mRequest.getParameter("book_price");
 	String bookOutline = mRequest.getParameter("bookOutline");
 	
+	System.out.println(bookOutline);
+	
 	request.setAttribute("cb", bookIsbn);
 	
 	request.setAttribute("bookIsbn", bookIsbn);

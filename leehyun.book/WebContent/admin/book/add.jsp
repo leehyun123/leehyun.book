@@ -124,6 +124,7 @@ label, p {
 
 .ad_btn_target {
 	background-color: #2f5597;
+	color: white;
 }
 
 .book_item {
@@ -301,10 +302,10 @@ hr {
 					<%if(request.getAttribute("publishDate") != null){%>
 					value="<%=(String)request.getAttribute("publishDate")%>" <%}%> /><br>
 				<br> <label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label>
-				<input type="number" name="book_price"
+				<input type="number" name="book_price" class="book_price"
 					<%if(request.getAttribute("bookPrice") != null){%>
 					value="<%=(String)request.getAttribute("bookPrice")%>" <%}%>
-					placeholder="book_price" /> <label class="book_info">원</label>
+					placeholder="book_price" maxlength="7"/> <label class="book_info">원</label>
 				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
