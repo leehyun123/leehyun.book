@@ -30,7 +30,7 @@
 			<input class="radio_btn" type="radio" name="cb" value="${book.isbn }" />
 		</div>
 		<div class="book_contents">
-			<img class="book_img" src="../../img/book/${book.bookImg}.jpg"/>
+			<img class="book_img" src="../../img/book/${book.bookImg}"/>
 			<div class="book_text">
 				<div>
 					<label class="title">${book.bookTitle }</label>

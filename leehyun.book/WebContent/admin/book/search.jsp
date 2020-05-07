@@ -224,7 +224,7 @@ hr {
 			<form class="search_form" action="search.jsp">
 				<label class="search_label"
 					style="font-size: 20px; margin-top: 20px; color: black;">도서검색&nbsp;</label>
-				<input class="search_input" type="text" required />
+				<input class="search_input" type="text" name="search_words" required />
 				<button class="search_btn btn btn-default" type="submit">
 					<span class="glyphicon glyphicon-search">&nbsp;</span>검색
 				</button>
@@ -255,7 +255,7 @@ hr {
 					<input class="radio_btn" type="radio" name="cb" />
 				</div>
 				<div class="book_contents">
-					<img class="book_img" src="../../img/book/${book.bookImg}.jpg"/>
+					<img class="book_img" src="../../img/book/${book.bookImg}"/>
 					<div class="book_text">
 						<div>
 							<label class="title">${book.bookTitle }</label>

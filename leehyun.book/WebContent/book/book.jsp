@@ -226,7 +226,7 @@ hr {
 	<div class="blk30"></div>
 	<div class="container">
 		<div class="book_item">
-			<img class="book_img" src="../img/book/<%=book.getbookImg() %>.jpg" />
+			<img class="book_img" src="../img/book/<%=book.getbookImg() %>" />
 			<label class="title"><%=book.getbookTitle() %></label>
 			<div class="blk30"></div>
 			<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;&nbsp;</label> <label

@@ -39,7 +39,7 @@
 	</select>
 
 	<insert id="addBook" parameterType='string'>
-		insert into users(isbn,
+		insert into books(isbn,
 		book_title, author, publisher, publish_date, book_price,
 		book_img,
 		book_outline)

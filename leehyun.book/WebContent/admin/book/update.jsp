@@ -268,7 +268,7 @@ hr {
 			<form action="updateProc.jsp">
 				<div class="book_img">
 					<img class="book_img"
-						src="../../img/book/<%=book.getbookImg()%>.jpg" /> <input
+						src="../../img/book/<%=book.getbookImg()%>" /> <input
 						class="img_btn" type="file" name="uploadFile">
 				</div>
 				<br> <input name="book_title" class="title"
