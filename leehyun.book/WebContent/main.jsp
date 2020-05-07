@@ -188,7 +188,7 @@ hr {
 		</form>
 	</div>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel"
-		data-interval="false">
+		data-interval="3750">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
