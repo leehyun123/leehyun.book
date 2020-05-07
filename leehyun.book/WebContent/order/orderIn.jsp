@@ -1,3 +1,6 @@
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
@@ -282,6 +285,10 @@ th, td {
 		String baseAddr = (String) request.getAttribute("baseAddr");
 		String detailAddr = (String) request.getAttribute("detailAddr");
 		String receiverTel = (String) request.getAttribute("receiverTel");
+		
+		BookService bookService = new BookServiceImpl();
+		
+		Book book = null;
 	%>
 	<div class="container">
 		<div class="div_top">
@@ -354,13 +361,15 @@ th, td {
 						for (String str : cartArr) {
 							String[] cartItem = (String[]) session.getAttribute(str);
 							if (cartItem.length == 5) {
+								book = bookService.findBook(Long.parseLong(cartItem[0]));
 								int sumPrice = Integer.parseInt(cartItem[3]) * Integer.parseInt(cartItem[4]);
 					%> 
 					<tr>
-						<td class="cen"><div class="book_img">
+						<td class="cen">
+						<img class="book_img" src="../img/book/<%=book.getbookImg()%>"/>
 								<input name="isbn" value="<%=cartItem[0]%>"
 									style="display: none;">
-							</div></td>
+							</td>
 						<td class="cen"><%=cartItem[2]%></td>
 						<td class="cen"><%=cartItem[3]%>
 						<input name="orderCnt" value="<%=cartItem[3]%>" style="display: none;"></td>

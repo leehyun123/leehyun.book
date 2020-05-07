@@ -564,7 +564,7 @@ if(session.getAttribute("sessionID")==null){
 						<tr>
 							<td align="center"><input type="checkbox" name="<%=name%>" class="cb_item"
 								value="<%=book.getisbn()%>" checked></td>
-							<td><div class="book_img">도서 이미지</div></td>
+							<td><img class="book_img" src="../img/book/<%=book.getbookImg() %>" /></td>
 							<td align="center"><%=book.getbookTitle()%><input name="<%=name%>" value="<%=book.getbookImg()%>" style="display: none;">
 							<input name="<%=name%>" value="<%=book.getbookTitle()%>" style="display: none;"></td>
 							<td align="center"><input type="number" name="<%=name%>" value="1"
