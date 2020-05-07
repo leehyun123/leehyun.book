@@ -26,7 +26,14 @@
 	request.setCharacterEncoding("utf-8");
 	ImgService imgService = new ImgServiceImpl();
 	Img img = imgService.findImg(1);
+
+	String id = (String)session.getAttribute("sessionID");
+	if(!id.equals("관리자")){
 %>
+ 	<c:redirect url="../err/errPage.html"/> 
+<%
+	}
+%>	
 <head>
 <title>북적북적</title>
 <meta charset="utf-8">
