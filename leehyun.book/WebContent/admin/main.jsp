@@ -1,3 +1,13 @@
+<%@page import="leehyun.book.refund.domain.RefundBooks"%>
+<%@page import="leehyun.book.refund.service.RefundBooksServiceImpl"%>
+<%@page import="leehyun.book.refund.service.RefundBooksService"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="leehyun.book.book.service.BookServiceImpl"%>
+<%@page import="leehyun.book.book.service.BookService"%>
+<%@page import="leehyun.book.book.domain.Book"%>
+<%@page import="leehyun.book.order.domain.OrderBooks"%>
+<%@page import="leehyun.book.order.service.OrderBooksServiceImpl"%>
+<%@page import="leehyun.book.order.service.OrderBooksService"%>
 <%@page import="leehyun.book.refund.domain.Refund"%>
 <%@page import="leehyun.book.refund.service.RefundServiceImpl"%>
 <%@page import="leehyun.book.refund.service.RefundService"%>
@@ -108,8 +118,12 @@ hr {
     <c:redirect url="../err/errPage.html"/> 
 <%
    }
+   BookService bookService = new BookServiceImpl();
+   OrderBooksService orderBooksService = new OrderBooksServiceImpl();
    OrderService orderService = new OrderServiceImpl();
+   RefundBooksService refundBooksService = new RefundBooksServiceImpl();
    RefundService refundService = new RefundServiceImpl();
+   DecimalFormat df = new DecimalFormat("###,###");
 
    orderService.correctOrderCom();
    int bf = 0;
@@ -128,15 +142,34 @@ hr {
    orders = orderService.listAdminOrders("배송완료");
    if (orders != null)
       com = orders.size();
-   orders = orderService.listAdminOrders("구매확정");
-   if (orders != null)
-      com2 = orders.size();
-   
+     
+   int orderSumPrice = 0;
+   for(Order order: orders){
+	   List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
+	   for(OrderBooks orderBooks: listOrderBooks){
+		   long isbn = orderBooks.getIsbn();
+			Book book = bookService.findBook(isbn);
+			int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
+			orderSumPrice += sumPrice;
+	   }
+	   orderSumPrice += 2500;
+   }
+     
    List<Refund> refunds = refundService.listRefunds();
    
+   int refundSumPrice = 0;
    for(Refund refund : refunds){
       if(refund.getRefundStatus().equals("환불요청"))
-         refundCnt++;         
+         refundCnt++;
+      if(refund.getRefundStatus().equals("환불완료")){
+    	 List<RefundBooks> listRefundBooks = refundBooksService.listRefundBooks(refund.getRefundNum());
+    	 for(RefundBooks refundBooks: listRefundBooks){
+    		 long isbn = refundBooks.getIsbn();
+    		 Book book = bookService.findBook(isbn);
+    		 int sumPrice = book.getbookPrice() * refundBooks.getRefundCnt();
+    		 refundSumPrice += sumPrice;
+    	 }
+      }
    }
 %>
 <body>
@@ -168,10 +201,6 @@ hr {
             onclick="location.href='order/comDeliOut.jsp'">
             배송완료<br><%=com%>
          </div>
-         <div class="order_mng"
-            onclick="location.href='order/com2DeliOut.jsp'">
-            구매확정<br><%=com2%>
-         </div>
          <div class="order_mng alert-danger"
             onclick="location.href='refund/refundOut.jsp'">
             환불 접수<br><%=refundCnt%>
@@ -179,7 +208,7 @@ hr {
       </div>
       <br> <br> <br> <label class="menu_label"> - 매출
          정보</label><br> <label style="font-size: 25px; font-weight: 500;">&nbsp;&nbsp;&nbsp;&nbsp;매출
-         누계 : 17,853,000,000 원</label><br> <br> <br> <br>
+         누계 : <%= df.format(orderSumPrice-refundSumPrice) %> 원</label><br> <br> <br> <br>
       <button class="mng_btn" onclick="location.href='book/book.jsp'">도서관리</button>
       <button class="mng_btn" onclick="location.href='img/imgOut.jsp'">배너
          관리</button>
