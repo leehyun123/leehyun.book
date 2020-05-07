@@ -259,8 +259,7 @@ td{
 		</form>
 		<button class="rf_btn" onclick="alert_order2()">되돌리기</button>
 		<button class="rf_btn" onclick="alert_order()">배송완료 처리</button>
-		<a href="javascript:history.go(-1)"><button class="rf_btn" style="float: right; margin-right: 7px;">
-		<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</button></a>
+		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='ingDeliOut.jsp'">뒤로가기</button>
 	</div>
 	<div class=footer>
 		<hr>
