@@ -167,6 +167,14 @@ td{
 	
 	User user = null;	
 %>
+<%
+	String id = (String)session.getAttribute("sessionID");
+	if(!id.equals("관리자")){
+%>
+ 	<c:redirect url="../err/errPage.html"/> 
+<%
+	}
+%>	
 <body>
 	<div class="container">
 		<div class="div_top">
