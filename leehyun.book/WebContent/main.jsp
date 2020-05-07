@@ -140,7 +140,7 @@ hr {
 			imgtest = new Img();
 			imgtest.setImgNum(i);
 			imgtest.setImgUrl("noImg.png");
-			imgService.joinImg(imgtest);
+			imgService.joinImg(imgtest); 
 		}
 	}
 
