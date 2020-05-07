@@ -76,6 +76,7 @@ label, p {
 	margin-left: 300px;
 	font-size: 30px;
 }
+
 .search_label1 {
 	color: white;
 	margin: 10px;
@@ -83,6 +84,7 @@ label, p {
 	margin-left: 30px;
 	font-size: 30px;
 }
+
 th {
 	text-align: center;
 }
@@ -112,6 +114,7 @@ hr {
 	font-weight: bold;
 	font-size: 28px;
 	float: left;
+	margin-top: 20px;
 }
 
 .search_input {
@@ -133,7 +136,7 @@ hr {
 	background-color: #2f5597;
 }
 
-td{
+td {
 	text-align: center;
 }
 
@@ -141,7 +144,7 @@ td{
 	padding: 15px;
 	border: 3px solid #2f5597;
 	height: auto;
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .d_op {
@@ -160,10 +163,16 @@ td{
 	float: right;
 	padding-top: 5%;
 }
- 
+
 .d_op_in {
 	margin: 5px;
-    display: inline;
+	display: inline;
+}
+
+.rf_btn {
+	margin-top: 15px;
+	width: 120px;
+	height: 50px;
 }
 </style>
 </head>
@@ -176,12 +185,10 @@ td{
 	RefundService refundService = new RefundServiceImpl();
 	RefundBooksService refundBooksService = new RefundBooksServiceImpl();
 	DecimalFormat df = new DecimalFormat("###,###");
-	
+
 	Order order = orderService.findOrder(orderNum);
 	List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(orderNum);
 	List<Refund> refunds = refundService.listOrderRefunds(orderNum);
-
-	
 %>
 <body>
 	<div class="container">
@@ -191,15 +198,20 @@ td{
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
+			<a href='../main.jsp' style="text-decoration: none;"><img
+				src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">
 		<label class="search_label">주문상세내역</label>
 	</div>
 	<div class="container">
-		<span class="order_code">주문번호: <%= orderNum %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: <%=userService.findUser(order.getUserNum()).getUserId() %></span>
-		<br><br><br><br>		
+		<span class="order_code">주문번호: <%=orderNum%>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: <%=userService.findUser(order.getUserNum()).getUserId()%></span>
+		<br>
+		<br>
+		<br>
+		<br>
 		<!-- 상세 주문내역 -->
 		<h3>주문 내역</h3>
 		<table class="table">
@@ -214,30 +226,30 @@ td{
 				</tr>
 			</thead>
 			<tbody>
-<%
-			int sum = 0;
-			for(OrderBooks orderBooks: listOrderBooks){
-				long isbn = orderBooks.getIsbn();
-				Book book = bookService.findBook(isbn);
-				int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
-%>			
+				<%
+					int sum = 0;
+					for (OrderBooks orderBooks : listOrderBooks) {
+						long isbn = orderBooks.getIsbn();
+						Book book = bookService.findBook(isbn);
+						int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
+				%>
 				<tr>
-					<td><%= book.getbookTitle() %></td>
-					<td><%= orderBooks.getOrderCnt() %></td>
-					<td><%= orderBooks.getOrderCnt() - refundBooksService.getCnt(isbn, orderNum)%></td>
-					<td><%= df.format(book.getbookPrice()) %></td>
-					<td><%= df.format(sumPrice) %></td>
-					<td><%= order.getDeliveryStatus() %></td>
+					<td><%=book.getbookTitle()%></td>
+					<td><%=orderBooks.getOrderCnt()%></td>
+					<td><%=orderBooks.getOrderCnt() - refundBooksService.getCnt(isbn, orderNum)%></td>
+					<td><%=df.format(book.getbookPrice())%></td>
+					<td><%=df.format(sumPrice)%></td>
+					<td><%=order.getDeliveryStatus()%></td>
 				</tr>
-<%
-			sum += sumPrice;
-			}
-%>				
+				<%
+					sum += sumPrice;
+					}
+				%>
 			</tbody>
 		</table>
-<%
-		if(refunds.size() != 0){
-%>
+		<%
+			if (refunds.size() != 0) {
+		%>
 		<h3>환불 내역</h3>
 		<table class="table table-hover" style="cursor: pointer;">
 			<thead>
@@ -249,66 +261,72 @@ td{
 				</tr>
 			</thead>
 			<tbody>
-<%
-			for(Refund refund : refunds){
-				List<RefundBooks> refundbooks = refundBooksService.listRefundBooks(refund.getRefundNum());
-				Long isbn = 0L;
-				int cnt = 0;
-				for(RefundBooks rfb : refundbooks){
-					isbn = rfb.getIsbn();
-					cnt += rfb.getRefundCnt();
-				}
-				String title = bookService.findBook(isbn).getbookTitle();
-%>
-				<tr onclick="location.href='../refund/refundBooksOut.jsp?refundNum=<%=refund.getRefundNum()%>'">
-					<td><%=refund.getRefundDate() %></td>
-					<td><%=refund.getRefundNum() %></td>
-<%
-					if( cnt==1 ){
-%>
-					<td><%=title %></td>
-<%
-					}else{
-%>
-					<td><%=title %> 외 <%=cnt-1 %>권</td>
-<%
-					}
-%>					
-					<td><%=refund.getRefundStatus() %></td>
+				<%
+					for (Refund refund : refunds) {
+							List<RefundBooks> refundbooks = refundBooksService.listRefundBooks(refund.getRefundNum());
+							Long isbn = 0L;
+							int cnt = 0;
+							for (RefundBooks rfb : refundbooks) {
+								isbn = rfb.getIsbn();
+								cnt += rfb.getRefundCnt();
+							}
+							String title = bookService.findBook(isbn).getbookTitle();
+				%>
+				<tr
+					onclick="location.href='../refund/refundBooksOut.jsp?refundNum=<%=refund.getRefundNum()%>'">
+					<td><%=refund.getRefundDate()%></td>
+					<td><%=refund.getRefundNum()%></td>
+					<%
+						if (cnt == 1) {
+					%>
+					<td><%=title%></td>
+					<%
+						} else {
+					%>
+					<td><%=title%> 외 <%=cnt - 1%>권</td>
+					<%
+						}
+					%>
+					<td><%=refund.getRefundStatus()%></td>
 				</tr>
-<%
-			}
-%>				
+				<%
+					}
+				%>
 			</tbody>
 		</table>
-<%
-		}
-%>
+		<%
+			}
+		%>
 		<h3>배송 정보</h3>
 		<div class="div_float">
 			<div class="div_half">
 				<label class="d_op">수령인 : </label>
-				<p class="d_op_in"><%= order.getReceiver() %></p>
+				<p class="d_op_in"><%=order.getReceiver()%></p>
 				<br> <label class="d_op">배송지 : </label>
-				<p class="d_op_in"><%= order.getBaseAddr() %></p>
+				<p class="d_op_in"><%=order.getBaseAddr()%></p>
 				<br> <label class="d_op">&nbsp;</label>
-				<p class="d_op_in"><%= order.getDetailAddr() %></p>
+				<p class="d_op_in"><%=order.getDetailAddr()%></p>
 				<br> <label class="d_op">핸드폰번호 : </label>
-				<p class="d_op_in"><%= order.getReceiverTel() %></p>
+				<p class="d_op_in"><%=order.getReceiverTel()%></p>
 				<br> <label class="d_op">요청사항 :</label>
-				<p class="d_op_in"><%= order.getRequest() %></p>
+				<p class="d_op_in"><%=order.getRequest()%></p>
 			</div>
 			<div class="div_half1">
 				<p>
 					배송비(￦): 2,500 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					금액(￦): <%= df.format(sum) %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
-						class="span_bold">총 금액(￦): <%= df.format(sum + 2500)  %>원</span>
+					금액(￦):
+					<%=df.format(sum)%>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="span_bold">총
+						금액(￦): <%=df.format(sum + 2500)%>원
+					</span>
 				</p>
 			</div>
 		</div>
+		<a href="javascript:history.go(-1)"><button class="rf_btn"
+			style="float: right; margin-right: 7px;">
+			<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기
+		</button></a>
 	</div>
-	<a href="javascript:history.go(-1)"><button class="rf_btn" style="float: right; margin-right: 7px;">
-		<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</button></a>
 	<div class=footer>
 		<hr>
 		<p class='footertext'>
