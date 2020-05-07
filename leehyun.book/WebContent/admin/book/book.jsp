@@ -12,13 +12,13 @@
 	Img img = imgService.findImg(1);
 %>
 <%
-	String id = (String)session.getAttribute("sessionID");
-	if(!id.equals("관리자")){
+	String id = (String) session.getAttribute("sessionID");
+	if (!id.equals("관리자")) {
 %>
- 	<c:redirect url="../err/errPage.html"/> 
+<c:redirect url="../err/errPage.html" />
 <%
 	}
-%>	
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -46,22 +46,40 @@
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
-		}, function() {
-			swal({
-				title : "삭제 성공",
-				text : "메인으로 이동하시겠습니까?",
-				type : "success",
-				showCancelButton : true,
-				cancelButtonText : "아니오",
-				confirmButtonText : "예",
-				closeOnConfirm : true
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = '../main.jsp';
-				}
-			});
+		}, function(isConfirm) {
+			if (isConfirm) {
+				document.update.action = "delProc.jsp";
+				document.update.submit();
+			}
 		});
 	}
+	
+	function alert_emp(){
+		swal({
+			title : "체크된 항목이 없습니다.",
+			text : "선택해주세요.",
+			type : "warning",
+			showCancelButton : false,
+			confirmButtonText : "예",
+			closeOnConfirm : false
+		});
+	};
+	
+	function ck1(){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
+			alert_emp();
+		}else{
+			document.update.submit();
+		}
+	};
+	
+	function ck2(){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
+			alert_emp();
+		}else{
+			alert_delete();
+		}
+	};
 </script>
 <style>
 label, p {
@@ -208,7 +226,8 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
+			<a href='../main.jsp' style="text-decoration: none;"><img
+				src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">
@@ -222,9 +241,9 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='add.jsp'">추가</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="document.update.submit()">수정</button>
+				onclick="ck1()">수정</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="alert_delete()">삭제</button>
+				onclick="ck2()">삭제</button>
 		</div>
 		<div class="search_bar" style="background-color: white;">
 			<form class="search_form" action="search.jsp">

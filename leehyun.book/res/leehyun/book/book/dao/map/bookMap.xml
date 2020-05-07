@@ -38,7 +38,7 @@
 		from books where isbn=#{isbn}
 	</select>
 
-	<insert id="addBook" parameterType='string'>
+	<insert id="addBook" parameterType="string">
 		insert into books(isbn,
 		book_title, author, publisher, publish_date, book_price,
 		book_img,
@@ -48,17 +48,17 @@
 		#{bookPrice}, #{bookImg}, #{bookOutline})
 	</insert>
 
-	<update id="updateBook" parameterType='book'>
+	<update id="updateBook" parameterType="book">
 		update books set
 		book_title=#{bookTitle}, isbn=#{isbn}, author=#{author},
 		publisher=#{publisher}, publish_date=#{publishDate},
-		book_price=#{bookPrice}
+		book_price=#{bookPrice}, book_img=#{bookImg}
 		where isbn=#{isbn}
 	</update>
 
 	<delete id="delBook" parameterType="int">
-		delete users where
-		user_num=#{user_num}
+		delete books where
+		isbn=#{isbn}
 	</delete>
 
 	<resultMap id="bookMap" type="book">

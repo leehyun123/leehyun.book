@@ -13,6 +13,7 @@
 <%
    request.setCharacterEncoding("utf-8");
    ImgService imgService = new ImgServiceImpl();
+   List<Img> imgs = imgService.listImgs();
    Img img = imgService.findImg(1);
 %>
 <!DOCTYPE html>
@@ -175,25 +176,34 @@
 			</button>
 		</form>
 	</div>
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel"
+		data-interval="3750">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 		</ol>
+
 		<div class="test_background">
 			<div class="carousel-inner test_area">
 				<div class="item active">
-					<p>배너 이미지1</p>
+					<img src='../img/<%=imgs.get(1).getImgUrl()%>'>
 				</div>
 				<div class="item">
-					<p>배너 이미지2</p>
+					<img src='../img/<%=imgs.get(2).getImgUrl()%>'>
 				</div>
 				<div class="item">
-					<p>배너 이미지3</p>
+					<img src='../img/<%=imgs.get(3).getImgUrl()%>'>
 				</div>
 			</div>
 		</div>
+
+		<a class='carousel-control' href='#myCarousel' data-slide='prev'>
+			<span class='glyphicon glyphicon-chevron-left'></span>
+		</a> <a class='carousel-control' href='#myCarousel'
+			data-slide='next' style="margin-left: 85%"> <span
+			class='glyphicon glyphicon-chevron-right'></span>
+		</a>
 	</div>
 	<%
 		String words = request.getParameter("search_words");

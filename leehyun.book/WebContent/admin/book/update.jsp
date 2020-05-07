@@ -31,46 +31,30 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	/* function alert_modi() {
-		swal({
-			title : "수정하시겠습니까?",
-			text : "도서 목록을 수정합니다.",
-			type : "warning",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function() {
-			swal({
-				title : "수정 성공",
-				text : "메인으로 이동하시겠습니까?",
-				type : "success",
-				showCancelButton : true,
-				cancelButtonText : "아니오",
-				confirmButtonText : "예",
-				closeOnConfirm : true
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = '../main.jsp';
-				}
-			});
-		});
-	} */
-	function alert_update() {
-		swal({
-			title : "수정하시겠습니까?",
-			text : "도서 목록을 수정합니다.",
-			type : "warning",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function(isConfirm) {
-			if (isConfirm) {
-				location.href = 'updateProc.jsp';
+	$(document).ready(function() {
+		$("#bookimgin").on("change", miri);
+	});
+
+	function miri(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if (!f.type.match("image.*")) {
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				$("#bookimgin").val("");
+				return;
 			}
+
+			var sel_file = f;
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#bookimg").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
 		});
-	}
+	};
 </script>
 <style>
 label, p {
@@ -158,9 +142,6 @@ label, p {
 	width: 330px;
 	height: 350px;
 	margin: 0px;
-	border: medium solid #2f5597;
-	text-align: center;
-	font-size: 25px;
 }
 
 .img_btn {
@@ -248,7 +229,7 @@ hr {
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='book.jsp'">목록</button>
 			<button class="btn btn-default input-lg ad_btn"
-				onclick="location.href='02.html'">추가</button>
+				onclick="location.href='add.jsp'">추가</button>
 			<button class="btn btn-default input-lg ad_btn ad_btn_target"
 				onclick="location.href='#'" disabled>수정</button>
 			<button class="btn btn-default input-lg ad_btn"
@@ -257,25 +238,63 @@ hr {
 	</div>
 	
 	<!-- 도서 수정 -->
-	<%
-		String isbnNum = request.getParameter("cb");
-
+	<%	
+		String isbnNum = "";
+		if(request.getAttribute("cb") == null){
+			 isbnNum = request.getParameter("cb");
+		}else{
+			isbnNum = (String)request.getAttribute("cb");
+		}
 		BookService bookService = new BookServiceImpl();
 		Book book = bookService.findBook(Long.parseLong(isbnNum));
 	%>
+	<form action="updateProc.jsp" method="post" enctype="multipart/form-data">
+			<%
+			if(request.getAttribute("fail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>모든
+				항목을 입력해주세요</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("suc") != null){
+		%>
+		<div class="alert fade in alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>수정
+				성공</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("isbnfail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>실패했습니다
+				isbn을 확인해주세요</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("numfail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>실패했습니다
+				숫자를 확인해주세요</strong>
+		</div>
+		<%
+			}
+		%>
 	<div class="container" style="height: 420px;">
 		<div class="book_item">
-			<form action="updateProc.jsp">
+			
 				<div class="book_img">
-					<img class="book_img"
-						src="../../img/book/<%=book.getbookImg()%>" /> <input
-						class="img_btn" type="file" name="uploadFile">
+					<img id="bookimg" class="book_img" src="../../img/book/<%=book.getbookImg()%>" />
+					<input id="bookimgin" class="img_btn" type="file" name="uploadFile">
 				</div>
 				<br> <input name="book_title" class="title"
 					value="<%=book.getbookTitle()%>" />
 				<div class="blk30"></div>
 				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
-					name="book_ISBN" class="book_info" value="<%=book.getisbn()%>" /><br>
+					name="book_ISBN" class="book_info" value="<%=book.getisbn()%>" readonly/><br>
 				<br> <label class="book_info">저자명&nbsp;</label> <input
 					type="text" name="book_writer" class="book_info"
 					value="<%=book.getauthor()%>" /><br> <br> <label
@@ -291,10 +310,16 @@ hr {
 					value="<%=book.getbookPrice()%>" /><label class="book_info">원</label>
 				<button class="cart_btn btn btn-primary" type="submit" onClick="alert_update()">수정</button>
 				<br>
-			</form>
 		</div>
 	</div>
-
+	<div class="container">
+			<div class="blk30"></div>
+			<hr>
+			<h3 style="margin-left: 40px;">소개</h3>
+			<br>
+			<textarea class="content" name="bookOutline"><%=book.getbookOutline()%></textarea>
+		</div>
+</form>
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

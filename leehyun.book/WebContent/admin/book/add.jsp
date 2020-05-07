@@ -35,31 +35,30 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	function alert_add() {
-		swal({
-			title : "추가하시겠습니까?",
-			text : "도서 목록을 추가합니다.",
-			type : "warning",
-			showCancelButton : true,
-			cancelButtonText : "아니오",
-			confirmButtonText : "예",
-			closeOnConfirm : false
-		}, function() {
-			swal({
-				title : "추가 성공",
-				text : "메인으로 이동하시겠습니까?",
-				type : "success",
-				showCancelButton : true,
-				cancelButtonText : "아니오",
-				confirmButtonText : "예",
-				closeOnConfirm : true
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = '../main.jsp';
-				}
-			});
+	$(document).ready(function() {
+		$("#bookimgin").on("change", miri);
+	});
+
+	function miri(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if (!f.type.match("image.*")) {
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				$("#bookimgin").val("");
+				return;
+			}
+
+			var sel_file = f;
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#bookimg").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
 		});
-	}
+	};
 </script>
 <style>
 label, p {
@@ -147,9 +146,6 @@ label, p {
 	width: 330px;
 	height: 350px;
 	margin: 0px;
-	border: medium solid #2f5597;
-	text-align: center;
-	font-size: 25px;
 }
 
 .img_btn {
@@ -249,73 +245,74 @@ hr {
 
 	<!-- 도서 등록 -->
 	<form action="addProc.jsp" method="post" enctype="multipart/form-data">
-<%
-				if (request.getAttribute("fail") != null) {
-%>
-			<div class="alert fade in alert-danger">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>모든 항목을 입력해주세요</strong>
-			</div>
-<%
-				}
-				if (request.getAttribute("suc") != null) {
-%>
-			<div class="alert fade in alert-success">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>추가 성공</strong>
-			</div>
-<%
-				}
-				if (request.getAttribute("isbnfail") != null) {
-%>
-			<div class="alert fade in alert-danger">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>실패했습니다 isbn을 확인해주세요</strong>
-			</div>
-<%
-				}
-				if (request.getAttribute("numfail") != null) {
-%>
-			<div class="alert fade in alert-danger">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>실패했습니다 숫자를 확인해주세요</strong>
-			</div>
-<%
-				}
-%>
+		<%
+			if(request.getAttribute("fail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>모든
+				항목을 입력해주세요</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("suc") != null){
+		%>
+		<div class="alert fade in alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>추가
+				성공</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("isbnfail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>실패했습니다
+				isbn을 확인해주세요</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("numfail") != null){
+		%>
+		<div class="alert fade in alert-danger">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>실패했습니다
+				숫자를 확인해주세요</strong>
+		</div>
+		<%
+			}
+		%>
 		<div class="container" style="height: 420px;">
 			<div class="book_item">
 				<div class="book_img">
-					<div class="book_img2">도서 이미지</div>
-					<input class="img_btn" type="file" name="uploadFile" />
+					<img class="book_img2" id="bookimg" /> <input id="bookimgin"
+						class="img_btn" type="file" name="uploadFile" />
 				</div>
-				<br>
-				<input name="book_title" class="title"
+				<br> <input name="book_title" class="title"
 					<%if(request.getAttribute("bookTitle") != null){%>
 					value="<%=(String)request.getAttribute("bookTitle")%>" <%}%>
 					placeholder=" bookTitle" />
 				<div class="blk30"></div>
-				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label>
-				<input name="book_ISBN" class="book_info" placeholder="isbn" 
+				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
+					name="book_ISBN" class="book_info" placeholder="isbn"
 					<%if(request.getAttribute("bookIsbn") != null){%>
-					value="<%=(String)request.getAttribute("bookIsbn")%>" <%}%> /><br><br>
-				<label class="book_info">저자명&nbsp;</label>
-				<input type="text" name="book_writer" class="book_info" placeholder="author"
+					value="<%=(String)request.getAttribute("bookIsbn")%>" <%}%> /><br>
+				<br> <label class="book_info">저자명&nbsp;</label> <input
+					type="text" name="book_writer" class="book_info"
+					placeholder="author"
 					<%if(request.getAttribute("author") != null){%>
-					value="<%=(String)request.getAttribute("author")%>" <%}%> /><br><br>
-				<label class="book_info">출판사&nbsp;</label>
-				<input type="text" name="book_pub" class="book_info"
+					value="<%=(String)request.getAttribute("author")%>" <%}%> /><br>
+				<br> <label class="book_info">출판사&nbsp;</label> <input
+					type="text" name="book_pub" class="book_info"
 					<%if(request.getAttribute("publisher") != null){%>
-					value="<%=(String)request.getAttribute("publisher")%>" <%}%> placeholder="publisher" /><br><br>
-				<label class="book_info">출판일&nbsp;</label>
-				<input type="date" name="book_pub_date" class="book_info"
+					value="<%=(String)request.getAttribute("publisher")%>" <%}%>
+					placeholder="publisher" /><br>
+				<br> <label class="book_info">출판일&nbsp;</label> <input
+					type="date" name="book_pub_date" class="book_info"
 					<%if(request.getAttribute("publishDate") != null){%>
-					value="<%=(String)request.getAttribute("publishDate")%>" <%}%>/><br><br>
-				<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label>
+					value="<%=(String)request.getAttribute("publishDate")%>" <%}%> /><br>
+				<br> <label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label>
 				<input type="number" name="book_price"
 					<%if(request.getAttribute("bookPrice") != null){%>
-					value="<%=(String)request.getAttribute("bookPrice")%>" <%}%> placeholder="book_price" />
-				<label class="book_info">원</label>
+					value="<%=(String)request.getAttribute("bookPrice")%>" <%}%>
+					placeholder="book_price" /> <label class="book_info">원</label>
 				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
@@ -325,7 +322,14 @@ hr {
 			<hr>
 			<h3 style="margin-left: 40px;">소개</h3>
 			<br>
-			<textarea class="content" name="bookOutline"><%if(request.getAttribute("bookOutline") != null){%><%=(String)request.getAttribute("bookOutline")%><%}%></textarea>
+			<textarea class="content" name="bookOutline">
+				<%
+					if(request.getAttribute("bookOutline") != null){
+				%><%=(String)request.getAttribute("bookOutline")%>
+				<%
+					}
+				%>
+			</textarea>
 		</div>
 	</form>
 	<div class=footer>
