@@ -12,13 +12,13 @@
 	Img img = imgService.findImg(1);
 %>
 <%
-	String id = (String)session.getAttribute("sessionID");
-	if(!id.equals("관리자")){
+	String id = (String) session.getAttribute("sessionID");
+	if (!id.equals("관리자")) {
 %>
- 	<c:redirect url="../err/errPage.html"/> 
+<c:redirect url="../err/errPage.html" />
 <%
 	}
-%>	
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -46,20 +46,10 @@
 			cancelButtonText : "아니오",
 			confirmButtonText : "예",
 			closeOnConfirm : false
-		}, function() {
-			swal({
-				title : "삭제 성공",
-				text : "메인으로 이동하시겠습니까?",
-				type : "success",
-				showCancelButton : true,
-				cancelButtonText : "아니오",
-				confirmButtonText : "예",
-				closeOnConfirm : true
-			}, function(isConfirm) {
-				if (isConfirm) {
-					location.href = '../main.jsp';
-				}
-			});
+		}, function(isConfirm) {
+			if (isConfirm) {
+				location.href = 'delProc.jsp';
+			}
 		});
 	}
 </script>
@@ -208,7 +198,8 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
+			<a href='../main.jsp' style="text-decoration: none;"><img
+				src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">
