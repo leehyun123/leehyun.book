@@ -9,8 +9,6 @@
 
 	BookService bookService = new BookServiceImpl();
 	bookService.secede(Integer.parseInt(isbnNum));
-	
-	System.out.println(isbnNum);
 %>
 
 <jsp:forward page="book.jsp" />
