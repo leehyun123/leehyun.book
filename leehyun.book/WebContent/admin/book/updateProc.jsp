@@ -89,6 +89,6 @@
 		<jsp:forward page="update.jsp" />
 <%
 	}
-	request.setAttribute("suc", 1);
+	request.setAttribute("updatesuc", 1);
 %>
-<jsp:forward page="update.jsp" />
+<jsp:forward page="book.jsp" />

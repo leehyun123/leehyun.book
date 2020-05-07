@@ -10,6 +10,8 @@
 
 	BookService bookService = new BookServiceImpl();
 	bookService.secede(Integer.parseInt(isbnNum));
+	
+	request.setAttribute("delsuc", 1);
 %>
 
 <jsp:forward page="book.jsp" />

@@ -53,8 +53,8 @@
 			}
 		});
 	}
-	
-	function alert_emp(){
+
+	function alert_emp() {
 		swal({
 			title : "체크된 항목이 없습니다.",
 			text : "선택해주세요.",
@@ -64,19 +64,19 @@
 			closeOnConfirm : false
 		});
 	};
-	
-	function ck1(){
-		if($("input:radio[class=radio_btn]:checked").length == 0){
+
+	function ck1() {
+		if ($("input:radio[class=radio_btn]:checked").length == 0) {
 			alert_emp();
-		}else{
+		} else {
 			document.update.submit();
 		}
 	};
-	
-	function ck2(){
-		if($("input:radio[class=radio_btn]:checked").length == 0){
+
+	function ck2() {
+		if ($("input:radio[class=radio_btn]:checked").length == 0) {
 			alert_emp();
-		}else{
+		} else {
 			alert_delete();
 		}
 	};
@@ -240,10 +240,8 @@ hr {
 				onclick="location.href='book.jsp'">목록</button>
 			<button class="btn btn-default input-lg ad_btn"
 				onclick="location.href='add.jsp'">추가</button>
-			<button class="btn btn-default input-lg ad_btn"
-				onclick="ck1()">수정</button>
-			<button class="btn btn-default input-lg ad_btn"
-				onclick="ck2()">삭제</button>
+			<button class="btn btn-default input-lg ad_btn" onclick="ck1()">수정</button>
+			<button class="btn btn-default input-lg ad_btn" onclick="ck2()">삭제</button>
 		</div>
 		<div class="search_bar" style="background-color: white;">
 			<form class="search_form" action="search.jsp">
@@ -255,7 +253,32 @@ hr {
 				</button>
 			</form>
 		</div>
-
+		<%
+			if(request.getAttribute("addsuc") != null){
+		%>
+		<div class="alert fade in alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>추가
+				성공</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("updatesuc") != null){
+		%>
+		<div class="alert fade in alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>수정
+				성공</strong>
+		</div>
+		<%
+			}
+			if(request.getAttribute("delsuc") != null){
+		%>
+		<div class="alert fade in alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>삭제
+				성공</strong>
+		</div>
+		<%
+			}
+		%>
 		<!-- 도서 목록 -->
 		<form action="update.jsp" name="update">
 			<div>

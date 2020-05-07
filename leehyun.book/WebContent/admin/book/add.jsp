@@ -254,14 +254,6 @@ hr {
 		</div>
 		<%
 			}
-			if(request.getAttribute("suc") != null){
-		%>
-		<div class="alert fade in alert-success">
-			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>추가
-				성공</strong>
-		</div>
-		<%
-			}
 			if(request.getAttribute("isbnfail") != null){
 		%>
 		<div class="alert fade in alert-danger">
@@ -322,14 +314,7 @@ hr {
 			<hr>
 			<h3 style="margin-left: 40px;">소개</h3>
 			<br>
-			<textarea class="content" name="bookOutline">
-				<%
-					if(request.getAttribute("bookOutline") != null){
-				%><%=(String)request.getAttribute("bookOutline")%>
-				<%
-					}
-				%>
-			</textarea>
+			<textarea class="content" name="bookOutline"><%if(request.getAttribute("bookOutline") != null){%><%=(String)request.getAttribute("bookOutline")%><%}%></textarea>
 		</div>
 	</form>
 	<div class=footer>

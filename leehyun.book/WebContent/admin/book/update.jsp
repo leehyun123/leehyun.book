@@ -258,14 +258,6 @@ hr {
 		</div>
 		<%
 			}
-			if(request.getAttribute("suc") != null){
-		%>
-		<div class="alert fade in alert-success">
-			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>수정
-				성공</strong>
-		</div>
-		<%
-			}
 			if(request.getAttribute("isbnfail") != null){
 		%>
 		<div class="alert fade in alert-danger">

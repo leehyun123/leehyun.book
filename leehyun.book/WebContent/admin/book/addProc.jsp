@@ -84,6 +84,6 @@
 <%
 	}
 
-	request.setAttribute("suc", 1);
+	request.setAttribute("addsuc", 1);
 %>
-<jsp:forward page="add.jsp" />
+<jsp:forward page="book.jsp" />
