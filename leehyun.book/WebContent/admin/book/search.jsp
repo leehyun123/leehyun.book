@@ -60,7 +60,7 @@
 	};
 	
 	function ck1(){
-		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
 			alert_emp();
 		}else{
 			document.update.submit();
@@ -68,7 +68,7 @@
 	};
 	
 	function ck2(){
-		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
 			alert_emp();
 		}else{
 			alert_delete();
@@ -220,7 +220,7 @@ hr {
 	</div>
 	<div class="div_logo">
 		<div class="logoimg">
-			<a href='../main.html' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
+			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
 	<div class="search_bar">

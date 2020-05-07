@@ -28,10 +28,7 @@
 	<c:forEach var="book" items="${books}">
 		<hr>
 		<div class="cb_in">
-			<input class="radio_btn" type="radio" name="cb" value="${book.isbn}" <%if(i == 0){
-				%>checked<% i++;}%>
-				/>
-			
+			<input class="radio_btn" type="radio" name="cb" value="${book.isbn}"/>
 		</div>
 		<div class="book_contents">
 			<img class="book_img" src="../../img/book/${book.bookImg}"/>

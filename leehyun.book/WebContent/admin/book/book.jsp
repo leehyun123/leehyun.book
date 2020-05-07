@@ -66,7 +66,7 @@
 	};
 	
 	function ck1(){
-		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
 			alert_emp();
 		}else{
 			document.update.submit();
@@ -74,7 +74,7 @@
 	};
 	
 	function ck2(){
-		if($("input:checkbox[class=radio_btn]:checked").length == 0){
+		if($("input:radio[class=radio_btn]:checked").length == 0){
 			alert_emp();
 		}else{
 			alert_delete();
