@@ -6,7 +6,7 @@
 <%@page import="leehyun.book.user.domain.User"%>
 <%@page import="leehyun.book.user.service.UserServiceImpl"%>
 <%@page import="leehyun.book.user.service.UserService"%>
-<%@page import="leehyun.book.order.domain.Order"%>%>
+<%@page import="leehyun.book.order.domain.Order"%>
 <%@page import="leehyun.book.order.service.OrderServiceImpl"%>
 <%@page import="leehyun.book.order.service.OrderService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -274,8 +274,7 @@ td{
 		</form>
 		<button class="rf_btn" onclick="alert_order2()">되돌리기</button>
 		<button class="rf_btn" onclick="alert_order()">배송완료 처리</button>
-		<a href="javascript:history.go(-1)"><button class="rf_btn" style="float: right; margin-right: 7px;">
-		<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</button></a>
+		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='../main.jsp'">메인으로</button>
 	</div>
 	<div class=footer>
 		<hr>

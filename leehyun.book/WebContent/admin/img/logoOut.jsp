@@ -197,10 +197,9 @@ hr {
 		%>
 		<div class="container" style="margin-top: 30px;">
 			<button type="submit" class="edit btn btn-primary">수정 완료</button>
-		<a href="javascript:history.go(-1)"><button type="button" class="edit btn btn-degault"
-			style="float: right; margin-right: 7px; border: 1px solid gray;">
-			<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기
-		</button></a>
+		<button type="button" class="edit btn btn-degault"
+			style="float: right; margin-right: 7px; border: 1px solid gray;" onclick="location.href='../main.jsp'">
+			메인으로</button>
 		</div>
 	</form>
 	<div class=footer>
