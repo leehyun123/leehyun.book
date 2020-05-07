@@ -308,7 +308,7 @@ hr {
 				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
-		</div>
+		</div> 
 		<div class="container">
 			<div class="blk30"></div>
 			<hr>
