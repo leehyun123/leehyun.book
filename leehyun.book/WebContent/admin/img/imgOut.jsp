@@ -230,6 +230,23 @@ hr {
       <label class="search_label">배너 관리</label>
    </div>
    <div class="blk30"></div>
+   <%
+				if (request.getAttribute("noc") != null) {
+%>
+			<div class="alert fade in alert-danger container">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>변경 내용이 없습니다!</strong>
+			</div>
+<%
+				}else if (request.getAttribute("suc") != null) {
+%>
+			<div class="alert fade in alert-success container">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>변경 성공!</strong>
+			</div>
+<%
+				}
+%>
    <form name="img" action = "imgProc.jsp" method="post" enctype="multipart/form-data">
    <div id="myCarousel" class="carousel slide" data-ride="carousel"  data-interval="false">
       <ol class="carousel-indicators">
@@ -269,23 +286,6 @@ hr {
    </div>
    
    <div class="blk30"></div>
-<%
-				if (request.getAttribute("noc") != null) {
-%>
-			<div class="alert fade in alert-info">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>변경 내용이 없습니다!</strong>
-			</div>
-<%
-				}else if (request.getAttribute("suc") != null) {
-%>
-			<div class="alert fade in alert-success">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>변경 성공!</strong>
-			</div>
-<%
-				}
-%>
 
    <div class="container">
       <button type="button" class="edit btn btn-primary" onclick="alert_banner()">수정 완료</button>

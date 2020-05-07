@@ -174,14 +174,10 @@ hr {
 	<form action="logoProc.jsp" method="post" enctype="multipart/form-data"
 		name="img">
 		<div class="container">
-			<h2>MAIN 로고 이미지</h2>
-			<input id="imgin" class="img_btn" type="file" name="uploadFile">
-			<img id="img" src='../../img/<%=img.getImgUrl()%>'>
-		</div>
 		<%
 			if (request.getAttribute("noc") != null) {
 		%>
-		<div class="alert fade in alert-info">
+		<div class="alert fade in alert-danger">
 			<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>변경
 				내용이 없습니다!</strong>
 		</div>
@@ -195,6 +191,10 @@ hr {
 		<%
 			}
 		%>
+			<h2>MAIN 로고 이미지</h2>
+			<input id="imgin" class="img_btn" type="file" name="uploadFile">
+			<img id="img" src='../../img/<%=img.getImgUrl()%>'>
+		</div>
 		<div class="container" style="margin-top: 30px;">
 			<button type="submit" class="edit btn btn-primary">수정 완료</button>
 		<button type="button" class="edit btn btn-degault"
