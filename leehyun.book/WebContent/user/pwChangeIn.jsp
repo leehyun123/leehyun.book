@@ -110,7 +110,6 @@ hr {
 			<%
 				if (session.getAttribute("sessionID") == null) {
 			%>
-			<c:redirect url="../err/errPage.html"/>
 			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a>
 			/<a href="loginIn.jsp">마이페이지</a> / <a
 				href="loginIn.jsp">장바구니</a>

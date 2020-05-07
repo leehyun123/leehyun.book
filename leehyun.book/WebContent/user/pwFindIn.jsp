@@ -13,6 +13,8 @@
 	request.setCharacterEncoding("utf-8");
 	UserService userService = new UserServiceImpl();
 	List<User> users = userService.listUsers();
+	ImgService imgService = new ImgServiceImpl();
+	Img img = imgService.findImg(1);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -102,12 +104,6 @@ hr {
 </style>
 </head>
 <body>
-
-<%
-	request.setCharacterEncoding("utf-8");
-	ImgService imgService = new ImgServiceImpl();
-	Img img = imgService.findImg(1);
-%>
 	<div class="container">
 		<div class="div_top">
 			<a href="loginIn.jsp">로그인</a> / <a href="addUserIn.jsp">회원가입</a> / <a href="loginIn.jsp">마이페이지</a>

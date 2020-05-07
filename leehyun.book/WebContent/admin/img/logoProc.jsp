@@ -11,6 +11,9 @@
 <%
 	ImgService imgService = new ImgServiceImpl();
 
+	request.setAttribute("suc", null);
+	request.setAttribute("noc", null);
+
 	String attachPath = "/img";
 	int fileMaxSize = 1024 * 1024 * 5;
 	String enctype = "utf-8";
@@ -34,7 +37,9 @@
 		img.setImgNum(1);
 		img.setImgUrl(mRequest.getFilesystemName("uploadFile"));
 		imgService.correctImg(img);
-	}
+		request.setAttribute("suc", 1);
+	}else
+		request.setAttribute("noc", 1);
 	}catch(IOException e){
 		e.printStackTrace();
 		throw e;
