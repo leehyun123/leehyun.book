@@ -166,8 +166,7 @@ td{
 	List<Order> orders = orderService.listAdminOrders("배송중");
 	
 	User user = null;	
-%>
-<%
+
 	String id = (String)session.getAttribute("sessionID");
 	if(!id.equals("관리자")){
 %>
