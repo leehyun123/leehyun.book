@@ -115,7 +115,7 @@ hr {
    String id = (String)session.getAttribute("sessionID");
    if(!id.equals("관리자")){
 %>
-    <c:redirect url="../err/errPage.html"/> 
+    <c:redirect url="../err/errPage.jsp"/> 
 <%
    }
    BookService bookService = new BookServiceImpl();
@@ -152,6 +152,7 @@ hr {
 			int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
 			orderSumPrice += sumPrice;
 	   }
+	   orderSumPrice += 2500;
    }
      
    List<Refund> refunds = refundService.listRefunds();

@@ -267,7 +267,7 @@ th, td {
 	<%
 	if(session.getAttribute("sessionID")==null){
 		%>
-			<c:redirect url="../err/errPage.html"/>
+			<c:redirect url="../err/errPage.jsp"/>
 		<%
 		}
 		List<String> cartArr = (List<String>) session.getAttribute("cart");

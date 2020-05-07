@@ -15,7 +15,7 @@
 	String id = (String) session.getAttribute("sessionID");
 	if (!id.equals("관리자")) {
 %>
-<c:redirect url="../err/errPage.html" />
+<c:redirect url="../err/errPage.jsp" />
 <%
 	}
 %>

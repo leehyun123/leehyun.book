@@ -20,7 +20,7 @@
 	String userName = request.getParameter("userName");
 	if (userName == null) {
 %>
-<c:redirect url="../err/errPage.html" />
+<c:redirect url="../err/errPage.jsp" />
 <%
 	}
 %>

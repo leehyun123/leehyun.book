@@ -4,7 +4,7 @@
 <%
 if(session.getAttribute("sessionID")==null){
 %>
-	<c:redirect url="../err/errPage.html"/>
+	<c:redirect url="../err/errPage.jsp"/>
 <%
 }
 	String ISBN = (String)request.getParameter("isbn");
