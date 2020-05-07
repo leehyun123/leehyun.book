@@ -85,6 +85,7 @@ th {
 	margin-left: 7px;
 	width: 120px;
 	height: 50px;
+	margin-top: 14px;
 }
 
 .footer {
@@ -106,6 +107,7 @@ hr {
 	font-weight: bold;
 	font-size: 28px;
 	float: left;
+	margin-top: 20px;
 }
 
 .search_input {
@@ -209,6 +211,10 @@ td{
 				</p>
 			</div>
 		</div>
+		<a href="javascript:history.go(-1)"><button class="rf_btn"
+			style="float: right; margin-right: 7px;">
+			<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기
+		</button></a>
 	</div>
 	<div class=footer>
 		<hr>

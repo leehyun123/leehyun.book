@@ -252,6 +252,8 @@ td{
 			</table>
 		</form>
 		<button class="rf_btn" onclick="alert_refund()">변경</button>
+		<a href="javascript:history.go(-1)"><button class="rf_btn" style="float: right; margin-right: 7px;">
+		<span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</button></a>
 	</div>
 	<div class=footer>
 		<hr>
