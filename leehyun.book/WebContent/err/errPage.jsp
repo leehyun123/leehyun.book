@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <h3>시스템 에러가 발생했습니다.</h3>
 <h5>고객센터 15777-1577로 문의하세요.</h5>
+<a href="../main.jsp">메인으로가기</a>
 <%
 	Logger logger = null;
 	if(application.getAttribute("logger") != null){

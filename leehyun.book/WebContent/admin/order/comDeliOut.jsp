@@ -149,7 +149,22 @@ td{
 	BookService bookService = new BookServiceImpl();
 	List<Order> orders = orderService.listAdminOrders("배송완료");
 	
-	User user = null;	
+	User user = null;
+	
+	int pageCnt = 0;
+	int totCnt = 0;
+	int totPage = 0;
+	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
+	
+	totCnt = orders.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
 
 	String id = (String)session.getAttribute("sessionID");
 	if(!id.equals("관리자")){
@@ -164,11 +179,13 @@ td{
 			<a href="../../user/logoutProc.jsp">로그아웃</a>
 		</div>
 	</div>
+	
 	<div class="div_logo">
 		<div class="logoimg">
 			<a href='../main.jsp' style="text-decoration: none;"><img src='../../img/<%=img.getImgUrl()%>' width="450"></a>
 		</div>
 	</div>
+	
 	<div class="search_bar">
 		<label class="search_label">주문관리 - 배송완료</label>
 	</div>
@@ -218,6 +235,7 @@ td{
 <%
 				if(orders.size() != 0){
 					for(Order order : orders){
+						if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						user = userService.findUser(order.getUserNum());
 						List<OrderBooks> orderbooks = orderBooksService.listOrderBooks(order.getOrderNum());
 						Long isbn = 0L;
@@ -246,6 +264,8 @@ td{
 %>							
 						</tr>
 <%
+						}
+						index++;
 					}
 				}else{
 %>
@@ -259,6 +279,29 @@ td{
 		<button class="rf_btn" onclick="alert_order()">되돌리기</button>
 		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='../main.jsp'">메인으로</button>
 	</div>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="comDeliOut.jsp?pageCnt=<%=1%>">처음</a></li>
+			<li><a href="comDeliOut.jsp?pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="comDeliOut.jsp?pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="comDeliOut.jsp?pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="comDeliOut.jsp?pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="comDeliOut.jsp?pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="comDeliOut.jsp?pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
+	</div>
+	
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

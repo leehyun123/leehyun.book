@@ -136,9 +136,10 @@ hr {
 	request.setCharacterEncoding("utf-8");
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
+	
 	int pageCnt = 0;
 	int totCnt = 0;
-	int index = 0;
+	int totPage = 0;
 	
 	if(request.getParameter("pageCnt") != null){
 		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
@@ -153,7 +154,7 @@ hr {
 	List<Order> listUserOrders = null;
 	
 	int date = 0;
-	if(request.getParameter("date") == null){
+	if(request.getParameter("date") == null || request.getParameter("date").equals("0")){
 		listUserOrders = orderService.listUserOrders(userNum);
 	}else{
 		date = Integer.parseInt(request.getParameter("date"));
@@ -166,6 +167,10 @@ hr {
 	}
 	
 	totCnt = listUserOrders.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
+	
 %>
 	<div class="container">
 		<div class="div_top">
@@ -261,8 +266,7 @@ hr {
 <%
 					if(listUserOrders.size() != 0){
 						for(Order order: listUserOrders){
-							if(index > (pageCnt-1) * 10 && index <= pageCnt){
-								index++;
+							if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 								int orderCnt = 0;
 								List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 	%>
@@ -278,21 +282,22 @@ hr {
 								Book book = bookService.findBook(isbn);
 								
 								if(orderCnt == 1){
-	%>							
+%>							
 									<td><%= book.getbookTitle()%></td>
-	<%						
+<%						
 								}else{
-	%>							
+%>							
 									<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
-	<%
+<%
 								}
-	%>							
+%>							
 									<td><%= order.getDeliveryNum()==0 ? "배송전" : order.getDeliveryNum()%></td>
 									<td><%= order.getDeliveryStatus() %></td>
 									<td><%= order.getReceiver() %></td>
 								</tr>
-	<%
+<%
 							}
+							index++;
 						}
 					}else{	
 %>
@@ -303,13 +308,26 @@ hr {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div class="text-center">
 		<ul class="pagination">
-			<c:if test="${pageCnt != 1}">
-				<li></li>
-			</c:if>
-			
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=1%>">처음</a></li>
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="orderOut.jsp?date=<%=date%>&pageCnt=<%=totPage%>">끝</a></li>
 		</ul>	
 	</div>	
 

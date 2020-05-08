@@ -163,6 +163,21 @@ td{
 	RefundBooksService refundBooksService = new RefundBooksServiceImpl();
 	
 	List<Refund> refunds = refundService.listRefunds();
+	
+	int pageCnt = 0;
+	int totCnt = 0;
+	int totPage = 0;
+	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
+	
+	totCnt = refunds.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
 %>
 <body>
 	<div class="container">
@@ -225,6 +240,7 @@ td{
 <%
 				if(refunds.size() != 0){
 					for(Refund refund : refunds){
+						if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						User user = userService.findUser(orderService.findOrder(refund.getOrderNum()).getUserNum());
 						List<RefundBooks> refundBooks = refundBooksService.listRefundBooks(refund.getRefundNum());
 						Long isbn = 0L;
@@ -266,6 +282,8 @@ td{
 							;" onclick="location.href='refundBooksOut.jsp?refundNum=<%=refund.getRefundNum() %>'"><%=refund.getRefundStatus() %></td>
 						</tr>
 <%
+						}
+						index++;
 					}
 				}else{
 %>
@@ -279,6 +297,29 @@ td{
 		<button class="rf_btn" onclick="alert_refund()">변경</button>
 		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='../main.jsp'">메인으로</button>
 	</div>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="refundOut.jsp?pageCnt=<%=1%>">처음</a></li>
+			<li><a href="refundOut.jsp?pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="refundOut.jsp?pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="refundOut.jsp?pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="refundOut.jsp?pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="refundOut.jsp?pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="refundOut.jsp?pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
+	</div>
+	
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

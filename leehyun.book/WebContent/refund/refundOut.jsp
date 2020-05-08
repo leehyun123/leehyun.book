@@ -126,6 +126,16 @@ th, td {
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
+
+	int pageCnt = 0;
+	int totCnt = 0;
+	int totPage = 0;
+	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
 	
 	int userNum = (int)session.getAttribute("sessionUserNum");
 	RefundService refundService = new RefundServiceImpl();
@@ -135,12 +145,17 @@ th, td {
 	
 	
 	int date = 0;
-	if(request.getParameter("date") == null){
+	if(request.getParameter("date") == null || request.getParameter("date").equals("0")){
 		refunds = refundService.listUserRefunds(userNum);
 	}else{
 		date = Integer.parseInt(request.getParameter("date"));
 		refunds = refundService.listUserRefundsDate(userNum, date*-1);
 	}
+	
+	totCnt = refunds.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
 %>
 <body>
 	<div class="container">
@@ -234,6 +249,7 @@ th, td {
 <%
 				if(refunds.size() != 0){
 					for(Refund refund : refunds){
+						if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						List<RefundBooks> refundBook = refundBooksService.listRefundBooks(refund.getRefundNum());
 						int cnt = 0;
 						Long isbn = 0L;
@@ -260,6 +276,8 @@ th, td {
 					<td><%=refund.getRefundStatus() %></td>
 				</tr>
 <%
+						}
+						index++;
 					}
 				}else{
 %>
@@ -270,6 +288,28 @@ th, td {
 			</tbody>
 		</table>
 	</div>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=1%>">처음</a></li>
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="refundOut.jsp?date=<%=date%>&pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
+	</div>	
 
 	<div class=footer>
 		<hr>

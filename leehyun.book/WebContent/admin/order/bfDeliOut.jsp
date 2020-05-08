@@ -156,7 +156,22 @@ td{
 	BookService bookService = new BookServiceImpl();
 	List<Order> orders = orderService.listAdminOrders("배송전");
 	
-	User user = null;	
+	User user = null;
+	
+	int pageCnt = 0;
+	int totCnt = 0;
+	int totPage = 0;
+	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
+	
+	totCnt = orders.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
 %>
 <body>
 	<div class="container">
@@ -219,6 +234,7 @@ td{
 				if(orders.size() != 0){
 					int i = 0;
 					for(Order order : orders){
+						if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						i++;
 						user = userService.findUser(order.getUserNum());
 						List<OrderBooks> orderbooks = orderBooksService.listOrderBooks(order.getOrderNum());
@@ -248,6 +264,8 @@ td{
 %>							
 						</tr>
 <%
+						}
+					index++;
 					}
 				}else{
 %>
@@ -261,6 +279,29 @@ td{
 		<button class="rf_btn" onclick="alert_order()">배송중 처리</button>
 		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='../main.jsp'">메인으로</button>
 	</div>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=1%>">처음</a></li>
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="bfDeliOut.jsp?pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="bfDeliOut.jsp?pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
+	</div>
+	
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

@@ -159,6 +159,21 @@ td{
 	}
 	
 	User user = null;	
+	
+	int pageCnt = 0;
+	int totCnt = 0;
+	int totPage = 0;
+	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
+	
+	totCnt = orders.size();
+	totPage = (int)Math.ceil((double)totCnt / 10);
+	
+	int index = 0;
 %>
 <body>
 	<div class="container">
@@ -202,6 +217,7 @@ td{
 <%
 				if(orders.size() != 0){
 					for(Order order : orders){
+						if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						user = userService.findUser(order.getUserNum());
 						List<OrderBooks> orderbooks = orderBooksService.listOrderBooks(order.getOrderNum());
 						Long isbn = 0L;
@@ -230,6 +246,8 @@ td{
 %>							
 						</tr>
 <%
+						}
+						index++;
 					}
 				}else{
 %>
@@ -243,6 +261,29 @@ td{
 		<button class="rf_btn" onclick="alert_order()">되돌리기</button>
 		<button class="rf_btn" style="float: right; margin-right: 7px;" onclick="location.href='comDeliOut.jsp'">뒤로가기</button>
 	</div>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=1%>">처음</a></li>
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="comDeliSearch.jsp?search_word=<%=words%>&pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
+	</div>
+	
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

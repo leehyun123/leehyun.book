@@ -132,6 +132,16 @@ hr {
 		request.setCharacterEncoding("utf-8");
 
 		String words = request.getParameter("search_words");
+		
+		int pageCnt = 0;
+		int totCnt = 0;
+		int totPage = 0;
+		
+		if(request.getParameter("pageCnt") != null){
+			pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+		}else{
+			pageCnt = 1;
+		}
 
 		int userNum = (int) session.getAttribute("sessionUserNum");
 		OrderService orderService = new OrderServiceImpl();
@@ -144,6 +154,15 @@ hr {
 			if (order.getUserNum() == userNum)
 				searchOrders.add(order);
 		}
+		
+		totCnt = searchOrders.size();
+		totPage = (int)Math.ceil((double)totCnt / 10);
+		
+		int index = 0;
+		
+		System.out.println(pageCnt);
+		System.out.println(totCnt);
+		System.out.println(totPage);
 	%>
 	<div class="container">
 		<div class="div_top">
@@ -230,6 +249,7 @@ hr {
 <%
 			if (searchOrders.size() != 0) {
 				for (Order order : searchOrders) {
+					if(index >= (pageCnt-1) * 10 && index < pageCnt * 10){
 						int orderCnt = 0;
 						List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
 %>
@@ -260,6 +280,8 @@ hr {
 								<td><%=order.getReceiver()%></td>
 							</tr>
 <%
+						}
+						index++;
 					}
 				}else{
 %>
@@ -272,6 +294,28 @@ hr {
 %>
 			</tbody>
 		</table>
+	</div>
+
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=1%>">처음</a></li>
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=pageCnt-10 > 1 ? pageCnt-10 : 1%>">&laquo;&laquo;</a></li>
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=pageCnt != 1 ? pageCnt-1 : 1%>">&laquo;</a></li>
+<%
+			for(int j = 1; j<=totPage; j++){
+				if(j > ((pageCnt - 1) / 10) * 10 && j <= (((pageCnt - 1) / 10) + 1) * 10){
+%>
+					<li <%if(pageCnt == j){%>class="active"<%}%>>
+						<a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=j%>"><%=j%></a>
+					</li>
+<%
+				}
+			}
+%>
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=pageCnt != totPage ? pageCnt+1 : totPage%>">&raquo;</a></li>
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=pageCnt+10 < totPage ? pageCnt+10 : totPage%>">&raquo;&raquo;</a></li>
+			<li><a href="orderSearch.jsp?search_words=<%=words%>&pageCnt=<%=totPage%>">끝</a></li>
+		</ul>	
 	</div>
 
 	<div class=footer>
