@@ -57,7 +57,7 @@
 		where isbn=#{isbn}
 	</update>
 
-	<delete id="delBook" parameterType="int">
+	<delete id="delBook" parameterType="long">
 		delete books where
 		isbn=#{isbn}
 	</delete>

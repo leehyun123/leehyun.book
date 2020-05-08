@@ -306,6 +306,9 @@ hr {
 
 	<div class="text-center">
 		<ul class="pagination">
+			<c:if test="${pageCnt != 1}">
+				<li></li>
+			</c:if>
 			
 		</ul>	
 	</div>	
