@@ -1,7 +1,7 @@
-<%@page import="java.util.List"%>
-<%@page import="leehyun.book.img.service.ImgServiceImpl"%>
-<%@page import="leehyun.book.img.domain.Img"%>
-<%@page import="leehyun.book.img.service.ImgService"%>
+<%@ page import="java.util.List"%>
+<%@ page import="leehyun.book.img.service.ImgServiceImpl"%>
+<%@ page import="leehyun.book.img.domain.Img"%>
+<%@ page import="leehyun.book.img.service.ImgService"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -224,6 +224,8 @@ hr {
 			<jsp:include page='book/list.jsp' />
 		</div>
 	</div>
+	
+	
 	<div class=footer>
 		<hr>
 		<p class='footertext'>

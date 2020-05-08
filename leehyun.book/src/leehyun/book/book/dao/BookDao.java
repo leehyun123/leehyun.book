@@ -3,9 +3,10 @@ package leehyun.book.book.dao;
 import java.util.List;
 
 import leehyun.book.book.domain.Book;
+import leehyun.book.page.domain.Page;
 
 public interface BookDao {
-	List<Book> getBooks();
+	List<Book> getBooks(Page page);
 	
 	List<Book> getCart(List<String> str);
 

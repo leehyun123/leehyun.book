@@ -12,6 +12,7 @@
 		<typeAlias alias="refund" type="leehyun.book.refund.domain.Refund" />
 		<typeAlias alias="refundBooks" type="leehyun.book.refund.domain.RefundBooks" />
 		<typeAlias alias="img" type="leehyun.book.img.domain.Img" />
+		<typeAlias alias="page" type="leehyun.book.page.domain.Page"/>
 	</typeAliases>
 	
 	<environments default = "development">
@@ -36,5 +37,6 @@
 		<mapper resource="leehyun/book/refund/dao/map/refundMap.xml" />
 		<mapper resource="leehyun/book/refund/dao/map/refundBooksMap.xml" />
 		<mapper resource="leehyun/book/img/dao/map/imgMap.xml" />
+		<mapper resource="leehyun/book/page/dao/map/pageMap.xml" />
 	</mappers>
 </configuration>

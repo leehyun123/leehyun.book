@@ -24,11 +24,19 @@
 		'%'||#{words}||'%'
 	</select>
 
-	<select id="getBooks" resultMap="bookMap">
-		select isbn, book_title, author,
+	<select id="getBooks" parameterType="page" resultMap="bookMap">
+		<![CDATA[
+		select * from (
+			select rownum as rnum, X.* from(
+				select * from books
+				order by isbn desc
+				)X where rownum <= #{rowCnt} * #{currentPage}
+			)where rnum > #{rowCnt} * (#{currentPage} - 1)
+			]]>
+		<!-- select isbn, book_title, author,
 		publisher, publish_date, book_price, book_img, book_outline
 		from books
-		order by isbn
+		order by isbn -->
 	</select>
 
 	<select id="getBook" parameterType="long" resultMap="bookMap">

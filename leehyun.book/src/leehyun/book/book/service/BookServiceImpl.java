@@ -5,6 +5,7 @@ import java.util.List;
 import leehyun.book.book.dao.BookDao;
 import leehyun.book.book.dao.BookDaoImpl;
 import leehyun.book.book.domain.Book;
+import leehyun.book.page.domain.Page;
 
 public class BookServiceImpl implements BookService {
 
@@ -16,8 +17,8 @@ public class BookServiceImpl implements BookService {
 
 	/* 도서 리스트 */
 	@Override
-	public List<Book> listBooks() {
-		return bookDao.getBooks();
+	public List<Book> listBooks(Page page) {
+		return bookDao.getBooks(page);
 	}
 
 	/* 장바구니 */

@@ -3,9 +3,10 @@ package leehyun.book.book.service;
 import java.util.List;
 
 import leehyun.book.book.domain.Book;
+import leehyun.book.page.domain.Page;
 
 public interface BookService {
-	List<Book> listBooks();
+	List<Book> listBooks(Page page);
 
 	List<Book> getCart(List<String> str);
 

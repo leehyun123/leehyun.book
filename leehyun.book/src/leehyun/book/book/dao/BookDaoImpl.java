@@ -6,6 +6,7 @@ import java.util.List;
 import leehyun.book.book.dao.map.BookMap;
 import leehyun.book.book.domain.Book;
 import leehyun.book.config.Configuration;
+import leehyun.book.page.domain.Page;
 
 public class BookDaoImpl implements BookDao {
 
@@ -20,8 +21,8 @@ public class BookDaoImpl implements BookDao {
 
 	/* 도서 리스트 */
 	@Override
-	public List<Book> getBooks() {
-		return books = mapper.getBooks();
+	public List<Book> getBooks(Page page) {
+		return books = mapper.getBooks(page);
 	}
 
 	/* 장바구니 */
