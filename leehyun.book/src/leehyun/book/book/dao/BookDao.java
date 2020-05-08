@@ -17,5 +17,5 @@ public interface BookDao {
 
 	boolean updateBook(Book book);
 
-	boolean delBook(int isbn);
+	boolean delBook(long isbn);
 }

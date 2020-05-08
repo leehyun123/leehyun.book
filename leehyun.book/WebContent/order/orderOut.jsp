@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="leehyun.book.order.dao.OrderDaoImpl"%>
 <%@page import="leehyun.book.order.dao.OrderDao"%>
 <%@page import="java.sql.Date"%>
@@ -135,7 +136,15 @@ hr {
 	request.setCharacterEncoding("utf-8");
 
 	int userNum = (int)session.getAttribute("sessionUserNum");
+	int pageCnt = 0;
+	int totCnt = 0;
+	int index = 0;
 	
+	if(request.getParameter("pageCnt") != null){
+		pageCnt = Integer.parseInt(request.getParameter("pageCnt"));
+	}else{
+		pageCnt = 1;
+	}
 	
 	OrderService orderService = new OrderServiceImpl();
 	OrderBooksService orderBooksService = new OrderBooksServiceImpl();
@@ -148,8 +157,15 @@ hr {
 		listUserOrders = orderService.listUserOrders(userNum);
 	}else{
 		date = Integer.parseInt(request.getParameter("date"));
-		listUserOrders = orderService.listUserOrdersDate(date*-1);
+		List<Order> listUserOrderss = orderService.listUserOrdersDate(date*-1);
+		listUserOrders = new ArrayList<>();
+		for(Order order : listUserOrderss){
+			if(order.getUserNum() == userNum)
+				listUserOrders.add(order);
+		}
 	}
+	
+	totCnt = listUserOrders.size();
 %>
 	<div class="container">
 		<div class="div_top">
@@ -245,14 +261,15 @@ hr {
 <%
 					if(listUserOrders.size() != 0){
 						for(Order order: listUserOrders){
-							if(order.getUserNum() == userNum){
+							if(index > (pageCnt-1) * 10 && index <= pageCnt){
+								index++;
 								int orderCnt = 0;
 								List<OrderBooks> listOrderBooks = orderBooksService.listOrderBooks(order.getOrderNum());
-%>
+	%>
 								<tr onClick="location.href='orderBooksOut.jsp?orderNum=<%= order.getOrderNum() %>'">
 									<td><%= order.getOrderNum() %></td>
 									<td><%= order.getOrderDate() %></td>
-<%
+	<%
 								long isbn = 0;
 								for(OrderBooks orderBooks: listOrderBooks){
 									orderCnt += orderBooks.getOrderCnt();
@@ -261,20 +278,20 @@ hr {
 								Book book = bookService.findBook(isbn);
 								
 								if(orderCnt == 1){
-%>							
+	%>							
 									<td><%= book.getbookTitle()%></td>
-<%						
+	<%						
 								}else{
-%>							
+	%>							
 									<td><%= book.getbookTitle()%> 외 <%= orderCnt-1 %>권</td>
-<%
+	<%
 								}
-%>							
+	%>							
 									<td><%= order.getDeliveryNum()==0 ? "배송전" : order.getDeliveryNum()%></td>
 									<td><%= order.getDeliveryStatus() %></td>
 									<td><%= order.getReceiver() %></td>
 								</tr>
-<%
+	<%
 							}
 						}
 					}else{	
@@ -286,6 +303,12 @@ hr {
 			</tbody>
 		</table>
 	</div>
+
+	<div class="text-center">
+		<ul class="pagination">
+			
+		</ul>	
+	</div>	
 
 	<div class=footer>
 		<hr>

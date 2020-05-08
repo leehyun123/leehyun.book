@@ -17,5 +17,5 @@ public interface BookMap {
 
 	int updateBook(Book book);
 
-	int delBook(int isbn);
+	int delBook(long isbn);
 }

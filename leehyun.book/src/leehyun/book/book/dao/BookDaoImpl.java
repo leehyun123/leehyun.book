@@ -65,7 +65,7 @@ public class BookDaoImpl implements BookDao {
 
 	/* 도서 삭제 */
 	@Override
-	public boolean delBook(int isbn) {
+	public boolean delBook(long isbn) {
 		isCheck = false;
 		int cnt = mapper.delBook(isbn);
 		if (cnt > 0)

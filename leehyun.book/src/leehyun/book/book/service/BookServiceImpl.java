@@ -52,7 +52,7 @@ public class BookServiceImpl implements BookService {
 
 	/* 도서 삭제 */
 	@Override
-	public boolean secede(int isbn) {
+	public boolean secede(long isbn) {
 		return bookDao.delBook(isbn);
 	}
 }

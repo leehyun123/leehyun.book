@@ -17,5 +17,5 @@ public interface BookService {
 
 	boolean correctBook(Book book);
 
-	boolean secede(int isbn);
+	boolean secede(long isbn);
 }

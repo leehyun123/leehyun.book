@@ -9,7 +9,7 @@
 	String isbnNum = request.getParameter("cb");
 
 	BookService bookService = new BookServiceImpl();
-	bookService.secede(Integer.parseInt(isbnNum));
+	bookService.secede(Long.parseLong(isbnNum));
 	
 	request.setAttribute("delsuc", 1);
 %>
