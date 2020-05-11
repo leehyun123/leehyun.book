@@ -152,7 +152,6 @@ hr {
 			int sumPrice = book.getbookPrice() * orderBooks.getOrderCnt();
 			orderSumPrice += sumPrice;
 	   }
-	   orderSumPrice += 2500;
    }
      
    List<Refund> refunds = refundService.listRefunds();
