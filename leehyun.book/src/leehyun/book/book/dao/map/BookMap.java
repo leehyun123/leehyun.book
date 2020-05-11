@@ -1,5 +1,6 @@
 package leehyun.book.book.dao.map;
 
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.book.domain.Book;
@@ -10,7 +11,7 @@ public interface BookMap {
 	
 	List<Book> getCart(List<String> str);
 
-	List<Book> pickBooks(String words);
+	List<Book> pickBooks(HashMap<String, Object> map);
 	
 	Book getBook(long isbn);
 

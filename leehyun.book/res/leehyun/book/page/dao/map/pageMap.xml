@@ -5,4 +5,12 @@
 	<select id="getTotRowCnt" resultType="int">
 		select count(isbn) from books
 	</select>
+	
+	<select id="getSearchRowCnt" parameterType="String" resultType="int">
+		select count(isbn) from books
+		where
+		(isbn||book_title||author||publisher||publish_date||book_outline)
+		like
+		'%'||#{words}||'%'
+	</select>
 </mapper>

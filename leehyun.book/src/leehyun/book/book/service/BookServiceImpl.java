@@ -1,5 +1,6 @@
 package leehyun.book.book.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.book.dao.BookDao;
@@ -27,10 +28,12 @@ public class BookServiceImpl implements BookService {
 		return bookDao.getCart(str);
 	}
 
-	/* 도서 검색 */
 	@Override
-	public List<Book> searchBook(String words) {
-		return bookDao.pickBook(words);
+	public List<Book> searchBook(String words, Page page) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pickBook", words);
+		map.put("getBooks", page);
+		return bookDao.pickBook(map);
 	}
 
 	/* 도서 확인 */

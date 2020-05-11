@@ -1,6 +1,7 @@
 package leehyun.book.book.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import leehyun.book.book.dao.map.BookMap;
@@ -33,8 +34,8 @@ public class BookDaoImpl implements BookDao {
 
 	/* 도서 검색 */
 	@Override
-	public List<Book> pickBook(String words) {
-		return books = mapper.pickBooks(words);
+	public List<Book> pickBook(HashMap<String, Object> map) {
+		return books = mapper.pickBooks(map);
 	}
 
 	/* 도서 확인 */

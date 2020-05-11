@@ -14,4 +14,9 @@ public class PageDaoImpl implements PageDao {
 	public int getTotRowCnt() {
 		return pageMap.getTotRowCnt();
 	}
+	
+	@Override
+	public int getSearchRowCnt(String words) {
+		return pageMap.getSearchRowCnt(words);
+	}
 }

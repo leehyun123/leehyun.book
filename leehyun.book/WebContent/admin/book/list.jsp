@@ -78,17 +78,17 @@
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
-				<li><a href="main.jsp?currentPage=${pageMaker.startPage-1}">&laquo;</a></li>
+				<li><a href="book.jsp?currentPage=${pageMaker.startPage-1}">&laquo;</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 				<li <c:out value="${pageMaker.page.currentPage==idx ? 'class=active' : 'class=hi'}"/>>
-					<a href="main.jsp?currentPage=${idx}">${idx }</a>
+					<a href="book.jsp?currentPage=${idx}">${idx }</a>
 				</li>
 			</c:forEach>
 			
 			<c:if test="${pageMaker.next }">
-				<li><a href="main.jsp?currentPage=${pageMaker.endPage + 1 }">&raquo;</a></li>
+				<li><a href="book.jsp?currentPage=${pageMaker.endPage + 1 }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>

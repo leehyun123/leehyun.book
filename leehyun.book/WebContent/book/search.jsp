@@ -1,3 +1,7 @@
+<%@ page import='java.util.HashMap'%>
+<%@page import="leehyun.book.page.service.PageServiceImpl"%>
+<%@page import="leehyun.book.page.service.PageService"%>
+<%@page import="leehyun.book.page.domain.Page"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 	pageEncoding='UTF-8'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
@@ -206,10 +210,18 @@
 		</a>
 	</div>
 	<%
+		Page myPage = null;
+		String currentPage = request.getParameter("currentPage");
+		if(currentPage != null) myPage = new Page(Integer.parseInt(currentPage));
+		else myPage = new Page();
+		
 		String words = request.getParameter("search_words");
+		
+		PageService pageService = new PageServiceImpl(5, myPage, words);
+		pageContext.setAttribute("pageMaker", pageService);
 
 		BookService bookService = new BookServiceImpl();
-		List<Book> books = bookService.searchBook(words);
+		List<Book> books = bookService.searchBook(words, myPage);
 	%>
 	<br>
 	<p class="result container">
@@ -261,6 +273,25 @@
 	<%
 		}
 	%>
+	
+	<!-- 페이징 -->
+	<div class="text-center">
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev }">
+				<li><a href="search.jsp?search_words=${pageMaker.startPage-1}">&laquo;</a></li>
+			</c:if>
+			
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+				<li <c:out value="${pageMaker.page.currentPage==idx ? 'class=active' : 'class=hi'}"/>>
+					<a href="search.jsp?search_words=<%=words %>&currentPage=${idx}">${idx }</a>
+				</li>
+			</c:forEach>
+			
+			<c:if test="${pageMaker.next }">
+				<li><a href="search.jsp?search_words=${pageMaker.endPage + 1 }">&raquo;</a></li>
+			</c:if>
+		</ul>
+	</div>
 
 	<div class=footer>
 		<hr>

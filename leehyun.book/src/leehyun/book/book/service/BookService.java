@@ -1,5 +1,4 @@
 package leehyun.book.book.service;
-
 import java.util.List;
 
 import leehyun.book.book.domain.Book;
@@ -10,7 +9,7 @@ public interface BookService {
 
 	List<Book> getCart(List<String> str);
 
-	List<Book> searchBook(String words);
+	List<Book> searchBook(String words, Page page);
 
 	Book findBook(long isbn);
 
