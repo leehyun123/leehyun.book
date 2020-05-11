@@ -260,19 +260,19 @@ hr {
             <div class="item active">
             	<div class="pr">
             		<input class="img_btn img_btn1" type="file" name="attachFile0">
-					<img id="img1" src='../../img/<%=imgs.get(1).getImgUrl()%>'>               		
+					<img id="img1" src='../../img/<%=imgs.get(1).getImgUrl()%>' width="1170" height="170">               		
                </div>
             </div>
             <div class="item">
                <div class="pr">
             		<input class="img_btn img_btn2" type="file" name="attachFile1">
-					<img id="img2" src='../../img/<%=imgs.get(2).getImgUrl()%>'>               		
+					<img id="img2" src='../../img/<%=imgs.get(2).getImgUrl()%>' width="1170" height="170">               		
                </div>
             </div>
             <div class="item">
                <div class="pr">
             		<input class="img_btn img_btn3" type="file" name="attachFile2">
-					<img id="img3" src='../../img/<%=imgs.get(3).getImgUrl()%>'>               		
+					<img id="img3" src='../../img/<%=imgs.get(3).getImgUrl()%>' width="1170" height="170">               		
                </div>
             </div>
          </div>
