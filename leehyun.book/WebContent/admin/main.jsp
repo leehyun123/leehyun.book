@@ -125,7 +125,6 @@ hr {
    RefundService refundService = new RefundServiceImpl();
    DecimalFormat df = new DecimalFormat("###,###");
 
-   orderService.correctOrderCom();
    int bf = 0;
    int ing = 0;
    int com = 0;
