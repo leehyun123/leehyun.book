@@ -239,7 +239,6 @@ hr {
 					<th>주문번호</th>
 					<th>주문날짜</th>
 					<th>주문내역</th>
-					<th>수량</th>
 					<th>송장번호</th>
 					<th>배송상태</th>
 					<th>수령자</th>
@@ -274,8 +273,7 @@ hr {
 <%
 							}
 %>
-								<td><%=orderCnt%></td>
-								<td><%=order.getDeliveryNum()%></td>
+								<td><%= order.getDeliveryNum()==0 ? "배송전" : order.getDeliveryNum()%></td>
 								<td><%=order.getDeliveryStatus()%></td>
 								<td><%=order.getReceiver()%></td>
 							</tr>
