@@ -198,13 +198,13 @@ hr {
 		<div class="test_background">
 			<div class="carousel-inner test_area">
 				<div class="item active">
-					<img src='img/<%=imgs.get(1).getImgUrl()%>' width="1170" height="170">
+					<img src='img/<%=imgs.get(1).getImgUrl()%>' width="1170" height="170" style="height:170px;" >
 				</div>
 				<div class="item">
-					<img src='img/<%=imgs.get(2).getImgUrl()%>' width="1170" height="170">
+					<img src='img/<%=imgs.get(2).getImgUrl()%>' width="1170" height="170" style="height:170px;">
 				</div>
 				<div class="item">
-					<img src='img/<%=imgs.get(3).getImgUrl()%>' width="1170" height="170">
+					<img src='img/<%=imgs.get(3).getImgUrl()%>' width="1170" height="170" style="height:170px;">
 				</div>
 			</div>
 		</div>
