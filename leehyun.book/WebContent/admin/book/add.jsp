@@ -281,14 +281,14 @@ hr {
 				<br> <input name="book_title" class="title"
 					<%if(request.getAttribute("bookTitle") != null){%>
 					value="<%=(String)request.getAttribute("bookTitle")%>" <%}%>
-					placeholder="제목" />
+					placeholder="제목" maxlength="13"/>
 				<div class="blk30"></div>
-				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
-					name="book_ISBN" class="book_info" placeholder="isbn"
+				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label>
+				<input name="book_ISBN" class="book_info" placeholder="isbn" maxlength="13"
 					<%if(request.getAttribute("bookIsbn") != null){%>
 					value="<%=(String)request.getAttribute("bookIsbn")%>" <%}%> /><br>
 				<br> <label class="book_info">저자명&nbsp;</label> <input
-					type="text" name="book_writer" class="book_info"
+					type="text" name="book_writer" class="book_info" maxlength="20"
 					placeholder="저자"
 					<%if(request.getAttribute("author") != null){%>
 					value="<%=(String)request.getAttribute("author")%>" <%}%> /><br>
@@ -296,7 +296,7 @@ hr {
 					type="text" name="book_pub" class="book_info"
 					<%if(request.getAttribute("publisher") != null){%>
 					value="<%=(String)request.getAttribute("publisher")%>" <%}%>
-					placeholder="출판사" /><br>
+					placeholder="출판사" maxlength="33"/><br>
 				<br> <label class="book_info">출판일&nbsp;</label> <input
 					type="date" name="book_pub_date" class="book_info"
 					<%if(request.getAttribute("publishDate") != null){%>
@@ -305,7 +305,7 @@ hr {
 				<input type="number" name="book_price" class="book_price"
 					<%if(request.getAttribute("bookPrice") != null){%>
 					value="<%=(String)request.getAttribute("bookPrice")%>" <%}%>
-					placeholder="가격" maxlength="7"/> <label class="book_info">원</label>
+					placeholder="가격" min="1" max="999999"/> <label class="book_info">원</label>
 				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
@@ -315,7 +315,7 @@ hr {
 			<hr>
 			<h3 style="margin-left: 40px;">소개</h3>
 			<br>
-			<textarea class="content" name="bookOutline"><%if(request.getAttribute("bookOutline") != null){%><%=(String)request.getAttribute("bookOutline")%><%}%></textarea>
+			<textarea class="content" name="bookOutline" maxlength="1000"><%if(request.getAttribute("bookOutline") != null){%><%=(String)request.getAttribute("bookOutline")%><%}%></textarea>
 		</div>
 	</form>
 	<div class=footer>

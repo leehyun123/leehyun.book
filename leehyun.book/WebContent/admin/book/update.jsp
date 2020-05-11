@@ -284,15 +284,15 @@ hr {
 					<input id="bookimgin" class="img_btn" type="file" name="uploadFile">
 				</div>
 				<br> <input name="book_title" class="title"
-					value="<%=book.getbookTitle()%>" />
-				<div class="blk30"></div>
+					value="<%=book.getbookTitle()%>" maxlength="33"/>
+				<div class="blk30" ></div>
 				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
-					name="book_ISBN" class="book_info" value="<%=book.getisbn()%>" readonly/><br>
+					name="book_ISBN" class="book_info" value="<%=book.getisbn()%>" maxlength="13" readonly/><br>
 				<br> <label class="book_info">저자명&nbsp;</label> <input
-					type="text" name="book_writer" class="book_info"
+					type="text" name="book_writer" class="book_info" maxlength="13"
 					value="<%=book.getauthor()%>" /><br> <br> <label
 					class="book_info">출판사&nbsp;</label> <input type="text"
-					name="book_pub" class="book_info" value="<%=book.getpublisher()%>" /><br>
+					name="book_pub" class="book_info" value="<%=book.getpublisher()%>" maxlength="33"/><br>
 				<br> 
 				<label class="book_info">출판일&nbsp;</label> 
 				<input type="date" name="book_pub_date" class="book_info"
@@ -300,8 +300,8 @@ hr {
 				<br> <br> 
 				<label class="book_info">&nbsp;&nbsp;가격&nbsp;&nbsp;</label> 
 				<input type="number" name="book_price" class="book_price"
-					value="<%=book.getbookPrice()%>" maxlength="7"/><label class="book_info">원</label>
-				<button class="cart_btn btn btn-primary" type="submit" onClick="alert_update()">수정</button>
+					value="<%=book.getbookPrice()%>" max="999999" /><label class="book_info">원</label>
+				<button class="cart_btn btn btn-primary" type="submit">수정</button>
 				<br>
 		</div>
 	</div>
@@ -310,7 +310,7 @@ hr {
 			<hr>
 			<h3 style="margin-left: 40px;">소개</h3>
 			<br>
-			<textarea class="content" name="bookOutline"><%=book.getbookOutline()%></textarea>
+			<textarea class="content" name="bookOutline" maxlength="1000"><%=book.getbookOutline()%></textarea>
 		</div>
 </form>
 	<div class=footer>
