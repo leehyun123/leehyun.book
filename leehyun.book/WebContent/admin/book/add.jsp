@@ -281,7 +281,7 @@ hr {
 				<br> <input name="book_title" class="title"
 					<%if(request.getAttribute("bookTitle") != null){%>
 					value="<%=(String)request.getAttribute("bookTitle")%>" <%}%>
-					placeholder=" bookTitle" />
+					placeholder="제목" />
 				<div class="blk30"></div>
 				<label class="book_info">ISBN&nbsp;&nbsp;&nbsp;</label> <input
 					name="book_ISBN" class="book_info" placeholder="isbn"
@@ -289,14 +289,14 @@ hr {
 					value="<%=(String)request.getAttribute("bookIsbn")%>" <%}%> /><br>
 				<br> <label class="book_info">저자명&nbsp;</label> <input
 					type="text" name="book_writer" class="book_info"
-					placeholder="author"
+					placeholder="저자"
 					<%if(request.getAttribute("author") != null){%>
 					value="<%=(String)request.getAttribute("author")%>" <%}%> /><br>
 				<br> <label class="book_info">출판사&nbsp;</label> <input
 					type="text" name="book_pub" class="book_info"
 					<%if(request.getAttribute("publisher") != null){%>
 					value="<%=(String)request.getAttribute("publisher")%>" <%}%>
-					placeholder="publisher" /><br>
+					placeholder="출판사" /><br>
 				<br> <label class="book_info">출판일&nbsp;</label> <input
 					type="date" name="book_pub_date" class="book_info"
 					<%if(request.getAttribute("publishDate") != null){%>
@@ -305,7 +305,7 @@ hr {
 				<input type="number" name="book_price" class="book_price"
 					<%if(request.getAttribute("bookPrice") != null){%>
 					value="<%=(String)request.getAttribute("bookPrice")%>" <%}%>
-					placeholder="book_price" maxlength="7"/> <label class="book_info">원</label>
+					placeholder="가격" maxlength="7"/> <label class="book_info">원</label>
 				<button class="cart_btn btn btn-primary" type="submit">등록</button>
 				<br>
 			</div>
